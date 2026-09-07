@@ -1,0 +1,13 @@
+{
+  "site": "example.com",
+  "root_url": "https://example.com",
+  "robots": {
+    "checked": true,
+    "allowed": true
+  },
+  "sitemap": {
+    "found": false,
+    "urls": []
+  },
+  "pages": []
+}
