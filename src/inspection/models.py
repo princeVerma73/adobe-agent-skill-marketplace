@@ -80,6 +80,7 @@ class SitemapInspection(BaseModel):
     total_discovered_urls: int = Field(default=0, description="Total number of page URLs found across sitemaps")
     sample_urls: List[str] = Field(default_factory=list, description="Sample of discovered URLs")
     raw_content: Optional[str] = Field(default=None, description="Raw sitemap XML/text snippet")
+    error: Optional[str] = Field(default=None, description="Error message if sitemap discovery/retrieval failed")
 
 
 class PageInspection(BaseModel):
