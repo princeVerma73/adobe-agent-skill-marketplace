@@ -6,6 +6,7 @@
 
 **Member 2:** Entity + content + freshness + trust — `skills/entity-content-freshness-trust`
 
+
 **Member 3:** Engagement + recommendations + orchestration — `skills/engagement-recommendations`, `skills/audit-orchestrator`, `src/report`
 
 **All:** integration, unseen-site testing, false-positive reduction, final packaging.
