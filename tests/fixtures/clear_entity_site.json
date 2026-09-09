@@ -1,0 +1,35 @@
+{
+  "site": "acmecloud.ai",
+  "homepage": {
+    "url": "https://acmecloud.ai/",
+    "title": "Acme Cloud AI - Enterprise Document Intelligence Platform",
+    "text": "Acme Cloud AI is an American software company providing AI-powered document intelligence solutions for financial institutions. Founded in 2021. Headquartered in San Francisco, California. Contact us at contact@acmecloud.ai or call (415) 555-0199. Plans starting at $49/mo. Over 500+ enterprises trust our platform.",
+    "html": "<!DOCTYPE html><html><head><title>Acme Cloud AI - Enterprise Document Intelligence Platform</title><meta name=\"description\" content=\"Acme Cloud AI is a software company providing enterprise document intelligence.\"><meta property=\"og:site_name\" content=\"Acme Cloud AI\"><script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Organization\", \"name\": \"Acme Cloud AI\", \"url\": \"https://acmecloud.ai/\", \"foundingDate\": \"2021\", \"address\": {\"@type\": \"PostalAddress\", \"addressLocality\": \"San Francisco\", \"addressRegion\": \"CA\", \"addressCountry\": \"USA\"}, \"email\": \"contact@acmecloud.ai\", \"telephone\": \"(415) 555-0199\"}</script></head><body><h1>Acme Cloud AI - Enterprise Document Intelligence Platform</h1><p>Acme Cloud AI is an American software company providing AI-powered document intelligence solutions for financial institutions. Founded in 2021. Headquartered in San Francisco, California. Plans starting at $49/mo.</p><img src=\"/images/metric-growth.png\" alt=\"500+ enterprise customers achieving 99.4% document processing accuracy in 2025\" /><footer><p>© 2026 Acme Cloud AI, Inc. All rights reserved.</p></footer></body></html>",
+    "images": [
+      {
+        "src": "https://acmecloud.ai/images/metric-growth.png",
+        "alt": "500+ enterprise customers achieving 99.4% document processing accuracy in 2025"
+      }
+    ],
+    "structured_data": [
+      {
+        "@type": "Organization",
+        "name": "Acme Cloud AI",
+        "foundingDate": "2021",
+        "address": "San Francisco, CA USA",
+        "email": "contact@acmecloud.ai"
+      }
+    ]
+  },
+  "pages": [
+    {
+      "url": "https://acmecloud.ai/about",
+      "title": "About Us - Acme Cloud AI",
+      "text": "About Acme Cloud AI. Established in 2021 in San Francisco, California. We deliver automated document extraction systems to banks and insurers worldwide.",
+      "html": "<html><head><title>About Us - Acme Cloud AI</title></head><body><h1>About Acme Cloud AI</h1><p>Established in 2021 in San Francisco, California. We deliver automated document extraction systems to banks and insurers worldwide.</p><footer><p>© 2026 Acme Cloud AI, Inc.</p></footer></body></html>"
+    }
+  ],
+  "structured_data": [],
+  "metadata": {},
+  "crawl_metadata": { "pages_crawled": 2 }
+}

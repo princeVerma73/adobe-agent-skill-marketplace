@@ -1,0 +1,22 @@
+{
+  "site": "legacysystems.org",
+  "homepage": {
+    "url": "https://legacysystems.org/",
+    "title": "Legacy Systems - Enterprise Database Hosting",
+    "text": "Legacy Systems is a database infrastructure provider. Headquartered in Chicago, Illinois. Contact sales@legacysystems.org.",
+    "html": "<html><head><title>Legacy Systems - Enterprise Database Hosting</title></head><body><h1>Legacy Systems</h1><p>Legacy Systems is a database infrastructure provider. Headquartered in Chicago, Illinois. Contact sales@legacysystems.org.</p><footer><p>© 2021 Legacy Systems Corp. All Rights Reserved.</p></footer></body></html>",
+    "images": [],
+    "structured_data": []
+  },
+  "pages": [
+    {
+      "url": "https://legacysystems.org/news",
+      "title": "Company News - Legacy Systems",
+      "text": "Company Announcements. Published: March 14, 2020: We are thrilled to announce our new data center expansion in Texas.",
+      "html": "<html><head><title>Company News - Legacy Systems</title><meta name=\"article:published_time\" content=\"2020-03-14\"></head><body><h1>Company News</h1><h2>Published March 14, 2020: New Data Center Expansion</h2><p>We are thrilled to announce our new data center expansion in Texas.</p><footer><p>© 2021 Legacy Systems Corp.</p></footer></body></html>"
+    }
+  ],
+  "structured_data": [],
+  "metadata": {},
+  "crawl_metadata": { "pages_crawled": 2 }
+}

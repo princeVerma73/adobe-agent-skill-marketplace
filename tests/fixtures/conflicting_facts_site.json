@@ -1,0 +1,28 @@
+{
+  "site": "quantumtech.io",
+  "homepage": {
+    "url": "https://quantumtech.io/",
+    "title": "QuantumTech - Next-Gen Quantum Computing",
+    "text": "QuantumTech is a hardware technology company developing quantum processors. Founded in 2015. Headquartered in San Francisco, California. Pricing starts at $99/mo. Contact us at hello@quantumtech.io.",
+    "html": "<html><head><title>QuantumTech - Next-Gen Quantum Computing</title></head><body><h1>QuantumTech</h1><p>QuantumTech is a hardware technology company developing quantum processors. Founded in 2015. Headquartered in San Francisco, California. Pricing starts at $99/mo. Contact us at hello@quantumtech.io.</p><footer><p>© 2026 QuantumTech Inc.</p></footer></body></html>",
+    "images": [],
+    "structured_data": []
+  },
+  "pages": [
+    {
+      "url": "https://quantumtech.io/about",
+      "title": "About QuantumTech",
+      "text": "About our journey. QuantumTech was established in 2018 by leading physicists. Offices in London, UK.",
+      "html": "<html><head><title>About QuantumTech</title></head><body><h1>About QuantumTech</h1><p>About our journey. QuantumTech was established in 2018 by leading physicists. Offices in London, UK.</p></body></html>"
+    },
+    {
+      "url": "https://quantumtech.io/pricing",
+      "title": "Pricing - QuantumTech",
+      "text": "Choose your plan. Plans starting at $199/mo for enterprise teams.",
+      "html": "<html><head><title>Pricing - QuantumTech</title></head><body><h1>Pricing</h1><p>Plans starting at $199/mo for enterprise teams.</p></body></html>"
+    }
+  ],
+  "structured_data": [],
+  "metadata": {},
+  "crawl_metadata": { "pages_crawled": 3 }
+}

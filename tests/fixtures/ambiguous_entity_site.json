@@ -1,0 +1,15 @@
+{
+  "site": "apexglobal.net",
+  "homepage": {
+    "url": "https://apexglobal.net/",
+    "title": "Home",
+    "text": "Welcome to us. We empower businesses to succeed with world-class solutions. Innovative solutions for tomorrow. Discover our game-changing offerings and experience unmatched excellence today.",
+    "html": "<!DOCTYPE html><html><head><title>Home</title><meta name=\"description\" content=\"Welcome to our homepage.\"></head><body><h1>Welcome</h1><p>We empower businesses to succeed with world-class solutions. Innovative solutions for tomorrow. Discover our game-changing offerings and experience unmatched excellence today.</p><footer><p>© 2026 Apex Global</p></footer></body></html>",
+    "images": [],
+    "structured_data": []
+  },
+  "pages": [],
+  "structured_data": [],
+  "metadata": {},
+  "crawl_metadata": { "pages_crawled": 1 }
+}

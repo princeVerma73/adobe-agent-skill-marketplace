@@ -1,0 +1,21 @@
+{
+  "site": "visualdata.io",
+  "homepage": {
+    "url": "https://visualdata.io/",
+    "title": "Visual Data Analytics",
+    "text": "Visual Data Analytics provides real-time dashboard software. Contact hello@visualdata.io. Located in Austin, Texas.",
+    "html": "<html><head><title>Visual Data Analytics</title></head><body><h1>Visual Data Analytics</h1><p>Visual Data Analytics provides real-time dashboard software. Contact hello@visualdata.io. Located in Austin, Texas.</p><figure><img src=\"/assets/infographic-customer-metrics.png\" class=\"stat-infographic\" alt=\"image\" /><figcaption>Our Global Reach</figcaption></figure><footer><p>© 2026 Visual Data Analytics</p></footer></body></html>",
+    "images": [
+      {
+        "src": "/assets/infographic-customer-metrics.png",
+        "alt": "image",
+        "classes": ["stat-infographic"]
+      }
+    ],
+    "structured_data": []
+  },
+  "pages": [],
+  "structured_data": [],
+  "metadata": {},
+  "crawl_metadata": { "pages_crawled": 1 }
+}

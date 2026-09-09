@@ -29,7 +29,7 @@ flowchart TD
 | Role | Domain / Module | Primary Artifacts | Status |
 | :--- | :--- | :--- | :--- |
 | **Member 1** | Crawl, Rendering, Technical Discoverability | `src/inspection`, `src/crawler`, `src/rendering`, `src/extraction`, `skills/crawl-render-audit` | **Completed (193/193 tests passed)** |
-| **Member 2** | Entity Extraction, Content Quality, Freshness, Trust | `skills/entity-content-freshness-trust` | Pending / In Progress |
+| **Member 2** | Entity Extraction, Content Quality, Freshness, Trust | `src/entity_trust`, `skills/entity-content-freshness-trust` | **Completed (24/24 tests passed, 217/217 overall)** |
 | **Member 3** | Engagement, Recommendations, Orchestrator, Report | `skills/engagement-recommendations`, `skills/audit-orchestrator`, `src/report` | Pending / In Progress |
 | **All Members** | Integration testing, unseen domain auditing, benchmark calibration | `tests/integration/`, `examples/` | Ongoing |
 
