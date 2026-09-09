@@ -12,7 +12,8 @@ import logging
 import time
 from typing import Any, Dict, List, Optional
 
-from src.crawler.http import DEFAULT_USER_AGENT
+# User agent default
+DEFAULT_RENDER_USER_AGENT = "Adobe-BrandAuditBot/1.0 (+https://adobe.com/agent-marketplace-audit)"
 from src.extraction.extract import (
     ExtractedData,
     extract_static_html,
@@ -65,7 +66,7 @@ class RenderConfig:
     timeout_ms: int = 10000  # 10s timeout
     wait_until: str = "domcontentloaded"
     block_heavy_resources: bool = True
-    user_agent: str = DEFAULT_USER_AGENT
+    user_agent: str = DEFAULT_RENDER_USER_AGENT
     viewport_width: int = 1280
     viewport_height: int = 800
     headless: bool = True
