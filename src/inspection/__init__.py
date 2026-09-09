@@ -10,6 +10,11 @@ from src.inspection.models import (
     SitemapInspection,
     TechnicalIssue,
 )
+from src.inspection.pipeline import (
+    InspectionPipeline,
+    PipelineConfig,
+    inspect_site,
+)
 from src.inspection.robots import (
     RobotsParser,
     inspect_robots_txt,
@@ -49,6 +54,9 @@ __all__ = [
     "SiteInspection",
     "SitemapInspection",
     "TechnicalIssue",
+    "InspectionPipeline",
+    "PipelineConfig",
+    "inspect_site",
     "RobotsParser",
     "inspect_robots_txt",
     "audit_technical_discoverability",
