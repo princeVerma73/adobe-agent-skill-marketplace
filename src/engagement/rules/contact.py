@@ -53,7 +53,7 @@ def check_contact_path(
             if any(re.search(pat, target) for pat in CONTACT_PATTERNS):
                 has_contact = True
                 break
-            if anchor in CONTACT_ANCHORS:
+            if anchor in CONTACT_ANCHORS or any(kw in anchor for kw in ("contact", "support", "help desk", "help center", "get in touch", "customer service", "feedback")):
                 has_contact = True
                 break
 

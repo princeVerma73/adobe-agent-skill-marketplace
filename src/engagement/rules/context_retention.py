@@ -41,13 +41,22 @@ def check_context_retention(
 
         # 1. Check if the page links back to homepage/root
         has_home_link = False
+        parsed_hp = urllib.parse.urlparse(homepage_url)
+        root_domain_url = f"{parsed_hp.scheme}://{parsed_hp.netloc}".rstrip("/")
+        brand_kw = site_domain.split(".")[0].lower() if site_domain else ""
+
         for link in links:
             t = (link.get("url") or "").rstrip("/")
             anchor = (link.get("text") or "").strip().lower()
-            if t == hp_canonical or t == f"{hp_canonical}/":
+            rel = (link.get("rel") or "").lower()
+
+            if t in (hp_canonical, f"{hp_canonical}/", root_domain_url, f"{root_domain_url}/"):
                 has_home_link = True
                 break
-            if anchor in ("home", "homepage", "index", "main"):
+            if "home" in rel:
+                has_home_link = True
+                break
+            if anchor in ("home", "homepage", "index", "main") or (brand_kw and brand_kw in anchor and len(anchor) < 30):
                 has_home_link = True
                 break
 

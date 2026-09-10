@@ -10,16 +10,12 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 import logging
 import time
-from typing import Any, Dict, List, Optional
+from typing import TYPE_CHECKING, Any, Dict, List, Optional
 
 # User agent default
 DEFAULT_RENDER_USER_AGENT = "Adobe-BrandAuditBot/1.0 (+https://adobe.com/agent-marketplace-audit)"
-from src.extraction.extract import (
-    ExtractedData,
-    extract_static_html,
-    is_rendering_needed,
-    populate_page_inspection,
-)
+if TYPE_CHECKING:
+    from src.extraction.extract import ExtractedData
 from src.inspection.models import (
     PageInspection,
     PageMetadata,
@@ -186,6 +182,7 @@ def render_page_playwright(
             except Exception:
                 rendered_text = ""
 
+            from src.extraction.extract import extract_static_html
             extracted = extract_static_html(rendered_html, base_url=normalized_url)
             elapsed_ms = round((time.perf_counter() - start_time) * 1000, 2)
 
@@ -290,6 +287,7 @@ def render_and_inspect_page(
     )
 
     # 1. Base static extraction
+    from src.extraction.extract import extract_static_html, is_rendering_needed
     html_source = static_html or ""
     static_extracted = extract_static_html(html_source, base_url=norm_url)
     page.raw_html_available = bool(html_source)

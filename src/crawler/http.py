@@ -289,7 +289,7 @@ class SafeHTTPClient:
                     # Resolve relative redirect URL
                     resolved_target = urllib.parse.urljoin(current_url, location)
                     try:
-                        next_url = normalize_url(resolved_target)
+                        normalize_url(resolved_target)
                     except (InvalidURLError, PrivateTargetError) as exc:
                         elapsed_ms = round((time.perf_counter() - start_time) * 1000, 2)
                         return FetchResponse(
@@ -302,21 +302,46 @@ class SafeHTTPClient:
                             success=False,
                         )
 
-                    # Detect redirect loops
-                    if next_url in redirect_chain:
+                    hostname = extract_hostname(resolved_target)
+                    if not hostname:
                         elapsed_ms = round((time.perf_counter() - start_time) * 1000, 2)
                         return FetchResponse(
-                            url=next_url,
+                            url=resolved_target,
                             original_url=original_url,
                             status_code=response.status_code,
                             response_time_ms=elapsed_ms,
                             redirect_chain=redirect_chain,
-                            error=f"Redirect loop detected to '{next_url}'.",
+                            error="Redirect location has missing or invalid hostname.",
                             success=False,
                         )
 
-                    redirect_chain.append(next_url)
-                    current_url = next_url
+                    if is_private_or_local_target(hostname):
+                        elapsed_ms = round((time.perf_counter() - start_time) * 1000, 2)
+                        return FetchResponse(
+                            url=resolved_target,
+                            original_url=original_url,
+                            status_code=response.status_code,
+                            response_time_ms=elapsed_ms,
+                            redirect_chain=redirect_chain,
+                            error=f"Redirect to unsafe/private target '{hostname}' blocked.",
+                            success=False,
+                        )
+
+                    # Detect redirect loops on exact resolved target URL
+                    if resolved_target in redirect_chain:
+                        elapsed_ms = round((time.perf_counter() - start_time) * 1000, 2)
+                        return FetchResponse(
+                            url=resolved_target,
+                            original_url=original_url,
+                            status_code=response.status_code,
+                            response_time_ms=elapsed_ms,
+                            redirect_chain=redirect_chain,
+                            error=f"Redirect loop detected to '{resolved_target}'.",
+                            success=False,
+                        )
+
+                    redirect_chain.append(resolved_target)
+                    current_url = resolved_target
                     continue
 
                 # Non-redirect response: stream body up to size limit

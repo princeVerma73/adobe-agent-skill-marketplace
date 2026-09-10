@@ -22,19 +22,31 @@ def check_internal_linking(
     if len(pages_data) < 2:
         return findings
 
-    # Build incoming link counts for every audited page
-    incoming_links: Dict[str, Set[str]] = {
-        p.get("url", "").rstrip("/"): set() for p in pages_data if p.get("url")
-    }
+    # Build incoming link counts and URL alias mapping for every audited page
+    url_to_canonical: Dict[str, str] = {}
+    incoming_links: Dict[str, Set[str]] = {}
 
-    canonical_map = {url: url for url in incoming_links.keys()}
+    for p in pages_data:
+        canon = p.get("url", "").rstrip("/")
+        if not canon:
+            continue
+        incoming_links[canon] = set()
+        url_to_canonical[canon] = canon
+        orig = (p.get("original_url") or "").rstrip("/")
+        if orig:
+            url_to_canonical[orig] = canon
+        for r in p.get("redirect_chain", []):
+            rc = (r or "").rstrip("/")
+            if rc:
+                url_to_canonical[rc] = canon
 
     for page in pages_data:
         source_url = page.get("url", "").rstrip("/")
         for link in page.get("links", []):
             target = (link.get("url") or "").rstrip("/")
-            if target in incoming_links and target != source_url:
-                incoming_links[target].add(source_url)
+            canon_target = url_to_canonical.get(target)
+            if canon_target and canon_target in incoming_links and canon_target != source_url:
+                incoming_links[canon_target].add(source_url)
 
     hp_canonical = homepage_url.rstrip("/")
 

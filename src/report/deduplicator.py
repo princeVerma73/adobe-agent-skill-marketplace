@@ -19,6 +19,12 @@ SEVERITY_ORDER = {
 }
 
 
+CROSS_SKILL_EQUIVALENCE: Dict[str, Tuple[str, str]] = {
+    "ENG-006": ("TECH-MULTIPLE_H1", "technical"),
+    "ENG-016": ("TECH-MISSING_H1", "technical"),
+}
+
+
 def deduplicate_findings(findings: List[ReportFinding]) -> List[ReportFinding]:
     """Deduplicates findings by (id, category) or equivalent issue footprint.
 
@@ -28,7 +34,8 @@ def deduplicate_findings(findings: List[ReportFinding]) -> List[ReportFinding]:
     merged: Dict[Tuple[str, str], ReportFinding] = {}
 
     for f in findings:
-        key = (f.id, f.category)
+        canon_id, canon_cat = CROSS_SKILL_EQUIVALENCE.get(f.id, (f.id, f.category))
+        key = (canon_id, canon_cat)
 
         if key not in merged:
             # Clone finding

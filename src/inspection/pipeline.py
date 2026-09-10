@@ -16,11 +16,13 @@ import time
 from typing import TYPE_CHECKING, Any, Deque, List, Optional, Set, Tuple
 import urllib.parse
 
-from src.extraction.extract import (
-    extract_static_html,
-    is_rendering_needed,
-    populate_page_inspection,
-)
+if TYPE_CHECKING:
+    from src.crawler.http import SafeHTTPClient
+    from src.extraction.extract import (
+        extract_static_html,
+        is_rendering_needed,
+        populate_page_inspection,
+    )
 from src.inspection.models import (
     Link,
     PageInspection,
@@ -208,6 +210,11 @@ class InspectionPipeline:
             if fetch_resp.status_code == 200 and fetch_resp.text:
                 content_type = (fetch_resp.content_type or "").lower()
                 if "text/html" in content_type or "<html" in fetch_resp.text.lower():
+                    from src.extraction.extract import (
+                        extract_static_html,
+                        is_rendering_needed,
+                        populate_page_inspection,
+                    )
                     # Base static extraction
                     static_extracted = extract_static_html(fetch_resp.text, base_url=page.url)
                     populate_page_inspection(page, html=fetch_resp.text, base_url=page.url)

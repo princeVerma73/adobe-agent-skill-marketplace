@@ -425,20 +425,22 @@ def inspect_page_technical(
     issues.extend(check_redirect_chain(page))
     issues.extend(check_static_rendered_gap(page))
 
-    # Optional sitemap inclusion check if sitemap was discovered
+    # Optional sitemap inclusion check if complete sitemap was discovered
     if (
         site_inspection is not None
         and site_inspection.sitemap.found
         and site_inspection.sitemap.sample_urls
+        and site_inspection.sitemap.total_discovered_urls <= len(site_inspection.sitemap.sample_urls)
     ):
-        sitemap_set = set(site_inspection.sitemap.sample_urls)
-        if page.url not in sitemap_set:
+        sitemap_set = {u.rstrip("/") for u in site_inspection.sitemap.sample_urls}
+        page_norm = page.url.rstrip("/")
+        if page_norm not in sitemap_set:
             issues.append(
                 TechnicalIssue(
                     code="PAGE_NOT_IN_SITEMAP",
                     message="Page URL was not found in discovered XML sitemap URLs.",
                     severity="info",
-                    details={"url": page.url, "sitemap_sample_size": len(sitemap_set)},
+                    details={"url": page.url, "sitemap_total_urls": len(sitemap_set)},
                 )
             )
 
