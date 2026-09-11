@@ -31,13 +31,13 @@ def test_internal_linking_flags_orphan_pages():
     assert f.severity == SeverityLevel.MEDIUM
 
 
-def test_dead_ends_flags_terminal_pages():
-    """Verifies that pages with 0 outgoing internal links trigger ENG-014."""
+def test_dead_ends_flags_unintentional_dead_end_pages():
+    """Verifies that non-terminal content pages with 0 outgoing internal links trigger ENG-014."""
     pages_data = [
         {
-            "url": "https://example.com/thank-you",
+            "url": "https://example.com/products/item-catalog-392",
             "status_code": 200,
-            "links": [],  # 0 outgoing links
+            "links": [],  # 0 outgoing links on a product content page
         }
     ]
     findings = check_dead_ends(homepage_url="https://example.com/", pages_data=pages_data)
@@ -45,6 +45,32 @@ def test_dead_ends_flags_terminal_pages():
     f = next(f for f in findings if f.id == "ENG-014")
     assert f.severity == SeverityLevel.HIGH
     assert "Dead-end page" in f.title
+
+
+def test_dead_ends_ignores_intentionally_terminal_pages():
+    """Verifies that intentionally terminal pages (thank-you, privacy, terms) do NOT trigger ENG-014."""
+    pages_data = [
+        {
+            "url": "https://example.com/thank-you",
+            "title": "Thank You for Your Order",
+            "status_code": 200,
+            "links": [],
+        },
+        {
+            "url": "https://example.com/privacy-policy",
+            "title": "Privacy Policy",
+            "status_code": 200,
+            "links": [],
+        },
+        {
+            "url": "https://example.com/terms-of-service",
+            "title": "Terms of Service",
+            "status_code": 200,
+            "links": [],
+        },
+    ]
+    findings = check_dead_ends(homepage_url="https://example.com/", pages_data=pages_data)
+    assert len(findings) == 0
 
 
 def test_continuation_flags_content_pages_without_next_steps():

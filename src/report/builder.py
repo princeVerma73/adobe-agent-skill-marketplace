@@ -160,11 +160,15 @@ class ReportBuilder:
         # Summary dictionary
         summary = {
             "total_findings": len(deduped),
+            "critical": counts.critical,
+            "high": counts.high,
+            "medium": counts.medium,
             "total_recommendations": len(recommendations),
             "pages_analyzed": len(self.known_urls),
             "crawled_urls": list(sorted(self.known_urls)),
             "brand_ai_readiness_score": overall_score,
             "readiness_grade": grade,
+            "score_heuristic_disclaimer": "Internal marketplace composite heuristic (100 - weighted severity deductions; not an official Adobe metric)",
         }
 
         return FinalAuditReport(

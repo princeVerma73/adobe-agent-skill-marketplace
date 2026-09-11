@@ -52,8 +52,8 @@ def check_cta_clarity(
             homepage_page = p
             break
 
-    if not homepage_page and pages_data:
-        homepage_page = pages_data[0]
+    if not homepage_page:
+        return findings
 
     if homepage_page:
         hp_url = homepage_page.get("url", "")

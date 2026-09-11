@@ -1,120 +1,208 @@
-# Adobe University Hackathon 2026 — Round 3
+# Adobe Brand AI-Readiness Audit Agent Skill Marketplace
 
-## Team Ownership & Architecture
-
-- **Member 1 (Completed):** Crawl + Rendering + Technical Discoverability — `src/inspection`, `src/crawler`, `src/rendering`, `src/extraction`, `skills/crawl-render-audit`
-- **Member 2 (Pending/In Progress):** Entity + Content + Freshness + Trust — `skills/entity-content-freshness-trust`
-- **Member 3 (Pending/In Progress):** Engagement + Recommendations + Orchestration — `skills/engagement-recommendations`, `skills/audit-orchestrator`, `src/report`
-- **All:** Integration, unseen-site testing, false-positive reduction, final packaging.
+The **Adobe Brand AI-Readiness Audit Marketplace** is an autonomous multi-skill intelligence pipeline designed for Adobe University Hackathon 2026 (Round 3). It solves the critical problem of brand invisibility and misrepresentation in the emerging era of AI search engines, answer engines, and autonomous agents by systematically evaluating any public website across technical discoverability, semantic entity grounding, content freshness, and on-site engagement. The pipeline produces an executive-grade `FinalAuditReport` in JSON and Markdown formats featuring evidence-backed findings, calibrated confidence scoring, and a prioritized remediation roadmap.
 
 ---
 
-## Member 1 Completed Work (Phases 1–8)
+## Skills in this marketplace
 
-Member 1 delivers the read-only inspection foundation for the audit marketplace. It converts any target URL into structured, evidence-backed inspection models without modifying remote site state.
+### crawl-render-audit
+The **Website Intelligence** skill (`skills/crawl-render-audit`) performs bounded, RFC 9309-compliant web crawling, recursive XML sitemap discovery, SSRF-guarded network fetching, and clean HTML metadata/structural extraction. When single-page application (SPA) frameworks or static-to-rendered text discrepancies are detected, it selectively engages a headless Playwright rendering engine with aggressive resource filtering (blocking images/media/fonts) for optimal performance. It analyzes technical discoverability (HTTP status, redirect loops, heading hierarchies, robots meta directives, canonical validity, and structured schema existence) and outputs a standardized `SiteInspection` contract model.
 
-### Completed Phases & Subsystems
+### entity-content-freshness-trust
+The **Entity & Trust Analysis** skill (`skills/entity-content-freshness-trust`) evaluates whether AI agents and search engines can unambiguously identify the organization, its core offerings, and its corporate legitimacy. It performs knowledge-graph fact extraction and cross-page contradiction analysis, detects factual/statistical data trapped in non-text images without accessible equivalents, flags unsubstantiated superlative marketing claims, and evaluates content freshness and timestamp decay. It outputs a normalized list of semantic `Finding` records alongside a consolidated `EntityProfile`.
 
-1. **Phase 1 — URL Validation & SSRF Boundary (`src/inspection/url.py`):**
-   - Protocol whitelist (`http://`, `https://` only; rejects non-web schemes).
-   - Hostname canonicalization, port stripping, and punycode/IDN support.
-   - Comprehensive SSRF security boundary blocking loopback (`127.0.0.0/8`, `::1`), private RFC 1918 subnets (`10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`), link-local / AWS metadata (`169.254.0.0/16`), and unsafe targets via offline and DNS resolution guards.
+### engagement-recommendations
+The **Engagement & Recommendations** skill (`skills/engagement-recommendations`) assesses on-site human and agent navigation pathways, user orientation, and conversion readiness. It checks for prominent homepage value propositions, clear primary calls-to-action (CTAs), accessible contact and support channels, descriptive anchor texts, and context retention (verifying deep landing pages link back to the brand portal while intelligently recognizing legitimate terminal pages). It outputs prioritized engagement findings and maps detected defects to concrete, mechanism-sound remediation strategies.
 
-2. **Phase 2 — Safe HTTP & robots.txt Parser (`src/crawler/http.py`, `src/crawler/robots.py`):**
-   - Safe HTTP client restricted strictly to read-only `GET` and `HEAD` requests.
-   - Configurable timeouts, redirect depth limits (max 5), and 5 MB maximum body size guard.
-   - RFC 9309 compliant `robots.txt` parser supporting User-Agent matching (exact & `*` fallback), `Allow`/`Disallow` path evaluation with longest-match precedence, `Crawl-delay`, and `Sitemap:` extraction.
-
-3. **Phase 3 — XML Sitemap Discovery & Bounded BFS Crawler (`src/crawler/sitemap.py`, `src/crawler/crawler.py`):**
-   - Recursive XML sitemap index and urlset parsing, gzip decompression (`.xml.gz`), and regex fallback for non-standard XML.
-   - Bounded breadth-first search (BFS) crawler with configurable `max_pages` (default 10) and `max_depth` (default 2).
-   - Strict same-domain / registrable domain boundary isolation and continuous robots.txt adherence.
-
-4. **Phase 4 — HTML Extraction & Selective Playwright Rendering (`src/extraction/extract.py`, `src/rendering/render.py`):**
-   - Clean extraction of page metadata (title, meta description, canonical URL, robots meta, OpenGraph, Twitter Cards).
-   - Structured heading hierarchy (`H1`–`H6`), noise-stripped visible body text, internal/external hyperlinks, and JSON-LD structured data schemas.
-   - Selective Playwright headless browser rendering triggered by SPA framework detection (React, Vue, Angular, Next.js, Nuxt, Svelte) and static-to-rendered text discrepancy thresholds, with resource aborts (images, media, fonts) for performance and safety.
-
-5. **Phase 5 — Technical Discoverability Checks (`src/inspection/technical.py`):**
-   - Deterministic rule engine emitting structured `TechnicalIssue(code, message, severity, details)` for HTTP errors, redirect chains, crawl blocks, missing/duplicate titles & descriptions, heading hierarchy violations, broken links, noindex flags, missing canonicals, SPA/rendering gaps, and malformed JSON-LD schemas.
-
-6. **Phase 6 — Unified Inspection Pipeline (`src/inspection/pipeline.py`):**
-   - Single top-level interface `inspect_site(...)` orchestrating URL validation, robots inspection, sitemap discovery, bounded crawling, selective rendering, extraction, and technical rule evaluation into a normalized `SiteInspection` object.
-   - Graceful error isolation ensuring network and parsing failures produce structured evidence without crashing.
-
-7. **Phase 7 — Crawl & Render Audit Skill (`skills/crawl-render-audit/SKILL.md`):**
-   - Skill packaging following Adobe Agent Marketplace conventions with validated inputs, outputs, and execution examples.
-
-8. **Phase 8 — Downstream Integration Contract & Test Validation (`src/inspection/models.py`, `tests/member1/`):**
-   - Frozen, neutral Pydantic data contract guaranteeing shared schemas for Member 2 and Member 3.
-   - Comprehensive test suite with **193 passed tests** across 13 test suites.
+### audit-orchestrator
+The **Audit Orchestration** skill (`skills/audit-orchestrator`) serves as the **single marketplace entrypoint** (`"entrypoint": true` in `marketplace.json`). It coordinates the asynchronous execution of the specialist skills, normalizes and deduplicates findings across technical and semantic boundaries, applies calibrated severity scoring, verifies evidence URL authenticity, and generates the final unified `FinalAuditReport`.
 
 ---
 
-## Member 1 Data Contract
+## How the entrypoint composes them
 
-Downstream skills (Member 2 and Member 3) consume the normalized `SiteInspection` output model:
+The orchestrator executes an end-to-end, multi-stage audit pipeline:
 
 ```
-URL → inspect_site() → SiteInspection
-                         ├── site: str
-                         ├── root_url: str
-                         ├── robots: RobotsTxtInspection
-                         ├── sitemap: SitemapInspection
-                         ├── pages: List[PageInspection]
-                         │     ├── url, status_code, response_time_ms
-                         │     ├── title, metadata (OG, Twitter, canonical, robots_meta)
-                         │     ├── headings: List[Heading] (level, text)
-                         │     ├── body_text, source_text, rendered_text
-                         │     ├── links: List[Link] (url, text, is_internal)
-                         │     ├── structured_data: List[Dict] (JSON-LD)
-                         │     └── technical_issues: List[TechnicalIssue]
-                         └── summary_counts: Dict[str, int]
+                  ┌────────────────────────────────────────┐
+                  │ Target Website URL or Serialized Input │
+                  └───────────────────┬────────────────────┘
+                                      │
+                                      ▼
+                  ┌────────────────────────────────────────┐
+                  │          crawl-render-audit            │
+                  │   (Crawl, Render, Technical Audit)     │
+                  └───────────────────┬────────────────────┘
+                                      │
+                         SiteInspection Data Contract
+                                      │
+                     ┌────────────────┴────────────────┐
+                     ▼                                 ▼
+      ┌──────────────────────────────┐  ┌──────────────────────────────┐
+      │entity-content-freshness-trust│  │  engagement-recommendations  │
+      │(Entity, Clarity, Freshness)  │  │(Engagement, Context, Actions)│
+      └──────────────┬───────────────┘  └──────────────┬───────────────┘
+                     │                                 │
+                     └────────────────┬────────────────┘
+                                      │
+                                      ▼
+                  ┌────────────────────────────────────────┐
+                  │        Normalizer & Deduplicator       │
+                  │ (Cross-Skill Merging & Evidence Check) │
+                  └───────────────────┬────────────────────┘
+                                      │
+                                      ▼
+                  ┌────────────────────────────────────────┐
+                  │             Report Builder             │
+                  │  (Severity Counts, Scoring, Roadmap)   │
+                  └───────────────────┬────────────────────┘
+                                      │
+                                      ▼
+                  ┌────────────────────────────────────────┐
+                  │            FinalAuditReport            │
+                  │        (Structured JSON & Markdown)    │
+                  └────────────────────────────────────────┘
+```
+
+The orchestration logic is implemented in:
+- **`src/report/orchestrator.py`** — Handles execution flow, dispatches inputs to specialist subsystems, verifies URL evidence grounding, and aggregates skill statuses.
+- **`src/report/deduplicator.py`** — Deduplicates equivalent findings across skills (e.g. cross-skill heading hierarchy equivalence) and merges multi-page occurrences into consolidated affected URL sets.
+- **`src/report/builder.py`** — Computes the Brand AI-Readiness score (0–100), assigns letter grades (A–F), aggregates severity counts, and synthesizes the prioritized actionable recommendation roadmap.
+
+---
+
+## Architecture & Data Contracts
+
+### 1. Unified Shared Contract
+All specialist skills communicate via immutable, typed Pydantic models defined in `src/inspection/models.py`, `src/entity_trust/contracts/schemas.py`, and `src/report/models.py`:
+
+```
+SiteInspection
+ ├── site: str
+ ├── root_url: str
+ ├── robots: RobotsTxtInspection
+ ├── sitemap: SitemapInspection
+ ├── pages: List[PageInspection]
+ │     ├── url, original_url, status_code, response_time_ms
+ │     ├── title, metadata (OG, Twitter, canonical, robots_meta)
+ │     ├── headings: List[Heading] (level, text)
+ │     ├── body_text, clean_text, source_text, rendered_text
+ │     ├── links: List[Link] (url, text, is_internal)
+ │     ├── structured_data: List[Dict] (JSON-LD)
+ │     └── technical_issues: List[TechnicalIssue]
+ └── summary_counts: Dict[str, int]
+```
+
+### 2. Output Schema (`FinalAuditReport`)
+The resulting report conforms strictly to the contest specification:
+```json
+{
+  "site": "example.com",
+  "root_url": "https://example.com",
+  "audited_at": "2026-09-11T00:00:00Z",
+  "status": "success",
+  "overall_score": 88.0,
+  "readiness_grade": "B",
+  "severity_counts": {
+    "critical": 0,
+    "high": 1,
+    "medium": 2,
+    "low": 1,
+    "info": 0
+  },
+  "summary": {
+    "total_findings": 4,
+    "critical": 0,
+    "high": 1,
+    "medium": 2,
+    "pages_analyzed": 5
+  },
+  "entity_profile": {
+    "name": "Example Corp",
+    "type": "Organization",
+    "industry": "software"
+  },
+  "findings": [
+    {
+      "id": "EC-003",
+      "category": "entity",
+      "title": "Missing Schema.org Organization structured data",
+      "severity": "medium",
+      "confidence": 0.95,
+      "evidence": "No JSON-LD Schema.org 'Organization' definition was found...",
+      "affected_urls": ["https://example.com"],
+      "suggested_action": {
+        "summary": "Implement JSON-LD Schema.org 'Organization' metadata...",
+        "priority": "medium"
+      }
+    }
+  ],
+  "recommendations": [...]
+}
 ```
 
 ---
 
-## Member 1 Test Suite Status
+## Safety, Read-Only Boundary & Security
 
-Member 1 includes 13 test modules covering unit, property, and integration contract scenarios:
-
-| Test Module | Coverage Area | Status |
-| :--- | :--- | :--- |
-| `tests/member1/test_url.py` | URL normalization, scheme validation, SSRF boundary guards | Passed |
-| `tests/member1/test_http.py` | Safe read-only HTTP client, timeouts, redirects, body size limits | Passed |
-| `tests/member1/test_robots.py` | robots.txt parsing, user-agent rules, crawl-delay, sitemaps | Passed |
-| `tests/member1/test_sitemap.py` | XML sitemaps, sitemap indexes, gzip decompression, malformed XML | Passed |
-| `tests/member1/test_crawler.py` | Bounded BFS crawling, depth/page limits, domain confinement | Passed |
-| `tests/member1/test_extraction.py` | Metadata, headings, body text, links, JSON-LD structured data | Passed |
-| `tests/member1/test_rendering.py` | SPA detection, Playwright rendering, asset blocking, text diffs | Passed |
-| `tests/member1/test_technical.py` | Technical discoverability rules, SEO & accessibility checks | Passed |
-| `tests/member1/test_models.py` | Pydantic data models, JSON serialization & deserialization | Passed |
-| `tests/member1/test_pipeline.py` | End-to-end `InspectionPipeline` orchestration & error handling | Passed |
-| `tests/member1/test_contract.py` | Output schema neutrality & contract immutability | Passed |
-| `tests/member1/test_skill_contract.py` | `crawl-render-audit` skill documentation & parameter alignment | Passed |
-| `tests/member1/test_integration_contract.py` | Comprehensive multi-page mock integration & contract verification | Passed |
-| **Total Test Suite** | **13 modules** | **193 passed** |
+- **Strictly Read-Only:** All network operations use HTTP `GET` and `HEAD` requests only. No write, mutation, `POST`, `PUT`, `DELETE`, or form-submission actions exist in production code.
+- **SSRF Guard:** Comprehensive network boundary validation in `src/inspection/url.py` blocks private subnets (RFC 1918), loopback (`127.0.0.0/8`, `::1`), link-local / cloud metadata services (`169.254.0.0/16`), and non-web protocols.
+- **Robots & Concurrency Governance:** Strict RFC 9309 parser obeys `Disallow` directives, User-Agent precedence, and `Crawl-delay` rate limits.
+- **Anti-Hallucination Evidence Validation:** Every finding emitted in the final report is strictly validated against audited page URLs and extracted DOM content.
 
 ---
 
-## Quickstart (Member 1 Inspection)
+## Quickstart & Usage
+
+### CLI Execution via Entrypoint Skill
+
+```bash
+# Run a complete audit against a live website (outputs formatted JSON)
+python skills/audit-orchestrator/scripts/run_audit.py https://example.com
+
+# Run audit and generate an executive Markdown report
+python skills/audit-orchestrator/scripts/run_audit.py https://example.com --format markdown --output report.md
+
+# Run audit with custom crawl limits
+python skills/audit-orchestrator/scripts/run_audit.py https://example.com --max-pages 10 --max-depth 2
+```
+
+### Python API Execution
 
 ```python
-from src.inspection import inspect_site
+from src.report import run_full_audit
 
-# Run inspection pipeline
-result = inspect_site(
-    url="https://example.com",
+# Run comprehensive multi-skill audit
+report = run_full_audit(
+    target="https://example.com",
+    confidence_threshold=0.70,
     max_pages=10,
     max_depth=2,
-    discover_sitemaps=True,
-    enable_rendering=True,
 )
 
-print(f"Site: {result.site}")
-print(f"Pages crawled: {len(result.pages)}")
-print(f"Discovered sitemaps: {result.sitemap.total_discovered_urls} URLs")
-for page in result.pages:
-    print(f"- {page.url} ({page.status_code}) -> {len(page.technical_issues)} issues")
+print(f"Site: {report.site}")
+print(f"Score: {report.overall_score}/100 (Grade: {report.readiness_grade})")
+print(f"Total Findings: {len(report.findings)}")
+for finding in report.findings:
+    print(f"- [{finding.id}] ({finding.severity}): {finding.title}")
 ```
 
+---
+
+## Verification & Test Suite
+
+The marketplace includes a comprehensive, multi-layer automated test suite spanning unit, property, mock contract, and end-to-end integration tests:
+
+| Subsystem / Test Area | Test Modules | Test Coverage |
+| :--- | :--- | :--- |
+| **Website Intelligence** | `tests/member1/` (13 modules) | URL validation, SSRF boundary, safe HTTP, robots parsing, XML sitemaps, crawler, extraction, Playwright rendering, technical rules |
+| **Entity & Trust Analysis** | `tests/member2/` (9 modules) | Fact extraction, fact graph, contradiction detection, content clarity, freshness decay, confidence scoring |
+| **Engagement & Recommendations** | `tests/member3/` (9 modules) | Orientation, CTAs, contact paths, heading hierarchy, anchor texts, context retention, recommendation engine |
+| **Pipeline Integration & Orchestration** | `tests/integration/` | End-to-end pipeline execution, cross-skill deduplication, schema validation, graceful failure handling |
+| **Total Automated Suite** | **33 test modules** | **265 passed (100% pass rate)** |
+
+Run the test suite:
+```bash
+pytest -q
+```

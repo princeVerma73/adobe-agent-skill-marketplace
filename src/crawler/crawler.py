@@ -144,6 +144,23 @@ class BFSCrawler:
         queue: Deque[Tuple[str, int]] = deque([(normalized_root, 0)])
         visited_urls: Set[str] = set()
         enqueued_urls: Set[str] = {normalized_root}
+
+        # Supplement queue with discovered sitemap URLs to improve coverage within page budget
+        if sitemap_inspection.found and sitemap_inspection.sample_urls:
+            for s_url in sitemap_inspection.sample_urls:
+                if len(enqueued_urls) >= self.max_pages:
+                    break
+                try:
+                    norm_s = normalize_url(s_url)
+                    if (
+                        norm_s not in enqueued_urls
+                        and is_same_site(normalized_root, norm_s)
+                    ):
+                        enqueued_urls.add(norm_s)
+                        queue.append((norm_s, 1))
+                except Exception:
+                    continue
+
         inspected_pages: List[PageInspection] = []
 
         disallowed_count = 0

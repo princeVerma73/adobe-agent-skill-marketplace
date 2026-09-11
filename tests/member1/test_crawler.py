@@ -204,3 +204,39 @@ class TestBFSCrawler:
         assert len(result.pages) == 2
         visited = [p.url for p in result.pages]
         assert visited == ["https://example.com", "https://example.com/page-b"]
+
+    def test_sitemap_discovered_urls_audited_within_page_budget(self):
+        """Verifies that URLs discovered exclusively via XML sitemaps are seeded and crawled."""
+        sitemap_xml = """<?xml version="1.0" encoding="UTF-8"?>
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+          <url><loc>https://example.com/sitemap-exclusive-1</loc></url>
+          <url><loc>https://example.com/sitemap-exclusive-2</loc></url>
+        </urlset>
+        """
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            path = request.url.path
+            if path == "/robots.txt":
+                return httpx.Response(200, text="User-agent: *\nSitemap: https://example.com/sitemap.xml\n")
+            elif path == "/sitemap.xml":
+                return httpx.Response(200, text=sitemap_xml, headers={"Content-Type": "application/xml"})
+            elif path in ("", "/"):
+                # Homepage has no outgoing links
+                return httpx.Response(200, text="<html><body><h1>Bare Homepage</h1></body></html>", headers={"Content-Type": "text/html"})
+            elif path == "/sitemap-exclusive-1":
+                return httpx.Response(200, text="<html><body><h1>Exclusive Page 1</h1></body></html>", headers={"Content-Type": "text/html"})
+            elif path == "/sitemap-exclusive-2":
+                return httpx.Response(200, text="<html><body><h1>Exclusive Page 2</h1></body></html>", headers={"Content-Type": "text/html"})
+            return httpx.Response(404)
+
+        transport = httpx.MockTransport(handler)
+        client = SafeHTTPClient(transport=transport, verify_dns=False)
+
+        crawler = BFSCrawler(max_pages=5, max_depth=2, client=client)
+        result = crawler.crawl("https://example.com", discover_sitemaps=True)
+
+        urls_crawled = [p.url for p in result.pages]
+        assert "https://example.com" in urls_crawled
+        assert "https://example.com/sitemap-exclusive-1" in urls_crawled
+        assert "https://example.com/sitemap-exclusive-2" in urls_crawled
+        assert len(result.pages) == 3

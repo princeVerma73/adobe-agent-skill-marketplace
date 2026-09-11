@@ -12,11 +12,24 @@ from src.entity_trust.contracts.schemas import FindingAction, SeverityLevel
 from src.engagement.models import EngagementFinding
 
 
+TERMINAL_URL_PATTERNS = (
+    "/thank-you", "/thankyou", "/thanks", "/confirmed", "/confirmation", "/success",
+    "/order-complete", "/order-received", "/checkout/success", "/receipt",
+    "/privacy", "/privacy-policy", "/terms", "/terms-of-service", "/terms-and-conditions",
+    "/tos", "/legal", "/disclaimer", "/unsubscribe",
+)
+TERMINAL_TITLE_PATTERNS = (
+    "thank you", "order confirmed", "order complete", "payment successful",
+    "privacy policy", "terms of service", "terms and conditions", "terms of use",
+    "legal notice", "unsubscribe successful",
+)
+
+
 def check_dead_ends(
     homepage_url: str,
     pages_data: List[Dict[str, Any]],
 ) -> List[EngagementFinding]:
-    """Detects pages with zero outgoing internal links."""
+    """Detects pages with zero outgoing internal links, excluding intentionally terminal pages."""
     findings: List[EngagementFinding] = []
     hp_canonical = homepage_url.rstrip("/")
 
@@ -26,6 +39,12 @@ def check_dead_ends(
 
         # Only evaluate pages that rendered successfully
         if status_code and status_code >= 400:
+            continue
+
+        # Skip intentionally terminal pages (e.g. thank you, order confirmation, legal/privacy notices)
+        url_lower = url.lower()
+        title_lower = (page.get("title") or "").lower()
+        if any(p in url_lower for p in TERMINAL_URL_PATTERNS) or any(t in title_lower for t in TERMINAL_TITLE_PATTERNS):
             continue
 
         links = page.get("links", [])
