@@ -1,4 +1,4 @@
-# Member 1 — Inspection Layer (`src/inspection`)
+# Inspection Layer (`src/inspection`)
 
 The inspection layer provides the foundational crawling, rendering, extraction, and technical analysis pipeline for the brand audit marketplace.
 

@@ -15,7 +15,7 @@ An autonomous, multi-skill agent marketplace built for the **Adobe University Ha
   4. `engagement-recommendations`: Navigation pathways, conversion orientation, heading progression, CTA clarity, context retention, and prioritized remediation actions.
 - **How do they compose?** The `audit-orchestrator` passes a unified `SiteInspection` contract model from `crawl-render-audit` to both downstream specialist skills in parallel, collects and normalizes their findings, deduplicates equivalent issues, and builds a consolidated report.
 - **What does the final report contain?** A Brand AI-Readiness score (0–100), letter grade (A–F), severity breakdown, entity profile, deduplicated evidence-backed findings with affected URLs, and a prioritized remediation roadmap.
-- **What makes this marketplace different?** Zero hallucination (strict DOM-grounded evidence validation), SSRF network protection, graceful partial-failure degradation, and real-world false-positive calibration across diverse web archetypes.
+- **What makes this marketplace different?** Strict DOM-grounded evidence validation to minimize unsupported claims, SSRF network protection, graceful partial-failure degradation, and real-world false-positive calibration across diverse web archetypes.
 - **What evidence demonstrates generalization and reliability?** An adversarial 8-site real-world evaluation spanning documentation, SaaS, journalism, higher education, nonprofits, and government portals, backed by a 278-test deterministic test suite.
 
 ---
@@ -50,6 +50,8 @@ An autonomous, multi-skill agent marketplace built for the **Adobe University Ha
 - **`crawl-render-audit` (`skills/crawl-render-audit`)**: Deterministic, read-only crawler. Performs bounded BFS traversal, XML sitemap extraction, SSRF validation, and selective Playwright headless rendering when static HTML lacks content.
 - **`entity-content-freshness-trust` (`skills/entity-content-freshness-trust`)**: Audits whether brand identity is explicit, Schema.org `Organization` metadata exists, critical numbers are accessible in text rather than trapped in images, content is temporally current, and cross-page claims are factually consistent.
 - **`engagement-recommendations` (`skills/engagement-recommendations`)**: Evaluates user and agent orientation, primary CTAs, heading hierarchy (H1–H6), internal link topology, contact reachability, and deep landing context retention.
+
+All skills operate strictly read-only — no forms are submitted, no authenticated or destructive actions are performed, and robots.txt is respected on every crawl.
 
 ---
 
@@ -199,11 +201,14 @@ Adobe-Agent-Marketplace/
 │   ├── entity-content-freshness-trust/   # Knowledge graph, freshness, contradiction analysis
 │   └── engagement-recommendations/       # UX pathways, CTA clarity, remediation roadmap
 ├── src/                                  # Canonical production runtime packages
-│   ├── inspection/                       # Network, crawler, renderer, technical rules
+│   ├── inspection/                       # Data contracts, technical rule engine, pipeline orchestration
+│   ├── crawler/                          # Safe HTTP client, sitemap parser, bounded BFS crawler
+│   ├── extraction/                       # HTML/metadata/heading/JSON-LD extraction
+│   ├── rendering/                        # Headless Playwright rendering, SPA detection
 │   ├── entity_trust/                     # Entity, clarity, freshness, consistency engines
 │   ├── engagement/                       # Journey, hierarchy, CTA, link topology engines
 │   ├── recommendations/                  # Prescriptive remediation engine
-│   └── report/                           # Orchestration, deduplication, scoring
+│   └── report/                           # Orchestration, deduplication, scoring, final report
 └── tests/                                # 278 comprehensive unit & integration tests
     ├── fixtures/                         # Deterministic HTML/snapshot regression fixtures
     ├── integration/                      # End-to-end multi-skill integration tests
