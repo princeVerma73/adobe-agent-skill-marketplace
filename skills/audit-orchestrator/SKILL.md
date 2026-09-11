@@ -7,17 +7,17 @@ license: Apache-2.0
 # Audit Orchestrator Skill
 
 ## Purpose
-The `audit-orchestrator` is the primary entrypoint skill for the Adobe Agent Skill Marketplace (`brand-ai-readiness-audit`). It coordinates the entire auditing lifecycle: safely inspecting the domain via Member 1 (`crawl-render-audit`), analyzing semantic trust and entity consistency via Member 2 (`entity-content-freshness-trust`), evaluating user pathways via Member 3 (`engagement-recommendations`), validating evidence, removing duplicates, computing a Brand AI-Readiness score (0–100), and compiling an actionable remediation roadmap.
+The `audit-orchestrator` is the primary entrypoint skill for the Adobe Agent Skill Marketplace (`brand-ai-readiness-audit`). It coordinates the entire auditing lifecycle: safely inspecting the domain via `crawl-render-audit`, analyzing semantic trust and entity consistency via `entity-content-freshness-trust`, evaluating user pathways via `engagement-recommendations`, validating evidence, removing duplicates, computing a Brand AI-Readiness score (0–100), and compiling an actionable remediation roadmap.
 
 ## Workflow Pipeline
 ```
 Target URL / Snapshot
       ↓
-Member 1: crawl-render-audit (Bounded BFS, SSRF guard, selective Playwright rendering, technical discoverability)
+1. crawl-render-audit (Bounded BFS, SSRF guard, selective Playwright rendering, technical discoverability)
       ↓
-Member 2: entity-content-freshness-trust (Entity disambiguation, Schema.org, visual facts, temporal decay, fact graph)
+2. entity-content-freshness-trust (Entity disambiguation, Schema.org, visual facts, temporal decay, fact graph)
       ↓
-Member 3: engagement-recommendations (Landing orientation, navigation, hierarchy, CTAs, linking, dead ends, context)
+3. engagement-recommendations (Landing orientation, navigation, hierarchy, CTAs, linking, dead ends, context)
       ↓
 Master Aggregator & Finding Normalizer (Maps all issues into unified schema)
       ↓
@@ -34,8 +34,8 @@ Final Multi-Agent Audit Report (Structured JSON & Executive Markdown)
 
 ## Fault Tolerance & Graceful Degradation
 The orchestrator isolates failures between individual skills:
-- If Member 1 encounters network or DNS failure, a structured failure report is returned without crashing.
-- If Member 2 or Member 3 raises an exception, the failure is recorded in `skill_statuses` (e.g. `"partial_failure"`), and the remaining skills' findings are preserved and presented.
+- If `crawl-render-audit` encounters a network or DNS failure, a structured failure report is returned without crashing.
+- If a specialist skill raises an exception, the failure is recorded in `skill_statuses` (e.g. `"partial_failure"`), and the remaining skills' findings are preserved and presented.
 - Never fabricates evidence or silences errors.
 
 ## Inputs

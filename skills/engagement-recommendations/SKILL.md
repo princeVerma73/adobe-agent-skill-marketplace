@@ -60,10 +60,10 @@ Returns an `EngagementAuditResult` containing:
 from src.inspection import inspect_site
 from src.engagement import audit_engagement
 
-# 1. Obtain inspection data from Member 1
+# 1. Obtain inspection data via crawl-render-audit
 site_inspection = inspect_site(url="https://example.com", max_pages=10)
 
-# 2. Run Member 3 Engagement Audit
+# 2. Run Engagement & User Journey Audit
 engagement_result = audit_engagement(site_inspection, confidence_threshold=0.70)
 
 # 3. Access findings and metrics

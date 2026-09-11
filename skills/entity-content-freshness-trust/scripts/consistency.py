@@ -9,16 +9,10 @@ root_dir = Path(__file__).resolve().parents[3]
 if str(root_dir) not in sys.path:
     sys.path.insert(0, str(root_dir))
 
-try:
-    from src.entity_trust.contracts.schemas import SiteSnapshot
-    from src.entity_trust.core.html_parser import parse_page_html
-    from src.entity_trust.core.fact_graph import FactGraph
-    from src.entity_trust.audits.consistency_audit import audit_consistency
-except ImportError:
-    from member2.contracts.schemas import SiteSnapshot
-    from member2.core.html_parser import parse_page_html
-    from member2.core.fact_graph import FactGraph
-    from member2.audits.consistency_audit import audit_consistency
+from src.entity_trust.contracts.schemas import SiteSnapshot
+from src.entity_trust.core.html_parser import parse_page_html
+from src.entity_trust.core.fact_graph import FactGraph
+from src.entity_trust.audits.consistency_audit import audit_consistency
 
 
 def main():

@@ -1,7 +1,7 @@
 """Tests for contract schemas and serialization."""
 
 import pytest
-from member2.contracts.schemas import (
+from src.entity_trust.contracts.schemas import (
     CategoryType,
     ContentEntityAuditResult,
     Finding,

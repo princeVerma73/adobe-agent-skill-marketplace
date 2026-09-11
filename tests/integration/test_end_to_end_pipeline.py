@@ -8,11 +8,7 @@ from src.report.models import FinalAuditReport
 from src.report.orchestrator import run_full_audit
 
 
-FIXTURES_DIR = (
-    Path(__file__).parent.parent / "fixtures"
-    if (Path(__file__).parent.parent / "fixtures").exists()
-    else Path(__file__).parent.parent / "member2" / "fixtures"
-)
+FIXTURES_DIR = Path(__file__).parent.parent / "fixtures"
 
 
 def load_fixture(name: str) -> dict:

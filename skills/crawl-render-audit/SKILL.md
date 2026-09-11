@@ -37,12 +37,12 @@ This skill enforces strict safety and non-destructive inspection boundaries:
 | `enable_rendering` | `bool` | `True` | Selectively render dynamic/SPA pages with Playwright when static HTML is insufficient. |
 
 ## Outputs
-Returns a unified [`SiteInspection`](file:///c:/INTERNSHIP/Adobe-Agent-Marketplace/src/inspection/models.py#L111-L126) object containing:
+Returns a unified `SiteInspection` object containing:
 - **`site`**: Target domain hostname.
 - **`root_url`**: Normalized canonical starting URL.
-- **`robots`**: [`RobotsTxtInspection`](file:///c:/INTERNSHIP/Adobe-Agent-Marketplace/src/inspection/models.py#L55-L70) including existence, status code, directives, crawl-delay, and declared sitemaps.
-- **`sitemap`**: [`SitemapInspection`](file:///c:/INTERNSHIP/Adobe-Agent-Marketplace/src/inspection/models.py#L72-L84) including discovered sitemaps, total URL counts, and sample URLs.
-- **`pages`**: List of [`PageInspection`](file:///c:/INTERNSHIP/Adobe-Agent-Marketplace/src/inspection/models.py#L86-L109) records with:
+- **`robots`**: `RobotsTxtInspection` including existence, status code, directives, crawl-delay, and declared sitemaps.
+- **`sitemap`**: `SitemapInspection` including discovered sitemaps, total URL counts, and sample URLs.
+- **`pages`**: List of `PageInspection` records with:
   - URL, status code, response time, and redirect chain.
   - Extracted title, meta description, canonical URL, robots meta, OpenGraph, and Twitter tags.
   - Ordered headings hierarchy (`List[Heading]`).

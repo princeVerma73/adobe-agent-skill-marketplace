@@ -2,8 +2,8 @@
 
 import json
 from pathlib import Path
-from member2.runner import audit_content_and_entity
-from member2.contracts.schemas import ContentEntityAuditResult
+from src.entity_trust.runner import audit_content_and_entity
+from src.entity_trust.contracts.schemas import ContentEntityAuditResult
 
 
 FIXTURES_DIR = (

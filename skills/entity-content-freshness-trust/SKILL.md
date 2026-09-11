@@ -54,10 +54,10 @@ Returns a standardized `ContentEntityAuditResult` matching Adobe Hackathon contr
 from src.entity_trust import audit_entity_trust
 from src.inspection import inspect_site
 
-# 1. Generate inspection observation from Member 1
+# 1. Generate inspection observation via crawl-render-audit
 site_inspection = inspect_site(url="https://example.com", max_pages=10)
 
-# 2. Run Member 2 audit
+# 2. Run entity, content freshness, and trust audit
 audit_result = audit_entity_trust(site_inspection, confidence_threshold=0.70)
 
 # 3. Access calibrated findings

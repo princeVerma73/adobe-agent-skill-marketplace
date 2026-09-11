@@ -1,8 +1,8 @@
 """Tests for FactExtractor and FactGraph conflict detection."""
 
-from member2.core.fact_extractor import FactExtractor
-from member2.core.fact_graph import FactGraph
-from member2.core.html_parser import parse_page_html
+from src.entity_trust.core.fact_extractor import FactExtractor
+from src.entity_trust.core.fact_graph import FactGraph
+from src.entity_trust.core.html_parser import parse_page_html
 
 
 def test_fact_extraction_and_graph_conflict():

@@ -2,9 +2,9 @@
 
 import json
 from pathlib import Path
-from member2.contracts.schemas import SiteSnapshot
-from member2.core.html_parser import parse_page_html
-from member2.audits.freshness_audit import audit_freshness
+from src.entity_trust.contracts.schemas import SiteSnapshot
+from src.entity_trust.core.html_parser import parse_page_html
+from src.entity_trust.audits.freshness_audit import audit_freshness
 
 
 FIXTURES_DIR = (

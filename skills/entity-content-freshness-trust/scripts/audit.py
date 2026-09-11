@@ -9,10 +9,7 @@ root_dir = Path(__file__).resolve().parents[3]
 if str(root_dir) not in sys.path:
     sys.path.insert(0, str(root_dir))
 
-try:
-    from src.entity_trust import audit_entity_trust, SiteSnapshot
-except ImportError:
-    from member2 import audit_entity_trust, SiteSnapshot
+from src.entity_trust import audit_entity_trust, SiteSnapshot
 
 
 def main():

@@ -1,6 +1,6 @@
 """Tests for fact normalization logic."""
 
-from member2.core.fact_normalizer import FactNormalizer, NormalizedFact
+from src.entity_trust.core.fact_normalizer import FactNormalizer, NormalizedFact
 
 
 def test_price_normalization_and_equivalence():
