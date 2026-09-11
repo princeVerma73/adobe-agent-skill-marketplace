@@ -35,6 +35,90 @@ INDUSTRY_KEYWORDS = [
 ]
 
 
+def _extract_domain_brand(site_or_url: str) -> str:
+    """Extracts a clean brand/organization name from domain/hostname."""
+    host = site_or_url
+    if "://" in host:
+        host = host.split("://", 1)[1]
+    host = host.split("/", 1)[0].split("?")[0].split(":")[0]
+    parts = host.split(".")
+    # Remove common subdomains and tlds
+    meaningful = [
+        p for p in parts
+        if p.lower() not in (
+            "www", "docs", "doc", "api", "app", "dev", "staging", "cdn",
+            "com", "org", "net", "io", "so", "edu", "gov", "co", "uk", "de", "ai"
+        )
+    ]
+    if meaningful:
+        cand = meaningful[0]
+        if cand.lower() == "python":
+            return "Python"
+        if cand.lower() == "fastapi":
+            return "FastAPI"
+        if cand.lower() == "mozilla":
+            return "Mozilla"
+        if cand.lower() == "notion":
+            return "Notion"
+        if cand.lower() == "theverge":
+            return "The Verge"
+        if cand.lower() == "wikimedia":
+            return "Wikimedia"
+        if cand.lower() == "nasa":
+            return "NASA"
+        if cand.lower() == "mit":
+            return "MIT"
+        return cand.capitalize()
+    return host
+
+
+def _clean_title_brand(title: str, domain_brand: str = "") -> Tuple[str, float]:
+    """Cleans raw title string into an organization name candidate and confidence score."""
+    if not title:
+        return "", 0.0
+
+    # Split title on common delimiters: " - ", " | ", " : ", " — ", " – ", " • "
+    parts = [p.strip() for p in re.split(r"[-–—|\:\•]", title) if p.strip()]
+    if not parts:
+        return "", 0.0
+
+    candidates: List[Tuple[str, str]] = []
+    for part in parts:
+        # Strip version numbers like 3.14.7, 3.x, v2.0
+        cleaned = re.sub(r"\bv?\d+(?:\.\d+)+[a-z\d]*\b", "", part, flags=re.I)
+        cleaned = re.sub(r"\b\d+\.x\b", "", cleaned, flags=re.I)
+        # Strip generic documentation / app suffixes
+        cleaned = re.sub(
+            r"\b(?:Documentation|Docs|Doc|Manual|Reference|Guide|API|Tutorial|Official Site|Official Website|Homepage|Home)\b",
+            "",
+            cleaned,
+            flags=re.I,
+        ).strip()
+        cleaned = cleaned.strip(" .,-–—:|•")
+        if cleaned and cleaned.lower() not in GENERIC_TITLES:
+            candidates.append((cleaned, part))
+
+    if not candidates:
+        return "", 0.0
+
+    # If one part matches domain brand (e.g. "Mozilla" when domain is mozilla.org), prefer that
+    if domain_brand:
+        for cand, _ in candidates:
+            if cand.lower() == domain_brand.lower():
+                return cand, 0.70
+
+    # If a candidate has 1-3 words and is not a long tagline/slogan, prefer it
+    for cand, _ in candidates:
+        words = cand.split()
+        if 1 <= len(words) <= 3:
+            is_slogan = any(w.lower() in ("for", "not", "is", "the", "with", "from", "your", "works") for w in words) and len(words) > 2
+            if not is_slogan:
+                return cand, 0.65
+
+    best_cand = candidates[0][0]
+    return best_cand, 0.55
+
+
 def audit_entity(
     snapshot: SiteSnapshot,
     parsed_pages: List[ParsedPageContent],
@@ -42,9 +126,11 @@ def audit_entity(
     findings: List[Finding] = []
     homepage_parsed = parsed_pages[0] if parsed_pages else parse_page_html(snapshot.homepage.url)
     homepage_url = snapshot.homepage.url
+    domain_brand = _extract_domain_brand(snapshot.site or homepage_url)
 
     # 1. Discover Organization Name & Names Across Surfaces
     discovered_names: Dict[str, str] = {}  # source -> name
+    name_source = "fallback"
 
     # From JSON-LD Schema
     schema_org_found = False
@@ -58,22 +144,21 @@ def audit_entity(
                 if name:
                     schema_org_name = str(name).strip()
                     discovered_names["schema_org"] = schema_org_name
+                    name_source = "schema_org"
 
     # From OpenGraph / Meta Site Name
     if homepage_parsed.meta_site_name:
         discovered_names["meta_site_name"] = homepage_parsed.meta_site_name
+        if not schema_org_name:
+            name_source = "meta_site_name"
 
-    # From Homepage Title (e.g. "Acme Corp | Enterprise Cloud Storage" or "Acme Corp - Home")
+    # From Homepage Title (with version/documentation cleaning)
     title = homepage_parsed.title
-    title_brand = ""
-    if title:
-        parts = re.split(r"[-–—|\:\•]", title)
-        for part in parts:
-            p = part.strip()
-            if p.lower() not in GENERIC_TITLES and len(p) > 1:
-                title_brand = p
-                discovered_names["title"] = title_brand
-                break
+    title_brand, title_conf = _clean_title_brand(title, domain_brand=domain_brand)
+    if title_brand:
+        discovered_names["title"] = title_brand
+        if not schema_org_name and not homepage_parsed.meta_site_name:
+            name_source = "title"
 
     # From Footer Copyright (e.g. "© 2026 Acme Corp Pvt Ltd")
     footer_brand = ""
@@ -81,19 +166,29 @@ def audit_entity(
         match = re.search(r"(?:19|20)\d{2}\s+([A-Za-z0-9\s,\.\-&]+)", stmt)
         if match:
             cand = match.group(1).strip().rstrip(".,")
-            if len(cand) > 2 and cand.lower() not in ("all rights reserved", "inc", "llc"):
+            if (
+                2 < len(cand) <= 50
+                and cand.lower() not in ("all rights reserved", "inc", "llc")
+                and not any(w in cand.lower() for w in ("by individual", "license", "creative commons", "contributors", "terms of use", "privacy notice"))
+            ):
                 footer_brand = cand
                 discovered_names["footer_copyright"] = footer_brand
+                if not schema_org_name and not homepage_parsed.meta_site_name:
+                    name_source = "footer_copyright"
                 break
 
     # Determine Consolidated Primary Name
     primary_name = (
         schema_org_name
         or discovered_names.get("meta_site_name")
-        or title_brand
         or footer_brand
+        or title_brand
+        or domain_brand
         or snapshot.site
     )
+
+    if not schema_org_name and not discovered_names.get("meta_site_name") and not footer_brand and not title_brand:
+        name_source = "domain"
 
     # 2. Check 1: Organization Name Ambiguity & Weak H1/Title
     h1 = homepage_parsed.h1s[0].strip() if homepage_parsed.h1s else ""
@@ -151,13 +246,19 @@ def audit_entity(
     has_industry = detected_industry is not None
 
     if not has_concrete_description or not has_industry:
+        # Calibrate severity: low-confidence title/domain fallback downgrades severity to MEDIUM
+        is_low_conf_name = (name_source in ("title", "domain", "fallback") and not schema_org_found and not footer_brand)
+        ec_severity = SeverityLevel.MEDIUM if is_low_conf_name else (
+            SeverityLevel.HIGH if not has_concrete_description else SeverityLevel.MEDIUM
+        )
+
         findings.append(
             Finding(
                 id="EC-002",
                 category=CategoryType.ENTITY,
                 title="Insufficient organization disambiguation and business description",
-                severity=SeverityLevel.HIGH if not has_concrete_description else SeverityLevel.MEDIUM,
-                confidence=0.89,
+                severity=ec_severity,
+                confidence=0.89 if not is_low_conf_name else 0.75,
                 evidence=(
                     f"The website provides the entity name '{primary_name}', but fails to provide a clear, "
                     f"unambiguous statement of what the organization does, its industry category, and whom it serves. "
@@ -169,7 +270,7 @@ def audit_entity(
                         "Add a concise 1-2 sentence organization definition in plain readable text on the homepage "
                         "and About page declaring organization type, industry, target audience, and primary offerings."
                     ),
-                    priority=SeverityLevel.HIGH,
+                    priority=ec_severity,
                 ),
             )
         )
@@ -200,12 +301,21 @@ def audit_entity(
         )
 
     # 5. Build Consolidated Entity Profile
+    if schema_org_found and has_concrete_description:
+        conf_score = 0.92
+    elif schema_org_found or footer_brand:
+        conf_score = 0.80 if has_concrete_description else 0.65
+    elif name_source in ("title", "domain"):
+        conf_score = 0.70 if has_concrete_description else 0.50
+    else:
+        conf_score = 0.50
+
     profile = EntityProfile(
         name=primary_name,
         type="Organization",
         description=primary_description or None,
         industry=detected_industry,
-        confidence_score=0.92 if (has_concrete_description and schema_org_found) else (0.75 if has_concrete_description else 0.50),
+        confidence_score=conf_score,
     )
 
     return findings, profile

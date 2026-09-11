@@ -4,13 +4,15 @@ Evaluates whether deeper pages provide sufficient orienting context, brand ident
 and parent navigation for visitors or AI agents arriving directly on that page.
 """
 
-from __future__ import annotations
-
+import re
 import urllib.parse
 from typing import Any, Dict, List
 
 from src.entity_trust.contracts.schemas import FindingAction, SeverityLevel
 from src.engagement.models import EngagementFinding
+
+
+LOCALE_ROOT_PATTERN = re.compile(r"^/[a-z]{2}(?:-[a-zA-Z]{2,4})?/?$", re.IGNORECASE)
 
 
 def check_context_retention(
@@ -39,14 +41,15 @@ def check_context_retention(
         headings = page.get("headings", [])
         links = page.get("links", [])
 
-        # 1. Check if the page links back to homepage/root
+        # 1. Check if the page links back to homepage/root or localized root
         has_home_link = False
         parsed_hp = urllib.parse.urlparse(homepage_url)
         root_domain_url = f"{parsed_hp.scheme}://{parsed_hp.netloc}".rstrip("/")
         brand_kw = site_domain.split(".")[0].lower() if site_domain else ""
 
         for link in links:
-            t = (link.get("url") or "").rstrip("/")
+            raw_target = (link.get("url") or "").strip()
+            t = raw_target.rstrip("/")
             anchor = (link.get("text") or "").strip().lower()
             rel = (link.get("rel") or "").lower()
 
@@ -59,6 +62,15 @@ def check_context_retention(
             if anchor in ("home", "homepage", "index", "main") or (brand_kw and brand_kw in anchor and len(anchor) < 30):
                 has_home_link = True
                 break
+
+            # Check for localized homepage paths (e.g., /en-US/, /en/, /de/, /fr/)
+            parsed_link = urllib.parse.urlparse(raw_target)
+            link_host = parsed_link.netloc.lower()
+            root_host = parsed_hp.netloc.lower()
+            if not link_host or link_host == root_host:
+                if LOCALE_ROOT_PATTERN.match(parsed_link.path):
+                    has_home_link = True
+                    break
 
         if not has_home_link:
             findings.append(

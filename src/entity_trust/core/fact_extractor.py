@@ -52,10 +52,24 @@ class FactExtractor:
         re.compile(r"\b(\d+(?:,\d+)*\+?\s+(?:customers|clients|users|enterprises|countries|team members|partners))\b", re.I)
     ]
 
+    EDITORIAL_URL_PATTERNS = [
+        re.compile(r"/(?:news|article|articles|story|stories|tech/\d+|blog|blogs|opinion|reviews)/", re.I),
+    ]
+
+    THIRD_PARTY_BRAND_PATTERN = re.compile(
+        r"\b(?:Anthropic|Apple|T-Mobile|Google|Microsoft|OpenAI|Amazon|Netflix|Meta|Tesla|Spotify)\b['’]?s?\s+",
+        re.I,
+    )
+
+    @classmethod
+    def _is_editorial_page(cls, url: str) -> bool:
+        return any(pat.search(url) for pat in cls.EDITORIAL_URL_PATTERNS)
+
     @classmethod
     def extract_from_page(cls, parsed: ParsedPageContent) -> List[ExtractedFact]:
         facts: List[ExtractedFact] = []
         text = parsed.clean_text
+        is_editorial = cls._is_editorial_page(parsed.url)
 
         # 1. Structured Data extraction (JSON-LD)
         for obj in parsed.json_ld_objects:
@@ -98,23 +112,27 @@ class FactExtractor:
                             )
                         )
 
-        # 4. Pricing from text
-        for pat in cls.PRICING_PATTERNS:
-            for match in pat.finditer(text):
-                raw = match.group(1).strip()
-                norm = FactNormalizer.normalize_price(raw)
-                if norm:
+        # 4. Pricing from text (Skip non-product generic article text quoting third parties)
+        if not is_editorial:
+            for pat in cls.PRICING_PATTERNS:
+                for match in pat.finditer(text):
+                    raw = match.group(1).strip()
                     snippet = cls._get_snippet(text, match.start(), match.end())
-                    facts.append(
-                        ExtractedFact(
-                            fact_type="price",
-                            raw_value=raw,
-                            normalized=norm,
-                            source_url=parsed.url,
-                            context_snippet=snippet,
-                            confidence=0.88,
+                    # Skip if snippet is explicitly referencing third-party brands
+                    if cls.THIRD_PARTY_BRAND_PATTERN.search(snippet):
+                        continue
+                    norm = FactNormalizer.normalize_price(raw)
+                    if norm:
+                        facts.append(
+                            ExtractedFact(
+                                fact_type="price",
+                                raw_value=raw,
+                                normalized=norm,
+                                source_url=parsed.url,
+                                context_snippet=snippet,
+                                confidence=0.88,
+                            )
                         )
-                    )
 
         # 5. Email & Phone
         for match in cls.EMAIL_PATTERN.finditer(text):

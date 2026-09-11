@@ -76,6 +76,36 @@ class FactGraph:
             )
             clusters.append(new_cluster)
 
+    @staticmethod
+    def _is_multi_tier_or_plan_option(ca: FactCluster, cb: FactCluster) -> bool:
+        """Determines if two price clusters represent legitimate multi-tier plans or donation options."""
+        snippets_a = " ".join(e.context_snippet.lower() for e in ca.evidence_list)
+        snippets_b = " ".join(e.context_snippet.lower() for e in cb.evidence_list)
+        all_snippets = f"{snippets_a} {snippets_b}"
+
+        # 1. Check for donation option groups (e.g. Wikimedia donation buttons)
+        if any(w in all_snippets for w in ("donate", "donation", "please select an amount", "any amount helps", "once monthly yearly")):
+            return True
+
+        # 2. Check for differing billing frequencies (annual vs monthly)
+        has_annual_a = any(w in snippets_a for w in ("annual", "yearly", "year", "per year", "/year", "/yr", "total"))
+        has_monthly_a = any(w in snippets_a for w in ("monthly", "month", "per month", "/month", "/mo"))
+        has_annual_b = any(w in snippets_b for w in ("annual", "yearly", "year", "per year", "/year", "/yr", "total"))
+        has_monthly_b = any(w in snippets_b for w in ("monthly", "month", "per month", "/month", "/mo"))
+
+        if (has_annual_a and not has_monthly_a and has_monthly_b and not has_annual_b) or \
+           (has_monthly_a and not has_annual_a and has_annual_b and not has_monthly_b):
+            return True
+
+        # 3. Check for distinct named plan tiers
+        tiers = ["starter", "basic", "pro", "professional", "enterprise", "team", "business", "individual", "personal", "family", "student", "standard", "premium", "max"]
+        tier_a = [t for t in tiers if t in snippets_a]
+        tier_b = [t for t in tiers if t in snippets_b]
+        if tier_a and tier_b and set(tier_a) != set(tier_b):
+            return True
+
+        return False
+
     def detect_conflicts(self) -> List[FactConflict]:
         """Scans all fact types for multiple conflicting clusters across pages."""
         conflicts: List[FactConflict] = []
@@ -90,16 +120,26 @@ class FactGraph:
                     ca = clusters[i]
                     cb = clusters[j]
                     if ca.normalized_value.is_conflict(cb.normalized_value):
-                        # Ensure the conflicting evidence comes from distinct pages or distinct statements
+                        # Ensure the conflicting evidence comes from distinct pages
                         urls_a = {e.url for e in ca.evidence_list}
                         urls_b = {e.url for e in cb.evidence_list}
+
+                        # If all evidence for both clusters comes from the EXACT same page(s),
+                        # this represents multiple selectable options on that page, not a cross-page contradiction.
+                        distinct_pages_a = urls_a - urls_b
+                        distinct_pages_b = urls_b - urls_a
+                        if not distinct_pages_a and not distinct_pages_b:
+                            continue
+
+                        # For pricing facts: check if they represent multi-tier or billing period options
+                        if fact_type == "price" and self._is_multi_tier_or_plan_option(ca, cb):
+                            continue
 
                         # Compute joint confidence
                         max_conf_a = max(e.confidence for e in ca.evidence_list)
                         max_conf_b = max(e.confidence for e in cb.evidence_list)
                         joint_conf = round(min(max_conf_a, max_conf_b) * 0.95, 2)
 
-                        # If on distinct URLs or explicitly contradictory on the same page
                         conflicts.append(
                             FactConflict(
                                 fact_type=fact_type,

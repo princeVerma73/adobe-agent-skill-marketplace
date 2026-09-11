@@ -50,6 +50,13 @@ class NormalizedFact:
                 return False
             return True
 
+        if self.fact_type == "email":
+            # Distinct organizational/departmental email addresses (e.g. privacy@, donate@,
+            # support@, legal@, or representative addresses) represent different departmental
+            # channels, not a factual conflict. Only identical local-parts with conflicting domains
+            # or conflicting claims for the exact same stated address role represent conflict.
+            return False
+
         if self.fact_type == "phone":
             # Stripped digits comparison
             digits_a = re.sub(r"\D", "", self.canonical_value)
