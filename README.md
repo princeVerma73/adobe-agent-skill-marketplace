@@ -206,9 +206,9 @@ from src.report import run_full_audit
 
 # Execute end-to-end multi-skill audit
 report = run_full_audit(
-    target="https://fastapi.tiangolo.com",
+    target="https://linear.app",
     confidence_threshold=0.70,
-    max_pages=10,
+    max_pages=5,
     max_depth=2,
     enable_rendering=True,
 )
@@ -226,50 +226,83 @@ markdown_output = report.to_markdown()
 
 ## Standard Output Schema
 
-Below is an excerpt of the standardized JSON audit report emitted by `audit-orchestrator`, matching the exact Adobe Hackathon schema specification:
+Below is an excerpt of the standardized JSON audit report emitted by `audit-orchestrator` for `https://linear.app/`, matching the exact Adobe Hackathon schema specification:
 
 ```json
 {
-  "site": "fastapi.tiangolo.com",
-  "root_url": "https://fastapi.tiangolo.com",
-  "audited_at": "2026-09-11T05:49:03.726681+00:00",
+  "site": "linear.app",
+  "root_url": "https://linear.app",
+  "audited_at": "2026-09-12T09:08:30.191785+00:00",
   "status": "success",
-  "overall_score": 73.0,
+  "overall_score": 74.0,
   "readiness_grade": "C",
   "severity_counts": {
     "critical": 0,
     "high": 1,
     "medium": 4,
-    "low": 1,
+    "low": 0,
     "info": 0
   },
   "entity_profile": {
-    "name": "FastAPI",
+    "name": "Linear",
     "type": "Organization",
-    "description": null,
-    "industry": null,
+    "description": "Purpose-built for planning and building products with AI agents.",
+    "industry": "software",
     "location": null,
     "founding_year": null,
     "products": [],
     "services": [],
     "contact_email": null,
     "contact_phone": null,
-    "social_profiles": [],
-    "confidence_score": 0.5
+    "social_profiles": [
+      "https://x.com/linear",
+      "https://github.com/linear",
+      "https://www.linkedin.com/in/karrisaarinen",
+      "https://www.linkedin.com/in/jorilallo",
+      "https://www.linkedin.com/in/tuomasartman",
+      "https://www.linkedin.com/in/cristinajcordova",
+      "https://www.linkedin.com/in/tom-moor-b6213b1ba",
+      "https://www.linkedin.com/in/casey-bertenthal",
+      "https://www.linkedin.com/in/finnigja",
+      "https://www.linkedin.com/in/conormuirhead",
+      "https://www.youtube.com/watch?v=8wqZXOhuJUM",
+      "https://www.youtube.com/watch?v=DhqEDFzI-OM",
+      "https://www.youtube.com/watch?v=ju7_5eOiWPI",
+      "https://www.youtube.com/watch?v=K8UCETXFGOg"
+    ],
+    "confidence_score": 0.7
+  },
+  "summary": {
+    "total_findings": 5,
+    "critical": 0,
+    "high": 1,
+    "medium": 4,
+    "total_recommendations": 5,
+    "pages_analyzed": 5,
+    "crawled_urls": [
+      "https://linear.app",
+      "https://linear.app/about",
+      "https://linear.app/agents",
+      "https://linear.app/ai",
+      "https://linear.app/now"
+    ],
+    "brand_ai_readiness_score": 74.0,
+    "readiness_grade": "C",
+    "score_heuristic_disclaimer": "Internal marketplace composite heuristic (100 - weighted severity deductions; not an official Adobe metric)"
   },
   "findings": [
     {
       "id": "CC-003",
       "category": "content_clarity",
-      "title": "Missing essential organizational attributes: direct contact details (email or telephone)",
+      "title": "Missing essential organizational attributes: geographic location / headquarters, direct contact details (email or telephone)",
       "severity": "high",
       "confidence": 0.86,
-      "evidence": "A comprehensive scan across 10 crawled pages revealed no verifiable information for: direct contact details (email or telephone). Absence of these fundamental attributes degrades entity trust and prevents AI systems from corroborating corporate legitimacy.",
+      "evidence": "A comprehensive scan across 5 crawled pages revealed no verifiable information for: geographic location / headquarters, direct contact details (email or telephone). Absence of these fundamental attributes degrades entity trust and prevents AI systems from corroborating corporate legitimacy.",
       "affected_urls": [
-        "https://fastapi.tiangolo.com"
+        "https://linear.app"
       ],
       "suggested_action": {
-        "summary": "Publish unambiguous details for direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
+        "summary": "Publish unambiguous details for geographic location / headquarters, direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
         "priority": "high"
       }
     },
@@ -279,12 +312,28 @@ Below is an excerpt of the standardized JSON audit report emitted by `audit-orch
       "title": "Missing Schema.org Organization structured data",
       "severity": "medium",
       "confidence": 0.95,
-      "evidence": "No JSON-LD Schema.org 'Organization' or 'LocalBusiness' definition was found on 'https://fastapi.tiangolo.com' or secondary pages. Structured entity metadata enables search engines and AI systems to ground the entity without heuristic guessing.",
+      "evidence": "No JSON-LD Schema.org 'Organization' or 'LocalBusiness' definition was found on 'https://linear.app' or secondary pages. Structured entity metadata enables search engines and AI systems to ground the entity without heuristic guessing.",
       "affected_urls": [
-        "https://fastapi.tiangolo.com"
+        "https://linear.app"
       ],
       "suggested_action": {
         "summary": "Implement JSON-LD Schema.org 'Organization' or 'Corporation' on the homepage with fields: @context, @type, name, url, logo, description, and sameAs links.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-005",
+      "category": "engagement",
+      "title": "Broken heading hierarchy skips intermediate heading levels",
+      "severity": "medium",
+      "confidence": 0.88,
+      "evidence": "Page 'https://linear.app' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://linear.app/now' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing.",
+      "affected_urls": [
+        "https://linear.app",
+        "https://linear.app/now"
+      ],
+      "suggested_action": {
+        "summary": "Restructure headings sequentially (H1 followed by H2, then H3) without skipping levels to maintain an intuitive document outline.",
         "priority": "medium"
       }
     }
@@ -293,13 +342,13 @@ Below is an excerpt of the standardized JSON audit report emitted by `audit-orch
     {
       "finding_id": "CC-003",
       "priority": "high",
-      "title": "Missing essential organizational attributes: direct contact details (email or telephone)",
+      "title": "Remediate Missing essential organizational attributes: geographic location / headquarters, direct contact details (email or telephone)",
       "affected_urls": [
-        "https://fastapi.tiangolo.com"
+        "https://linear.app"
       ],
-      "what_should_be_changed": "Publish unambiguous details for direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
-      "why_it_matters": "AI search engines and retrieval agents look for direct contact information to verify organizational legitimacy and route user inquiries.",
-      "verification_steps": "Add clear contact info to the page and structured data, then re-audit with audit-orchestrator."
+      "what_should_be_changed": "Publish unambiguous details for geographic location / headquarters, direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
+      "why_it_matters": "Issues categorized under 'content_clarity' with severity 'high' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the content_clarity audit against affected URLs to confirm that CC-003 is no longer reported."
     }
   ],
   "skill_statuses": {
@@ -307,24 +356,8 @@ Below is an excerpt of the standardized JSON audit report emitted by `audit-orch
     "entity-content-freshness-trust": "success",
     "engagement-recommendations": "success"
   },
-  "summary": {
-    "total_findings": 6,
-    "critical": 0,
-    "high": 1,
-    "medium": 4,
-    "total_recommendations": 6,
-    "pages_analyzed": 10,
-    "crawled_urls": [
-      "https://fastapi.tiangolo.com",
-      "https://fastapi.tiangolo.com/features/",
-      "https://fastapi.tiangolo.com/tutorial/"
-    ],
-    "brand_ai_readiness_score": 73.0,
-    "readiness_grade": "C",
-    "score_heuristic_disclaimer": "Internal marketplace composite heuristic (100 - weighted severity deductions; not an official Adobe metric)"
-  },
   "metadata": {
-    "max_pages": 10,
+    "max_pages": 5,
     "max_depth": 2,
     "confidence_threshold": 0.7,
     "enable_rendering": true
