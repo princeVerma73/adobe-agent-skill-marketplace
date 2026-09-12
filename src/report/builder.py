@@ -14,7 +14,7 @@ from src.entity_trust.contracts.schemas import (
 )
 from src.recommendations.engine import RecommendationEngine
 from src.report.deduplicator import deduplicate_findings
-from src.report.models import FinalAuditReport, ReportFinding
+from src.report.models import AuditSummary, FinalAuditReport, ReportFinding
 from src.report.normalizer import (
     normalize_engagement_finding,
     normalize_member2_finding,
@@ -157,31 +157,35 @@ class ReportBuilder:
         else:
             overall_status = "success"
 
-        # Summary dictionary
-        summary = {
-            "total_findings": len(deduped),
-            "critical": counts.critical,
-            "high": counts.high,
-            "medium": counts.medium,
-            "total_recommendations": len(recommendations),
+        # Summary dictionary matching exact official Adobe schema
+        summary = AuditSummary(
+            total_findings=len(deduped),
+            critical=counts.critical,
+            high=counts.high,
+            medium=counts.medium,
+        )
+
+        report_metadata = dict(self.metadata)
+        report_metadata.update({
             "pages_analyzed": len(self.known_urls),
             "crawled_urls": list(sorted(self.known_urls)),
+            "total_recommendations": len(recommendations),
             "brand_ai_readiness_score": overall_score,
             "readiness_grade": grade,
             "score_heuristic_disclaimer": "Internal marketplace composite heuristic (100 - weighted severity deductions; not an official Adobe metric)",
-        }
+        })
 
         return FinalAuditReport(
             site=self.site,
             root_url=self.root_url,
+            summary=summary,
+            findings=deduped,
             status=overall_status,
             overall_score=overall_score,
             readiness_grade=grade,
             severity_counts=counts,
             entity_profile=self.entity_profile,
-            findings=deduped,
             recommendations=recommendations,
             skill_statuses=self.skill_statuses,
-            summary=summary,
-            metadata=self.metadata,
+            metadata=report_metadata,
         )

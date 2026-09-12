@@ -323,3 +323,126 @@ def is_valid_url(url: str) -> bool:
         return True
     except (InvalidURLError, ValueError, Exception):
         return False
+
+
+KNOWN_REGIONAL_SLUGS = {
+    "africa", "mena", "apac", "latam", "global", "emea", "sea",
+    "international", "row", "latinamerica", "middleeast",
+}
+
+NON_LOCALE_SEGMENTS = {
+    "api", "app", "doc", "docs", "dev", "img", "css", "tag", "faq", "buy",
+    "pub", "cdn", "nav", "web", "src", "lib", "all", "top", "new",
+    "raw", "git", "hub", "bot", "job", "pdf", "rss", "bin", "pkg",
+    "art", "ops", "org", "tmp", "log", "ui", "js", "v1", "v2", "v3",
+    "search", "help", "support", "account", "login", "auth", "signin",
+    "legal", "privacy", "terms", "download", "downloads", "static",
+}
+
+_LOCALE_COMPOUND = re.compile(
+    r"^[a-zA-Z]{2,4}[-_][a-zA-Z]{2,4}$"
+)
+_LOCALE_2_LETTER = re.compile(
+    r"^[a-zA-Z]{2}$"
+)
+_LOCALE_3_LETTER = re.compile(
+    r"^[a-zA-Z]{3}$"
+)
+
+
+def extract_locale_prefix(url_or_path: str) -> Optional[str]:
+    """Extract lowercase locale prefix from a URL or path, if present.
+    
+    Examples:
+        'https://www.adobe.com/in/' -> 'in'
+        'https://www.adobe.com/in/products' -> 'in'
+        '/ae_ar/about' -> 'ae_ar'
+        '/cis_en/' -> 'cis_en'
+        '/mena_ar/' -> 'mena_ar'
+        '/africa/' -> 'africa'
+        'https://docs.python.org/3' -> None
+        'https://fastapi.tiangolo.com/' -> None
+        '/api/v1/users' -> None
+    """
+    if not url_or_path or not isinstance(url_or_path, str):
+        return None
+    
+    # Extract path
+    if "://" in url_or_path or url_or_path.startswith("//"):
+        try:
+            path = urlparse(url_or_path).path
+        except Exception:
+            return None
+    else:
+        path = url_or_path.split("?")[0].split("#")[0]
+        
+    segments = [s.strip().lower() for s in path.strip("/").split("/") if s.strip()]
+    if not segments:
+        return None
+        
+    first = segments[0]
+    if first in NON_LOCALE_SEGMENTS:
+        return None
+    if first in KNOWN_REGIONAL_SLUGS:
+        return first
+    if _LOCALE_COMPOUND.match(first):
+        return first
+    if _LOCALE_2_LETTER.match(first):
+        return first
+    if _LOCALE_3_LETTER.match(first) and first not in NON_LOCALE_SEGMENTS:
+        return first
+        
+    return None
+
+
+def is_locale_root(url_or_path: str) -> bool:
+    """Return True if url_or_path represents a bare locale/regional root.
+    
+    Examples:
+        'https://www.adobe.com/in' -> True
+        'https://www.adobe.com/in/' -> True
+        '/ae_ar' -> True
+        '/africa/' -> True
+        'https://www.adobe.com/in/products' -> False
+    """
+    if not url_or_path or not isinstance(url_or_path, str):
+        return False
+    if "://" in url_or_path or url_or_path.startswith("//"):
+        try:
+            path = urlparse(url_or_path).path
+        except Exception:
+            return False
+    else:
+        path = url_or_path.split("?")[0].split("#")[0]
+    
+    segments = [s.strip().lower() for s in path.strip("/").split("/") if s.strip()]
+    if len(segments) == 1:
+        return extract_locale_prefix(segments[0]) is not None
+    return False
+
+
+def is_same_locale(url1: str, url2: str) -> bool:
+    """Check whether two URLs share the same locale prefix scope."""
+    loc1 = extract_locale_prefix(url1)
+    loc2 = extract_locale_prefix(url2)
+    return loc1 == loc2
+
+
+def is_regional_sibling(root_url: str, candidate_url: str) -> bool:
+    """Check if candidate_url is a regional/locale sibling variant of root_url.
+    
+    Returns True only when root_url is locale-scoped and candidate_url belongs
+    to a different locale prefix on the same site.
+    """
+    root_loc = extract_locale_prefix(root_url)
+    if not root_loc:
+        return False
+    
+    if not is_same_site(root_url, candidate_url):
+        return False
+        
+    cand_loc = extract_locale_prefix(candidate_url)
+    if cand_loc and cand_loc != root_loc:
+        return True
+        
+    return False

@@ -1,0 +1,235 @@
+{
+  "site": "fastapi.tiangolo.com",
+  "root_url": "https://fastapi.tiangolo.com",
+  "audited_at": "2026-09-12T05:22:02.351491+00:00",
+  "status": "success",
+  "overall_score": 73.0,
+  "readiness_grade": "C",
+  "severity_counts": {
+    "critical": 0,
+    "high": 1,
+    "medium": 4,
+    "low": 1,
+    "info": 0
+  },
+  "entity_profile": {
+    "name": "FastAPI",
+    "type": "Organization",
+    "description": null,
+    "industry": null,
+    "location": null,
+    "founding_year": null,
+    "products": [],
+    "services": [],
+    "contact_email": null,
+    "contact_phone": null,
+    "social_profiles": [],
+    "confidence_score": 0.5
+  },
+  "findings": [
+    {
+      "id": "CC-003",
+      "category": "content_clarity",
+      "title": "Missing essential organizational attributes: direct contact details (email or telephone)",
+      "severity": "high",
+      "confidence": 0.86,
+      "evidence": "A comprehensive scan across 10 crawled pages revealed no verifiable information for: direct contact details (email or telephone). Absence of these fundamental attributes degrades entity trust and prevents AI systems from corroborating corporate legitimacy.",
+      "affected_urls": [
+        "https://fastapi.tiangolo.com"
+      ],
+      "suggested_action": {
+        "summary": "Publish unambiguous details for direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "EC-003",
+      "category": "entity",
+      "title": "Missing Schema.org Organization structured data",
+      "severity": "medium",
+      "confidence": 0.95,
+      "evidence": "No JSON-LD Schema.org 'Organization' or 'LocalBusiness' definition was found on 'https://fastapi.tiangolo.com' or secondary pages. Structured entity metadata enables search engines and AI systems to ground the entity without heuristic guessing.",
+      "affected_urls": [
+        "https://fastapi.tiangolo.com"
+      ],
+      "suggested_action": {
+        "summary": "Implement JSON-LD Schema.org 'Organization' or 'Corporation' on the homepage with fields: @context, @type, name, url, logo, description, and sameAs links.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-005",
+      "category": "engagement",
+      "title": "Broken heading hierarchy skips intermediate heading levels",
+      "severity": "medium",
+      "confidence": 0.88,
+      "evidence": "Page 'https://fastapi.tiangolo.com/tutorial/first-steps/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing.",
+      "affected_urls": [
+        "https://fastapi.tiangolo.com/tutorial/first-steps/"
+      ],
+      "suggested_action": {
+        "summary": "Restructure headings sequentially (H1 followed by H2, then H3) without skipping levels to maintain an intuitive document outline.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-003",
+      "category": "engagement",
+      "title": "Navigation links use vague, non-descriptive anchor text",
+      "severity": "medium",
+      "confidence": 0.86,
+      "evidence": "Page at 'https://fastapi.tiangolo.com' contains 2 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension.",
+      "affected_urls": [
+        "https://fastapi.tiangolo.com"
+      ],
+      "suggested_action": {
+        "summary": "Replace generic anchor texts like 'click here' or 'read more' with descriptive labels indicating the destination content (e.g., 'View Enterprise Pricing Plans').",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "EC-002",
+      "category": "entity",
+      "title": "Insufficient organization disambiguation and business description",
+      "severity": "medium",
+      "confidence": 0.75,
+      "evidence": "The website provides the entity name 'FastAPI', but fails to provide a clear, unambiguous statement of what the organization does, its industry category, and whom it serves. Detected industry: None. Description snippet: 'None...",
+      "affected_urls": [
+        "https://fastapi.tiangolo.com"
+      ],
+      "suggested_action": {
+        "summary": "Add a concise 1-2 sentence organization definition in plain readable text on the homepage and About page declaring organization type, industry, target audience, and primary offerings.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-007",
+      "category": "engagement",
+      "title": "Dense body content lacks subheadings for scannability",
+      "severity": "low",
+      "confidence": 0.8,
+      "evidence": "Page 'https://fastapi.tiangolo.com/learn/' contains 585 words of body text but lacks <h2> or <h3> subheadings. Monolithic text blocks reduce readability and structured information extraction.",
+      "affected_urls": [
+        "https://fastapi.tiangolo.com/learn/"
+      ],
+      "suggested_action": {
+        "summary": "Break long content sections into subsections with descriptive <h2> and <h3> subheadings.",
+        "priority": "low"
+      }
+    }
+  ],
+  "recommendations": [
+    {
+      "finding_id": "CC-003",
+      "category": "content_clarity",
+      "title": "Remediate Missing essential organizational attributes: direct contact details (email or telephone)",
+      "priority": "high",
+      "what_is_wrong": "The following issue was detected during the audit: A comprehensive scan across 10 crawled pages revealed no verifiable information for: direct contact details (email or telephone). Absence of these fundamental attributes degrades entity trust and prevents AI systems from corroborating corporate legitimacy..",
+      "where_it_occurs": [
+        "https://fastapi.tiangolo.com"
+      ],
+      "what_should_be_changed": "Publish unambiguous details for direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
+      "why_it_matters": "Issues categorized under 'content_clarity' with severity 'high' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the content_clarity audit against affected URLs to confirm that CC-003 is no longer reported."
+    },
+    {
+      "finding_id": "EC-003",
+      "category": "entity",
+      "title": "Add Schema.org Organization Structured Data Markup",
+      "priority": "medium",
+      "what_is_wrong": "The site does not publish Schema.org Organization or LocalBusiness JSON-LD markup. Observation: No JSON-LD Schema.org 'Organization' or 'LocalBusiness' definition was found on 'https://fastapi.tiangolo.com' or secondary pages. Structured entity metadata enables search engines and AI systems to ground the entity without heuristic guessing.",
+      "where_it_occurs": [
+        "https://fastapi.tiangolo.com"
+      ],
+      "what_should_be_changed": "Implement JSON-LD Schema.org 'Organization' or 'Corporation' on the homepage with fields: @context, @type, name, url, logo, description, and sameAs links.",
+      "why_it_matters": "Structured data is the primary machine-readable format used by search crawlers to construct verified knowledge panels.",
+      "verification_steps": "Validate the homepage with Google's Rich Results Test or re-run the entity audit."
+    },
+    {
+      "finding_id": "ENG-005",
+      "category": "engagement",
+      "title": "Repair Broken Heading Hierarchy",
+      "priority": "medium",
+      "what_is_wrong": "Headings skip intermediate structural levels (e.g., jumping from <h1> directly to <h3> or <h4> without an intervening <h2>). Observation: Page 'https://fastapi.tiangolo.com/tutorial/first-steps/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing.",
+      "where_it_occurs": [
+        "https://fastapi.tiangolo.com/tutorial/first-steps/"
+      ],
+      "what_should_be_changed": "Restructure headings sequentially (H1 followed by H2, then H3) without skipping levels to maintain an intuitive document outline.",
+      "why_it_matters": "Screen readers and automated document summarizers rely on logical heading tree hierarchies to map document structure.",
+      "verification_steps": "Re-run the engagement audit and verify that no heading level skips are detected in the document outline."
+    },
+    {
+      "finding_id": "ENG-003",
+      "category": "engagement",
+      "title": "Replace Vague Anchor Text with Descriptive Links",
+      "priority": "medium",
+      "what_is_wrong": "Navigation hyperlinks use non-descriptive anchor texts such as 'click here', 'read more', or empty text. Observation: Page at 'https://fastapi.tiangolo.com' contains 2 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension.",
+      "where_it_occurs": [
+        "https://fastapi.tiangolo.com"
+      ],
+      "what_should_be_changed": "Replace generic anchor texts like 'click here' or 'read more' with descriptive labels indicating the destination content (e.g., 'View Enterprise Pricing Plans').",
+      "why_it_matters": "Descriptive anchor text provides semantic context to search crawlers and screen readers regarding the destination page content.",
+      "verification_steps": "Re-run the navigation check and verify that all hyperlinks contain descriptive destination-specific anchor text."
+    },
+    {
+      "finding_id": "EC-002",
+      "category": "entity",
+      "title": "Provide Explicit Organization Description and Industry Classification",
+      "priority": "medium",
+      "what_is_wrong": "The website lacks clear business description text or industry disambiguation keywords. Observation: The website provides the entity name 'FastAPI', but fails to provide a clear, unambiguous statement of what the organization does, its industry category, and whom it serves. Detected industry: None. Description snippet: 'None...",
+      "where_it_occurs": [
+        "https://fastapi.tiangolo.com"
+      ],
+      "what_should_be_changed": "Add a concise 1-2 sentence organization definition in plain readable text on the homepage and About page declaring organization type, industry, target audience, and primary offerings.",
+      "why_it_matters": "Disambiguation is necessary for inclusion in AI knowledge graphs like Wikidata, Google Knowledge Graph, and Perplexity.",
+      "verification_steps": "Re-run the entity audit and confirm industry and description are detected with high confidence."
+    },
+    {
+      "finding_id": "ENG-007",
+      "category": "engagement",
+      "title": "Introduce Subheadings into Dense Content Sections",
+      "priority": "low",
+      "what_is_wrong": "The page contains long text blocks without <h2> or <h3> subheadings, creating an un-scannable reading experience. Observation: Page 'https://fastapi.tiangolo.com/learn/' contains 585 words of body text but lacks <h2> or <h3> subheadings. Monolithic text blocks reduce readability and structured information extraction.",
+      "where_it_occurs": [
+        "https://fastapi.tiangolo.com/learn/"
+      ],
+      "what_should_be_changed": "Break long content sections into subsections with descriptive <h2> and <h3> subheadings.",
+      "why_it_matters": "Subheadings enable fast human skimming and help AI document chunkers partition text into discrete semantic blocks.",
+      "verification_steps": "Re-run the hierarchy audit and ensure long content pages have adequate subheading density."
+    }
+  ],
+  "skill_statuses": {
+    "crawl-render-audit": "success",
+    "entity-content-freshness-trust": "success",
+    "engagement-recommendations": "success"
+  },
+  "summary": {
+    "total_findings": 6,
+    "critical": 0,
+    "high": 1,
+    "medium": 4,
+    "total_recommendations": 6,
+    "pages_analyzed": 10,
+    "crawled_urls": [
+      "https://fastapi.tiangolo.com",
+      "https://fastapi.tiangolo.com/async/",
+      "https://fastapi.tiangolo.com/features/",
+      "https://fastapi.tiangolo.com/learn/",
+      "https://fastapi.tiangolo.com/python-types/",
+      "https://fastapi.tiangolo.com/tutorial/",
+      "https://fastapi.tiangolo.com/tutorial/body/",
+      "https://fastapi.tiangolo.com/tutorial/first-steps/",
+      "https://fastapi.tiangolo.com/tutorial/path-params/",
+      "https://fastapi.tiangolo.com/tutorial/query-params/"
+    ],
+    "brand_ai_readiness_score": 73.0,
+    "readiness_grade": "C",
+    "score_heuristic_disclaimer": "Internal marketplace composite heuristic (100 - weighted severity deductions; not an official Adobe metric)"
+  },
+  "metadata": {
+    "max_pages": 10,
+    "max_depth": 2,
+    "confidence_threshold": 0.7,
+    "enable_rendering": true
+  }
+}

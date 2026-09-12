@@ -8,7 +8,8 @@ Identifies multi-page factual discrepancies with high confidence.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
+from src.inspection.url import extract_locale_prefix
 from .fact_extractor import ExtractedFact
 from .fact_normalizer import NormalizedFact
 
@@ -106,6 +107,29 @@ class FactGraph:
 
         return False
 
+    @staticmethod
+    def _is_distinct_product_or_subject_metric(ca: FactCluster, cb: FactCluster) -> bool:
+        """Determines if two metric clusters represent distinct products, features, or metric units."""
+        val_a = ca.normalized_value.canonical_value.lower()
+        val_b = cb.normalized_value.canonical_value.lower()
+
+        # 1. If normalized metric units differ (e.g. 'users' vs 'countries' vs 'enterprises'), not a conflict
+        noun_a = val_a.split()[-1] if val_a.split() else ""
+        noun_b = val_b.split()[-1] if val_b.split() else ""
+        if noun_a and noun_b and noun_a != noun_b:
+            return True
+
+        # 2. Check if context snippets reference distinct named products or models
+        snippets_a = " ".join(e.context_snippet for e in ca.evidence_list)
+        snippets_b = " ".join(e.context_snippet for e in cb.evidence_list)
+        import re
+        products_a = set(re.findall(r"\b[A-Z][a-zA-Z0-9]+(?:\s+[A-Z0-9][a-zA-Z0-9]+)+\b", snippets_a))
+        products_b = set(re.findall(r"\b[A-Z][a-zA-Z0-9]+(?:\s+[A-Z0-9][a-zA-Z0-9]+)+\b", snippets_b))
+        if products_a and products_b and products_a.isdisjoint(products_b):
+            return True
+
+        return False
+
     def detect_conflicts(self) -> List[FactConflict]:
         """Scans all fact types for multiple conflicting clusters across pages."""
         conflicts: List[FactConflict] = []
@@ -134,6 +158,25 @@ class FactGraph:
                         # For pricing facts: check if they represent multi-tier or billing period options
                         if fact_type == "price" and self._is_multi_tier_or_plan_option(ca, cb):
                             continue
+
+                        # For metric facts: check if they represent distinct products or metric units
+                        if fact_type == "metric" and self._is_distinct_product_or_subject_metric(ca, cb):
+                            continue
+
+                        # For naturally regional facts (headquarters, phone, price):
+                        # If conflicting clusters come exclusively from distinct, non-overlapping regional locales,
+                        # this represents legitimate regional variations rather than an organizational contradiction.
+                        if fact_type in ("headquarters", "location", "address", "phone", "price"):
+                            locales_a = {extract_locale_prefix(u) for u in urls_a}
+                            locales_b = {extract_locale_prefix(u) for u in urls_b}
+                            if (
+                                locales_a
+                                and locales_b
+                                and None not in locales_a
+                                and None not in locales_b
+                                and locales_a.isdisjoint(locales_b)
+                            ):
+                                continue
 
                         # Compute joint confidence
                         max_conf_a = max(e.confidence for e in ca.evidence_list)

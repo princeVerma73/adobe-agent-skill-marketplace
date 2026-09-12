@@ -1,0 +1,521 @@
+{
+  "site": "www.nasa.gov",
+  "root_url": "https://www.nasa.gov",
+  "audited_at": "2026-09-12T05:24:41.283922+00:00",
+  "status": "success",
+  "overall_score": 7.0,
+  "readiness_grade": "F",
+  "severity_counts": {
+    "critical": 0,
+    "high": 6,
+    "medium": 8,
+    "low": 1,
+    "info": 0
+  },
+  "entity_profile": {
+    "name": "NASA",
+    "type": "Organization",
+    "description": null,
+    "industry": "media",
+    "location": null,
+    "founding_year": null,
+    "products": [],
+    "services": [],
+    "contact_email": null,
+    "contact_phone": null,
+    "social_profiles": [],
+    "confidence_score": 0.5
+  },
+  "findings": [
+    {
+      "id": "TECH-FETCH_ERROR",
+      "category": "technical",
+      "title": "Request error: Server disconnected without sending a response.",
+      "severity": "high",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' reported FETCH_ERROR: Request error: Server disconnected without sending a response.. Context: {'url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots', 'original_url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots'}",
+      "affected_urls": [
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "suggested_action": {
+        "summary": "Review and resolve technical issue 'FETCH_ERROR' on 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots'.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "TECH-HTTP_UNREACHABLE",
+      "category": "technical",
+      "title": "Page did not return a valid HTTP status code or connection failed.",
+      "severity": "high",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' reported HTTP_UNREACHABLE: Page did not return a valid HTTP status code or connection failed.. Context: {'url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots', 'original_url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots'}",
+      "affected_urls": [
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "suggested_action": {
+        "summary": "Verify domain DNS resolution, SSL certificates, and network firewall reachability.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "TECH-MISSING_TITLE",
+      "category": "technical",
+      "title": "Page is missing a title tag or has empty title content.",
+      "severity": "high",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' reported MISSING_TITLE: Page is missing a title tag or has empty title content.. Context: {'url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots', 'title': None}",
+      "affected_urls": [
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "suggested_action": {
+        "summary": "Add an informative <title> tag between 15 and 60 characters containing the primary page subject.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "TECH-EMPTY_BODY_TEXT",
+      "category": "technical",
+      "title": "Page has empty visible body text.",
+      "severity": "high",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' reported EMPTY_BODY_TEXT: Page has empty visible body text.. Context: {'url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots', 'char_count': 0, 'word_count': 0}",
+      "affected_urls": [
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "suggested_action": {
+        "summary": "Review and resolve technical issue 'EMPTY_BODY_TEXT' on 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots'.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "ENG-014",
+      "category": "engagement",
+      "title": "Dead-end page terminates user journey without outgoing links",
+      "severity": "high",
+      "confidence": 0.95,
+      "evidence": "Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' contains 0 outgoing internal links to any other page on the site. Visitors and AI crawlers reaching this URL cannot navigate forward or return to safety.",
+      "affected_urls": [
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "suggested_action": {
+        "summary": "Add standard header/footer navigation or contextual next-step links on 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' to ensure visitors and automated agents can continue exploring.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "CC-003",
+      "category": "content_clarity",
+      "title": "Missing essential organizational attributes: geographic location / headquarters, direct contact details (email or telephone)",
+      "severity": "high",
+      "confidence": 0.86,
+      "evidence": "A comprehensive scan across 10 crawled pages revealed no verifiable information for: geographic location / headquarters, direct contact details (email or telephone). Absence of these fundamental attributes degrades entity trust and prevents AI systems from corroborating corporate legitimacy.",
+      "affected_urls": [
+        "https://www.nasa.gov"
+      ],
+      "suggested_action": {
+        "summary": "Publish unambiguous details for geographic location / headquarters, direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "TECH-SHORT_TITLE",
+      "category": "technical",
+      "title": "Page title is very short (4 characters: 'NASA').",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.nasa.gov' reported SHORT_TITLE: Page title is very short (4 characters: 'NASA').. Context: {'url': 'https://www.nasa.gov', 'title': 'NASA', 'length': 4}",
+      "affected_urls": [
+        "https://www.nasa.gov"
+      ],
+      "suggested_action": {
+        "summary": "Expand title tag to include brand name and specific page context.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "TECH-MISSING_H1",
+      "category": "technical",
+      "title": "Page lacks an H1 main heading tag.",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.nasa.gov' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.nasa.gov', 'total_headings': 98} | Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots', 'total_headings': 0} | Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation.",
+      "affected_urls": [
+        "https://www.nasa.gov",
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "suggested_action": {
+        "summary": "Provide a descriptive <h1> element to establish primary topic structure.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "TECH-MISSING_META_DESCRIPTION",
+      "category": "technical",
+      "title": "Page is missing a meta description tag.",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots', 'description': None}",
+      "affected_urls": [
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "suggested_action": {
+        "summary": "Review and resolve technical issue 'MISSING_META_DESCRIPTION' on 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots'.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "EC-003",
+      "category": "entity",
+      "title": "Missing Schema.org Organization structured data",
+      "severity": "medium",
+      "confidence": 0.95,
+      "evidence": "No JSON-LD Schema.org 'Organization' or 'LocalBusiness' definition was found on 'https://www.nasa.gov' or secondary pages. Structured entity metadata enables search engines and AI systems to ground the entity without heuristic guessing.",
+      "affected_urls": [
+        "https://www.nasa.gov"
+      ],
+      "suggested_action": {
+        "summary": "Implement JSON-LD Schema.org 'Organization' or 'Corporation' on the homepage with fields: @context, @type, name, url, logo, description, and sameAs links.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-009",
+      "category": "engagement",
+      "title": "Orphaned internal page with no incoming navigation links",
+      "severity": "medium",
+      "confidence": 0.94,
+      "evidence": "Page 'https://www.nasa.gov/history/glenn-orbits-the-earth' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://www.nasa.gov/missions/oct-29-1998-john-glenn-returns-to-space' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://www.nasa.gov/centers-and-facilities/glenn/from-sky-gazing-to-astronaut-janet-kavandi-reaches-the-astronaut-hall-of-fame' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://www.nasa.gov/technology/in-nasa-glenns-virtual-reality-lab-creative-minded-employees-thrive' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://www.nasa.gov/history/naca-test-pilot-competed-in-cleveland-national-air-races' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://www.nasa.gov/centers-and-facilities/glenn/watch-nasa-glenn-intern-stories-on-2019-national-intern-day' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://www.nasa.gov/centers-and-facilities/glenn/a-need-for-speed-life-as-a-champion-racecar-driver-and-nasa-propulsion-facility-manager' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://www.nasa.gov/people-of-nasa/nasas-jeremiah-ocallahan-values-native-american-roots-and-community-outreach' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it.",
+      "affected_urls": [
+        "https://www.nasa.gov/history/glenn-orbits-the-earth",
+        "https://www.nasa.gov/missions/oct-29-1998-john-glenn-returns-to-space",
+        "https://www.nasa.gov/centers-and-facilities/glenn/from-sky-gazing-to-astronaut-janet-kavandi-reaches-the-astronaut-hall-of-fame",
+        "https://www.nasa.gov/technology/in-nasa-glenns-virtual-reality-lab-creative-minded-employees-thrive",
+        "https://www.nasa.gov/history/naca-test-pilot-competed-in-cleveland-national-air-races",
+        "https://www.nasa.gov/centers-and-facilities/glenn/watch-nasa-glenn-intern-stories-on-2019-national-intern-day",
+        "https://www.nasa.gov/centers-and-facilities/glenn/a-need-for-speed-life-as-a-champion-racecar-driver-and-nasa-propulsion-facility-manager",
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots",
+        "https://www.nasa.gov/people-of-nasa/nasas-jeremiah-ocallahan-values-native-american-roots-and-community-outreach"
+      ],
+      "suggested_action": {
+        "summary": "Add internal links pointing to 'https://www.nasa.gov/history/glenn-orbits-the-earth' from relevant parent categories, the main navigation, or related articles.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-015",
+      "category": "engagement",
+      "title": "Deep landing page lacks navigation link back to homepage",
+      "severity": "medium",
+      "confidence": 0.9,
+      "evidence": "Direct landing page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' has no link back to the root homepage 'https://www.nasa.gov'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal.",
+      "affected_urls": [
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "suggested_action": {
+        "summary": "Include a logo/home link or breadcrumb navigation on 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' that connects back to the homepage ('https://www.nasa.gov').",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-003",
+      "category": "engagement",
+      "title": "Navigation links use vague, non-descriptive anchor text",
+      "severity": "medium",
+      "confidence": 0.86,
+      "evidence": "Page at 'https://www.nasa.gov' contains 3 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://www.nasa.gov/history/glenn-orbits-the-earth/' contains 4 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://www.nasa.gov/missions/oct-29-1998-john-glenn-returns-to-space/' contains 3 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://www.nasa.gov/centers-and-facilities/glenn/from-sky-gazing-to-astronaut-janet-kavandi-reaches-the-astronaut-hall-of-fame/' contains 5 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://www.nasa.gov/technology/in-nasa-glenns-virtual-reality-lab-creative-minded-employees-thrive/' contains 4 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://www.nasa.gov/history/naca-test-pilot-competed-in-cleveland-national-air-races/' contains 4 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://www.nasa.gov/centers-and-facilities/glenn/watch-nasa-glenn-intern-stories-on-2019-national-intern-day/' contains 2 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://www.nasa.gov/centers-and-facilities/glenn/a-need-for-speed-life-as-a-champion-racecar-driver-and-nasa-propulsion-facility-manager/' contains 2 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://www.nasa.gov/people-of-nasa/nasas-jeremiah-ocallahan-values-native-american-roots-and-community-outreach/' contains 3 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension.",
+      "affected_urls": [
+        "https://www.nasa.gov",
+        "https://www.nasa.gov/history/glenn-orbits-the-earth/",
+        "https://www.nasa.gov/missions/oct-29-1998-john-glenn-returns-to-space/",
+        "https://www.nasa.gov/centers-and-facilities/glenn/from-sky-gazing-to-astronaut-janet-kavandi-reaches-the-astronaut-hall-of-fame/",
+        "https://www.nasa.gov/technology/in-nasa-glenns-virtual-reality-lab-creative-minded-employees-thrive/",
+        "https://www.nasa.gov/history/naca-test-pilot-competed-in-cleveland-national-air-races/",
+        "https://www.nasa.gov/centers-and-facilities/glenn/watch-nasa-glenn-intern-stories-on-2019-national-intern-day/",
+        "https://www.nasa.gov/centers-and-facilities/glenn/a-need-for-speed-life-as-a-champion-racecar-driver-and-nasa-propulsion-facility-manager/",
+        "https://www.nasa.gov/people-of-nasa/nasas-jeremiah-ocallahan-values-native-american-roots-and-community-outreach/"
+      ],
+      "suggested_action": {
+        "summary": "Replace generic anchor texts like 'click here' or 'read more' with descriptive labels indicating the destination content (e.g., 'View Enterprise Pricing Plans').",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "EC-002",
+      "category": "entity",
+      "title": "Insufficient organization disambiguation and business description",
+      "severity": "medium",
+      "confidence": 0.75,
+      "evidence": "The website provides the entity name 'NASA', but fails to provide a clear, unambiguous statement of what the organization does, its industry category, and whom it serves. Detected industry: media. Description snippet: 'None...",
+      "affected_urls": [
+        "https://www.nasa.gov"
+      ],
+      "suggested_action": {
+        "summary": "Add a concise 1-2 sentence organization definition in plain readable text on the homepage and About page declaring organization type, industry, target audience, and primary offerings.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "TECH-MISSING_CANONICAL",
+      "category": "technical",
+      "title": "Page does not declare a canonical URL tag.",
+      "severity": "low",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' reported MISSING_CANONICAL: Page does not declare a canonical URL tag.. Context: {'url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots'}",
+      "affected_urls": [
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "suggested_action": {
+        "summary": "Review and resolve technical issue 'MISSING_CANONICAL' on 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots'.",
+        "priority": "low"
+      }
+    }
+  ],
+  "recommendations": [
+    {
+      "finding_id": "TECH-FETCH_ERROR",
+      "category": "technical",
+      "title": "Remediate Request error: Server disconnected without sending a response.",
+      "priority": "high",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' reported FETCH_ERROR: Request error: Server disconnected without sending a response.. Context: {'url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots', 'original_url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots'}.",
+      "where_it_occurs": [
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "what_should_be_changed": "Review and resolve technical issue 'FETCH_ERROR' on 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots'.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'high' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-FETCH_ERROR is no longer reported."
+    },
+    {
+      "finding_id": "TECH-HTTP_UNREACHABLE",
+      "category": "technical",
+      "title": "Remediate Page did not return a valid HTTP status code or connection failed.",
+      "priority": "high",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' reported HTTP_UNREACHABLE: Page did not return a valid HTTP status code or connection failed.. Context: {'url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots', 'original_url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots'}.",
+      "where_it_occurs": [
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "what_should_be_changed": "Verify domain DNS resolution, SSL certificates, and network firewall reachability.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'high' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-HTTP_UNREACHABLE is no longer reported."
+    },
+    {
+      "finding_id": "TECH-MISSING_TITLE",
+      "category": "technical",
+      "title": "Remediate Page is missing a title tag or has empty title content.",
+      "priority": "high",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' reported MISSING_TITLE: Page is missing a title tag or has empty title content.. Context: {'url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots', 'title': None}.",
+      "where_it_occurs": [
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "what_should_be_changed": "Add an informative <title> tag between 15 and 60 characters containing the primary page subject.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'high' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_TITLE is no longer reported."
+    },
+    {
+      "finding_id": "TECH-EMPTY_BODY_TEXT",
+      "category": "technical",
+      "title": "Remediate Page has empty visible body text.",
+      "priority": "high",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' reported EMPTY_BODY_TEXT: Page has empty visible body text.. Context: {'url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots', 'char_count': 0, 'word_count': 0}.",
+      "where_it_occurs": [
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "what_should_be_changed": "Review and resolve technical issue 'EMPTY_BODY_TEXT' on 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots'.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'high' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-EMPTY_BODY_TEXT is no longer reported."
+    },
+    {
+      "finding_id": "ENG-014",
+      "category": "engagement",
+      "title": "Eliminate Dead-End Page by Adding Navigation",
+      "priority": "high",
+      "what_is_wrong": "The page has zero outgoing internal links, permanently halting user and crawler journeys. Observation: Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' contains 0 outgoing internal links to any other page on the site. Visitors and AI crawlers reaching this URL cannot navigate forward or return to safety.",
+      "where_it_occurs": [
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "what_should_be_changed": "Add standard header/footer navigation or contextual next-step links on 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' to ensure visitors and automated agents can continue exploring.",
+      "why_it_matters": "Dead ends waste crawl budget and trap users, forcing them to use the browser back button or abandon the site.",
+      "verification_steps": "Re-run the dead-end check and confirm that the page provides outgoing internal navigation."
+    },
+    {
+      "finding_id": "CC-003",
+      "category": "content_clarity",
+      "title": "Remediate Missing essential organizational attributes: geographic location / headquarters, direct contact details (email or telephone)",
+      "priority": "high",
+      "what_is_wrong": "The following issue was detected during the audit: A comprehensive scan across 10 crawled pages revealed no verifiable information for: geographic location / headquarters, direct contact details (email or telephone). Absence of these fundamental attributes degrades entity trust and prevents AI systems from corroborating corporate legitimacy..",
+      "where_it_occurs": [
+        "https://www.nasa.gov"
+      ],
+      "what_should_be_changed": "Publish unambiguous details for geographic location / headquarters, direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
+      "why_it_matters": "Issues categorized under 'content_clarity' with severity 'high' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the content_clarity audit against affected URLs to confirm that CC-003 is no longer reported."
+    },
+    {
+      "finding_id": "TECH-SHORT_TITLE",
+      "category": "technical",
+      "title": "Remediate Page title is very short (4 characters: 'NASA').",
+      "priority": "medium",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.nasa.gov' reported SHORT_TITLE: Page title is very short (4 characters: 'NASA').. Context: {'url': 'https://www.nasa.gov', 'title': 'NASA', 'length': 4}.",
+      "where_it_occurs": [
+        "https://www.nasa.gov"
+      ],
+      "what_should_be_changed": "Expand title tag to include brand name and specific page context.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'medium' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-SHORT_TITLE is no longer reported."
+    },
+    {
+      "finding_id": "TECH-MISSING_H1",
+      "category": "technical",
+      "title": "Remediate Page lacks an H1 main heading tag.",
+      "priority": "medium",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.nasa.gov' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.nasa.gov', 'total_headings': 98} | Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots', 'total_headings': 0} | Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation..",
+      "where_it_occurs": [
+        "https://www.nasa.gov",
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "what_should_be_changed": "Provide a descriptive <h1> element to establish primary topic structure.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'medium' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_H1 is no longer reported."
+    },
+    {
+      "finding_id": "TECH-MISSING_META_DESCRIPTION",
+      "category": "technical",
+      "title": "Remediate Page is missing a meta description tag.",
+      "priority": "medium",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots', 'description': None}.",
+      "where_it_occurs": [
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "what_should_be_changed": "Review and resolve technical issue 'MISSING_META_DESCRIPTION' on 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots'.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'medium' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_META_DESCRIPTION is no longer reported."
+    },
+    {
+      "finding_id": "EC-003",
+      "category": "entity",
+      "title": "Add Schema.org Organization Structured Data Markup",
+      "priority": "medium",
+      "what_is_wrong": "The site does not publish Schema.org Organization or LocalBusiness JSON-LD markup. Observation: No JSON-LD Schema.org 'Organization' or 'LocalBusiness' definition was found on 'https://www.nasa.gov' or secondary pages. Structured entity metadata enables search engines and AI systems to ground the entity without heuristic guessing.",
+      "where_it_occurs": [
+        "https://www.nasa.gov"
+      ],
+      "what_should_be_changed": "Implement JSON-LD Schema.org 'Organization' or 'Corporation' on the homepage with fields: @context, @type, name, url, logo, description, and sameAs links.",
+      "why_it_matters": "Structured data is the primary machine-readable format used by search crawlers to construct verified knowledge panels.",
+      "verification_steps": "Validate the homepage with Google's Rich Results Test or re-run the entity audit."
+    },
+    {
+      "finding_id": "ENG-009",
+      "category": "engagement",
+      "title": "Integrate Orphaned Page into Site Navigation",
+      "priority": "medium",
+      "what_is_wrong": "An internal page has zero incoming links from any other inspected page on the website. Observation: Page 'https://www.nasa.gov/history/glenn-orbits-the-earth' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://www.nasa.gov/missions/oct-29-1998-john-glenn-returns-to-space' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://www.nasa.gov/centers-and-facilities/glenn/from-sky-gazing-to-astronaut-janet-kavandi-reaches-the-astronaut-hall-of-fame' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://www.nasa.gov/technology/in-nasa-glenns-virtual-reality-lab-creative-minded-employees-thrive' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://www.nasa.gov/history/naca-test-pilot-competed-in-cleveland-national-air-races' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://www.nasa.gov/centers-and-facilities/glenn/watch-nasa-glenn-intern-stories-on-2019-national-intern-day' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://www.nasa.gov/centers-and-facilities/glenn/a-need-for-speed-life-as-a-champion-racecar-driver-and-nasa-propulsion-facility-manager' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://www.nasa.gov/people-of-nasa/nasas-jeremiah-ocallahan-values-native-american-roots-and-community-outreach' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it.",
+      "where_it_occurs": [
+        "https://www.nasa.gov/history/glenn-orbits-the-earth",
+        "https://www.nasa.gov/missions/oct-29-1998-john-glenn-returns-to-space",
+        "https://www.nasa.gov/centers-and-facilities/glenn/from-sky-gazing-to-astronaut-janet-kavandi-reaches-the-astronaut-hall-of-fame",
+        "https://www.nasa.gov/technology/in-nasa-glenns-virtual-reality-lab-creative-minded-employees-thrive",
+        "https://www.nasa.gov/history/naca-test-pilot-competed-in-cleveland-national-air-races",
+        "https://www.nasa.gov/centers-and-facilities/glenn/watch-nasa-glenn-intern-stories-on-2019-national-intern-day",
+        "https://www.nasa.gov/centers-and-facilities/glenn/a-need-for-speed-life-as-a-champion-racecar-driver-and-nasa-propulsion-facility-manager",
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots",
+        "https://www.nasa.gov/people-of-nasa/nasas-jeremiah-ocallahan-values-native-american-roots-and-community-outreach"
+      ],
+      "what_should_be_changed": "Add internal links pointing to 'https://www.nasa.gov/history/glenn-orbits-the-earth' from relevant parent categories, the main navigation, or related articles.",
+      "why_it_matters": "Orphaned pages receive zero PageRank equity and risk being dropped from search indices due to lack of internal link discovery.",
+      "verification_steps": "Re-run the internal linking audit and verify that the page receives at least 1-2 incoming internal links."
+    },
+    {
+      "finding_id": "ENG-015",
+      "category": "engagement",
+      "title": "Add Homepage Breadcrumbs to Deep Landing Pages",
+      "priority": "medium",
+      "what_is_wrong": "A deep subpage does not provide a navigation link back to the root homepage. Observation: Direct landing page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' has no link back to the root homepage 'https://www.nasa.gov'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal.",
+      "where_it_occurs": [
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "what_should_be_changed": "Include a logo/home link or breadcrumb navigation on 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' that connects back to the homepage ('https://www.nasa.gov').",
+      "why_it_matters": "Users arriving directly from search engines need instant orientation and a path back to the parent brand portal.",
+      "verification_steps": "Re-run the context retention audit and confirm that deep pages link back to the homepage."
+    },
+    {
+      "finding_id": "ENG-003",
+      "category": "engagement",
+      "title": "Replace Vague Anchor Text with Descriptive Links",
+      "priority": "medium",
+      "what_is_wrong": "Navigation hyperlinks use non-descriptive anchor texts such as 'click here', 'read more', or empty text. Observation: Page at 'https://www.nasa.gov' contains 3 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://www.nasa.gov/history/glenn-orbits-the-earth/' contains 4 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://www.nasa.gov/missions/oct-29-1998-john-glenn-returns-to-space/' contains 3 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://www.nasa.gov/centers-and-facilities/glenn/from-sky-gazing-to-astronaut-janet-kavandi-reaches-the-astronaut-hall-of-fame/' contains 5 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://www.nasa.gov/technology/in-nasa-glenns-virtual-reality-lab-creative-minded-employees-thrive/' contains 4 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://www.nasa.gov/history/naca-test-pilot-competed-in-cleveland-national-air-races/' contains 4 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://www.nasa.gov/centers-and-facilities/glenn/watch-nasa-glenn-intern-stories-on-2019-national-intern-day/' contains 2 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://www.nasa.gov/centers-and-facilities/glenn/a-need-for-speed-life-as-a-champion-racecar-driver-and-nasa-propulsion-facility-manager/' contains 2 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://www.nasa.gov/people-of-nasa/nasas-jeremiah-ocallahan-values-native-american-roots-and-community-outreach/' contains 3 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension.",
+      "where_it_occurs": [
+        "https://www.nasa.gov",
+        "https://www.nasa.gov/history/glenn-orbits-the-earth/",
+        "https://www.nasa.gov/missions/oct-29-1998-john-glenn-returns-to-space/",
+        "https://www.nasa.gov/centers-and-facilities/glenn/from-sky-gazing-to-astronaut-janet-kavandi-reaches-the-astronaut-hall-of-fame/",
+        "https://www.nasa.gov/technology/in-nasa-glenns-virtual-reality-lab-creative-minded-employees-thrive/",
+        "https://www.nasa.gov/history/naca-test-pilot-competed-in-cleveland-national-air-races/",
+        "https://www.nasa.gov/centers-and-facilities/glenn/watch-nasa-glenn-intern-stories-on-2019-national-intern-day/",
+        "https://www.nasa.gov/centers-and-facilities/glenn/a-need-for-speed-life-as-a-champion-racecar-driver-and-nasa-propulsion-facility-manager/",
+        "https://www.nasa.gov/people-of-nasa/nasas-jeremiah-ocallahan-values-native-american-roots-and-community-outreach/"
+      ],
+      "what_should_be_changed": "Replace generic anchor texts like 'click here' or 'read more' with descriptive labels indicating the destination content (e.g., 'View Enterprise Pricing Plans').",
+      "why_it_matters": "Descriptive anchor text provides semantic context to search crawlers and screen readers regarding the destination page content.",
+      "verification_steps": "Re-run the navigation check and verify that all hyperlinks contain descriptive destination-specific anchor text."
+    },
+    {
+      "finding_id": "EC-002",
+      "category": "entity",
+      "title": "Provide Explicit Organization Description and Industry Classification",
+      "priority": "medium",
+      "what_is_wrong": "The website lacks clear business description text or industry disambiguation keywords. Observation: The website provides the entity name 'NASA', but fails to provide a clear, unambiguous statement of what the organization does, its industry category, and whom it serves. Detected industry: media. Description snippet: 'None...",
+      "where_it_occurs": [
+        "https://www.nasa.gov"
+      ],
+      "what_should_be_changed": "Add a concise 1-2 sentence organization definition in plain readable text on the homepage and About page declaring organization type, industry, target audience, and primary offerings.",
+      "why_it_matters": "Disambiguation is necessary for inclusion in AI knowledge graphs like Wikidata, Google Knowledge Graph, and Perplexity.",
+      "verification_steps": "Re-run the entity audit and confirm industry and description are detected with high confidence."
+    },
+    {
+      "finding_id": "TECH-MISSING_CANONICAL",
+      "category": "technical",
+      "title": "Remediate Page does not declare a canonical URL tag.",
+      "priority": "low",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots' reported MISSING_CANONICAL: Page does not declare a canonical URL tag.. Context: {'url': 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots'}.",
+      "where_it_occurs": [
+        "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots"
+      ],
+      "what_should_be_changed": "Review and resolve technical issue 'MISSING_CANONICAL' on 'https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots'.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'low' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_CANONICAL is no longer reported."
+    }
+  ],
+  "skill_statuses": {
+    "crawl-render-audit": "success",
+    "entity-content-freshness-trust": "success",
+    "engagement-recommendations": "success"
+  },
+  "summary": {
+    "total_findings": 15,
+    "critical": 0,
+    "high": 6,
+    "medium": 8,
+    "total_recommendations": 15,
+    "pages_analyzed": 10,
+    "crawled_urls": [
+      "https://www.nasa.gov",
+      "https://www.nasa.gov/centers-and-facilities/glenn/a-need-for-speed-life-as-a-champion-racecar-driver-and-nasa-propulsion-facility-manager/",
+      "https://www.nasa.gov/centers-and-facilities/glenn/from-sky-gazing-to-astronaut-janet-kavandi-reaches-the-astronaut-hall-of-fame/",
+      "https://www.nasa.gov/centers-and-facilities/glenn/watch-nasa-glenn-intern-stories-on-2019-national-intern-day/",
+      "https://www.nasa.gov/history/glenn-orbits-the-earth/",
+      "https://www.nasa.gov/history/naca-test-pilot-competed-in-cleveland-national-air-races/",
+      "https://www.nasa.gov/missions/oct-29-1998-john-glenn-returns-to-space/",
+      "https://www.nasa.gov/people-of-nasa/nasas-chas-hoff-connects-with-his-native-american-roots",
+      "https://www.nasa.gov/people-of-nasa/nasas-jeremiah-ocallahan-values-native-american-roots-and-community-outreach/",
+      "https://www.nasa.gov/technology/in-nasa-glenns-virtual-reality-lab-creative-minded-employees-thrive/"
+    ],
+    "brand_ai_readiness_score": 7.0,
+    "readiness_grade": "F",
+    "score_heuristic_disclaimer": "Internal marketplace composite heuristic (100 - weighted severity deductions; not an official Adobe metric)"
+  },
+  "metadata": {
+    "max_pages": 10,
+    "max_depth": 2,
+    "confidence_threshold": 0.7,
+    "enable_rendering": true
+  }
+}

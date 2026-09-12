@@ -203,9 +203,10 @@ def extract_metadata(soup: BeautifulSoup, base_url: str) -> PageMetadata:
 
         name = meta.get("name", "").strip().lower()
         prop = meta.get("property", "").strip().lower()
+        itemprop = meta.get("itemprop", "").strip().lower()
 
         # Description
-        if name == "description" and not meta_desc:
+        if (name == "description" or prop == "description" or itemprop == "description") and not meta_desc:
             meta_desc = content
         elif name in ("robots", "googlebot") and not robots_meta:
             robots_meta = content
@@ -223,6 +224,15 @@ def extract_metadata(soup: BeautifulSoup, base_url: str) -> PageMetadata:
         # Other useful meta properties
         if name and name not in ("description", "robots", "googlebot") and not name.startswith(("og:", "twitter:")):
             extra[name] = content
+
+    # If description wasn't found in <meta name="description">, fallback to OpenGraph or Twitter
+    if not meta_desc:
+        meta_desc = (
+            open_graph.get("og:description")
+            or twitter_card.get("twitter:description")
+            or twitter_card.get("description")
+            or extra.get("description")
+        )
 
     # If title wasn't found in <title>, fallback to og:title
     if not title and "og:title" in open_graph:
@@ -271,6 +281,23 @@ def extract_static_html(html: str, base_url: str) -> ExtractedData:
     headings = extract_headings(soup)
     links = extract_links(soup, base_url)
     structured_data = extract_structured_data(soup)
+
+    # Fallback for description if absent in meta: check JSON-LD structured data
+    if not metadata.description and structured_data:
+        for item in structured_data:
+            desc = item.get("description")
+            if desc and isinstance(desc, str) and len(desc.strip()) > 10:
+                metadata.description = _clean_text(desc)
+                break
+
+    # Fallback for description from first substantive paragraph if still empty
+    if not metadata.description:
+        for p in soup.find_all("p"):
+            p_txt = _clean_text(p.get_text())
+            if len(p_txt) >= 40 and not any(k in p_txt.lower() for k in ("cookie", "javascript", "browser", "rights reserved")):
+                metadata.description = p_txt
+                break
+
     body_text = extract_visible_text(soup)
 
     return ExtractedData(

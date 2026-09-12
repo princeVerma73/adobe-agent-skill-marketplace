@@ -1,0 +1,338 @@
+{
+  "site": "docs.python.org",
+  "root_url": "https://docs.python.org/3",
+  "audited_at": "2026-09-12T05:21:43.530225+00:00",
+  "status": "success",
+  "overall_score": 67.0,
+  "readiness_grade": "D",
+  "severity_counts": {
+    "critical": 0,
+    "high": 1,
+    "medium": 5,
+    "low": 3,
+    "info": 0
+  },
+  "entity_profile": {
+    "name": "Python",
+    "type": "Organization",
+    "description": null,
+    "industry": null,
+    "location": null,
+    "founding_year": null,
+    "products": [],
+    "services": [],
+    "contact_email": null,
+    "contact_phone": null,
+    "social_profiles": [],
+    "confidence_score": 0.5
+  },
+  "findings": [
+    {
+      "id": "CC-003",
+      "category": "content_clarity",
+      "title": "Missing essential organizational attributes: geographic location / headquarters, direct contact details (email or telephone)",
+      "severity": "high",
+      "confidence": 0.86,
+      "evidence": "A comprehensive scan across 10 crawled pages revealed no verifiable information for: geographic location / headquarters, direct contact details (email or telephone). Absence of these fundamental attributes degrades entity trust and prevents AI systems from corroborating corporate legitimacy.",
+      "affected_urls": [
+        "https://docs.python.org/3/"
+      ],
+      "suggested_action": {
+        "summary": "Publish unambiguous details for geographic location / headquarters, direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "TECH-MISSING_META_DESCRIPTION",
+      "category": "technical",
+      "title": "Page is missing a meta description tag.",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": "Page 'https://docs.python.org/3.10/' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://docs.python.org/3.10/', 'description': None} | Page 'https://docs.python.org/3.11/' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://docs.python.org/3.11/', 'description': None}",
+      "affected_urls": [
+        "https://docs.python.org/3.10/",
+        "https://docs.python.org/3.11/"
+      ],
+      "suggested_action": {
+        "summary": "Review and resolve technical issue 'MISSING_META_DESCRIPTION' on 'https://docs.python.org/3.10/'.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "EC-003",
+      "category": "entity",
+      "title": "Missing Schema.org Organization structured data",
+      "severity": "medium",
+      "confidence": 0.95,
+      "evidence": "No JSON-LD Schema.org 'Organization' or 'LocalBusiness' definition was found on 'https://docs.python.org/3/' or secondary pages. Structured entity metadata enables search engines and AI systems to ground the entity without heuristic guessing.",
+      "affected_urls": [
+        "https://docs.python.org/3/"
+      ],
+      "suggested_action": {
+        "summary": "Implement JSON-LD Schema.org 'Organization' or 'Corporation' on the homepage with fields: @context, @type, name, url, logo, description, and sameAs links.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-005",
+      "category": "engagement",
+      "title": "Broken heading hierarchy skips intermediate heading levels",
+      "severity": "medium",
+      "confidence": 0.88,
+      "evidence": "Page 'https://docs.python.org/3/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://docs.python.org/3.10/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://docs.python.org/3.11/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://docs.python.org/3.12/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://docs.python.org/3.13/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://docs.python.org/3.14/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://docs.python.org/3.15/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://docs.python.org/3.16/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing.",
+      "affected_urls": [
+        "https://docs.python.org/3/",
+        "https://docs.python.org/3.10/",
+        "https://docs.python.org/3.11/",
+        "https://docs.python.org/3.12/",
+        "https://docs.python.org/3.13/",
+        "https://docs.python.org/3.14/",
+        "https://docs.python.org/3.15/",
+        "https://docs.python.org/3.16/"
+      ],
+      "suggested_action": {
+        "summary": "Restructure headings sequentially (H1 followed by H2, then H3) without skipping levels to maintain an intuitive document outline.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-003",
+      "category": "engagement",
+      "title": "Navigation links use vague, non-descriptive anchor text",
+      "severity": "medium",
+      "confidence": 0.86,
+      "evidence": "Page at 'https://www.python.org' contains 7 vague or empty link anchor texts: ['[Empty Anchor]', 'Learn More', 'More', 'More']. Non-descriptive anchors hinder screen readers and search agent comprehension.",
+      "affected_urls": [
+        "https://www.python.org"
+      ],
+      "suggested_action": {
+        "summary": "Replace generic anchor texts like 'click here' or 'read more' with descriptive labels indicating the destination content (e.g., 'View Enterprise Pricing Plans').",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "EC-002",
+      "category": "entity",
+      "title": "Insufficient organization disambiguation and business description",
+      "severity": "medium",
+      "confidence": 0.75,
+      "evidence": "The website provides the entity name 'Python', but fails to provide a clear, unambiguous statement of what the organization does, its industry category, and whom it serves. Detected industry: None. Description snippet: 'None...",
+      "affected_urls": [
+        "https://docs.python.org/3/"
+      ],
+      "suggested_action": {
+        "summary": "Add a concise 1-2 sentence organization definition in plain readable text on the homepage and About page declaring organization type, industry, target audience, and primary offerings.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "TECH-MULTIPLE_H1",
+      "category": "technical",
+      "title": "Page defines multiple (5) H1 headings.",
+      "severity": "low",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.python.org' reported MULTIPLE_H1: Page defines multiple (5) H1 headings.. Context: {'url': 'https://www.python.org', 'h1_count': 5, 'h1_texts': ['Intuitive Interpretation', 'Compound Data Types', 'All the Flow You’d Expect', 'Functions Defined', 'Quick & Easy to Learn']} | Page 'https://www.python.org' defines 5 separate <h1> elements: ['Intuitive Interpretation', 'Compound Data Types', 'All the Flow You’d Expect']. A single primary <h1> is recommended for clear topic disambiguation.",
+      "affected_urls": [
+        "https://www.python.org"
+      ],
+      "suggested_action": {
+        "summary": "Demote secondary <h1> elements to <h2> to maintain a single primary page heading.",
+        "priority": "low"
+      }
+    },
+    {
+      "id": "TECH-MISSING_CANONICAL",
+      "category": "technical",
+      "title": "Page does not declare a canonical URL tag.",
+      "severity": "low",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.python.org' reported MISSING_CANONICAL: Page does not declare a canonical URL tag.. Context: {'url': 'https://www.python.org'}",
+      "affected_urls": [
+        "https://www.python.org"
+      ],
+      "suggested_action": {
+        "summary": "Review and resolve technical issue 'MISSING_CANONICAL' on 'https://www.python.org'.",
+        "priority": "low"
+      }
+    },
+    {
+      "id": "TECH-PAGE_NOT_IN_SITEMAP",
+      "category": "technical",
+      "title": "Page URL was not found in discovered XML sitemap URLs.",
+      "severity": "low",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.python.org' reported PAGE_NOT_IN_SITEMAP: Page URL was not found in discovered XML sitemap URLs.. Context: {'url': 'https://www.python.org', 'sitemap_total_urls': 8} | Page 'https://docs.python.org/3/download.html' reported PAGE_NOT_IN_SITEMAP: Page URL was not found in discovered XML sitemap URLs.. Context: {'url': 'https://docs.python.org/3/download.html', 'sitemap_total_urls': 8}",
+      "affected_urls": [
+        "https://www.python.org",
+        "https://docs.python.org/3/download.html"
+      ],
+      "suggested_action": {
+        "summary": "Review and resolve technical issue 'PAGE_NOT_IN_SITEMAP' on 'https://www.python.org'.",
+        "priority": "low"
+      }
+    }
+  ],
+  "recommendations": [
+    {
+      "finding_id": "CC-003",
+      "category": "content_clarity",
+      "title": "Remediate Missing essential organizational attributes: geographic location / headquarters, direct contact details (email or telephone)",
+      "priority": "high",
+      "what_is_wrong": "The following issue was detected during the audit: A comprehensive scan across 10 crawled pages revealed no verifiable information for: geographic location / headquarters, direct contact details (email or telephone). Absence of these fundamental attributes degrades entity trust and prevents AI systems from corroborating corporate legitimacy..",
+      "where_it_occurs": [
+        "https://docs.python.org/3/"
+      ],
+      "what_should_be_changed": "Publish unambiguous details for geographic location / headquarters, direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
+      "why_it_matters": "Issues categorized under 'content_clarity' with severity 'high' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the content_clarity audit against affected URLs to confirm that CC-003 is no longer reported."
+    },
+    {
+      "finding_id": "TECH-MISSING_META_DESCRIPTION",
+      "category": "technical",
+      "title": "Remediate Page is missing a meta description tag.",
+      "priority": "medium",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://docs.python.org/3.10/' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://docs.python.org/3.10/', 'description': None} | Page 'https://docs.python.org/3.11/' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://docs.python.org/3.11/', 'description': None}.",
+      "where_it_occurs": [
+        "https://docs.python.org/3.10/",
+        "https://docs.python.org/3.11/"
+      ],
+      "what_should_be_changed": "Review and resolve technical issue 'MISSING_META_DESCRIPTION' on 'https://docs.python.org/3.10/'.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'medium' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_META_DESCRIPTION is no longer reported."
+    },
+    {
+      "finding_id": "EC-003",
+      "category": "entity",
+      "title": "Add Schema.org Organization Structured Data Markup",
+      "priority": "medium",
+      "what_is_wrong": "The site does not publish Schema.org Organization or LocalBusiness JSON-LD markup. Observation: No JSON-LD Schema.org 'Organization' or 'LocalBusiness' definition was found on 'https://docs.python.org/3/' or secondary pages. Structured entity metadata enables search engines and AI systems to ground the entity without heuristic guessing.",
+      "where_it_occurs": [
+        "https://docs.python.org/3/"
+      ],
+      "what_should_be_changed": "Implement JSON-LD Schema.org 'Organization' or 'Corporation' on the homepage with fields: @context, @type, name, url, logo, description, and sameAs links.",
+      "why_it_matters": "Structured data is the primary machine-readable format used by search crawlers to construct verified knowledge panels.",
+      "verification_steps": "Validate the homepage with Google's Rich Results Test or re-run the entity audit."
+    },
+    {
+      "finding_id": "ENG-005",
+      "category": "engagement",
+      "title": "Repair Broken Heading Hierarchy",
+      "priority": "medium",
+      "what_is_wrong": "Headings skip intermediate structural levels (e.g., jumping from <h1> directly to <h3> or <h4> without an intervening <h2>). Observation: Page 'https://docs.python.org/3/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://docs.python.org/3.10/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://docs.python.org/3.11/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://docs.python.org/3.12/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://docs.python.org/3.13/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://docs.python.org/3.14/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://docs.python.org/3.15/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://docs.python.org/3.16/' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing.",
+      "where_it_occurs": [
+        "https://docs.python.org/3/",
+        "https://docs.python.org/3.10/",
+        "https://docs.python.org/3.11/",
+        "https://docs.python.org/3.12/",
+        "https://docs.python.org/3.13/",
+        "https://docs.python.org/3.14/",
+        "https://docs.python.org/3.15/",
+        "https://docs.python.org/3.16/"
+      ],
+      "what_should_be_changed": "Restructure headings sequentially (H1 followed by H2, then H3) without skipping levels to maintain an intuitive document outline.",
+      "why_it_matters": "Screen readers and automated document summarizers rely on logical heading tree hierarchies to map document structure.",
+      "verification_steps": "Re-run the engagement audit and verify that no heading level skips are detected in the document outline."
+    },
+    {
+      "finding_id": "ENG-003",
+      "category": "engagement",
+      "title": "Replace Vague Anchor Text with Descriptive Links",
+      "priority": "medium",
+      "what_is_wrong": "Navigation hyperlinks use non-descriptive anchor texts such as 'click here', 'read more', or empty text. Observation: Page at 'https://www.python.org' contains 7 vague or empty link anchor texts: ['[Empty Anchor]', 'Learn More', 'More', 'More']. Non-descriptive anchors hinder screen readers and search agent comprehension.",
+      "where_it_occurs": [
+        "https://www.python.org"
+      ],
+      "what_should_be_changed": "Replace generic anchor texts like 'click here' or 'read more' with descriptive labels indicating the destination content (e.g., 'View Enterprise Pricing Plans').",
+      "why_it_matters": "Descriptive anchor text provides semantic context to search crawlers and screen readers regarding the destination page content.",
+      "verification_steps": "Re-run the navigation check and verify that all hyperlinks contain descriptive destination-specific anchor text."
+    },
+    {
+      "finding_id": "EC-002",
+      "category": "entity",
+      "title": "Provide Explicit Organization Description and Industry Classification",
+      "priority": "medium",
+      "what_is_wrong": "The website lacks clear business description text or industry disambiguation keywords. Observation: The website provides the entity name 'Python', but fails to provide a clear, unambiguous statement of what the organization does, its industry category, and whom it serves. Detected industry: None. Description snippet: 'None...",
+      "where_it_occurs": [
+        "https://docs.python.org/3/"
+      ],
+      "what_should_be_changed": "Add a concise 1-2 sentence organization definition in plain readable text on the homepage and About page declaring organization type, industry, target audience, and primary offerings.",
+      "why_it_matters": "Disambiguation is necessary for inclusion in AI knowledge graphs like Wikidata, Google Knowledge Graph, and Perplexity.",
+      "verification_steps": "Re-run the entity audit and confirm industry and description are detected with high confidence."
+    },
+    {
+      "finding_id": "TECH-MULTIPLE_H1",
+      "category": "technical",
+      "title": "Remediate Page defines multiple (5) H1 headings.",
+      "priority": "low",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.python.org' reported MULTIPLE_H1: Page defines multiple (5) H1 headings.. Context: {'url': 'https://www.python.org', 'h1_count': 5, 'h1_texts': ['Intuitive Interpretation', 'Compound Data Types', 'All the Flow You’d Expect', 'Functions Defined', 'Quick & Easy to Learn']} | Page 'https://www.python.org' defines 5 separate <h1> elements: ['Intuitive Interpretation', 'Compound Data Types', 'All the Flow You’d Expect']. A single primary <h1> is recommended for clear topic disambiguation..",
+      "where_it_occurs": [
+        "https://www.python.org"
+      ],
+      "what_should_be_changed": "Demote secondary <h1> elements to <h2> to maintain a single primary page heading.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'low' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MULTIPLE_H1 is no longer reported."
+    },
+    {
+      "finding_id": "TECH-MISSING_CANONICAL",
+      "category": "technical",
+      "title": "Remediate Page does not declare a canonical URL tag.",
+      "priority": "low",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.python.org' reported MISSING_CANONICAL: Page does not declare a canonical URL tag.. Context: {'url': 'https://www.python.org'}.",
+      "where_it_occurs": [
+        "https://www.python.org"
+      ],
+      "what_should_be_changed": "Review and resolve technical issue 'MISSING_CANONICAL' on 'https://www.python.org'.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'low' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_CANONICAL is no longer reported."
+    },
+    {
+      "finding_id": "TECH-PAGE_NOT_IN_SITEMAP",
+      "category": "technical",
+      "title": "Remediate Page URL was not found in discovered XML sitemap URLs.",
+      "priority": "low",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.python.org' reported PAGE_NOT_IN_SITEMAP: Page URL was not found in discovered XML sitemap URLs.. Context: {'url': 'https://www.python.org', 'sitemap_total_urls': 8} | Page 'https://docs.python.org/3/download.html' reported PAGE_NOT_IN_SITEMAP: Page URL was not found in discovered XML sitemap URLs.. Context: {'url': 'https://docs.python.org/3/download.html', 'sitemap_total_urls': 8}.",
+      "where_it_occurs": [
+        "https://www.python.org",
+        "https://docs.python.org/3/download.html"
+      ],
+      "what_should_be_changed": "Review and resolve technical issue 'PAGE_NOT_IN_SITEMAP' on 'https://www.python.org'.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'low' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-PAGE_NOT_IN_SITEMAP is no longer reported."
+    }
+  ],
+  "skill_statuses": {
+    "crawl-render-audit": "success",
+    "entity-content-freshness-trust": "success",
+    "engagement-recommendations": "success"
+  },
+  "summary": {
+    "total_findings": 9,
+    "critical": 0,
+    "high": 1,
+    "medium": 5,
+    "total_recommendations": 9,
+    "pages_analyzed": 11,
+    "crawled_urls": [
+      "https://docs.python.org/3",
+      "https://docs.python.org/3.10/",
+      "https://docs.python.org/3.11/",
+      "https://docs.python.org/3.12/",
+      "https://docs.python.org/3.13/",
+      "https://docs.python.org/3.14/",
+      "https://docs.python.org/3.15/",
+      "https://docs.python.org/3.16/",
+      "https://docs.python.org/3/",
+      "https://docs.python.org/3/download.html",
+      "https://www.python.org"
+    ],
+    "brand_ai_readiness_score": 67.0,
+    "readiness_grade": "D",
+    "score_heuristic_disclaimer": "Internal marketplace composite heuristic (100 - weighted severity deductions; not an official Adobe metric)"
+  },
+  "metadata": {
+    "max_pages": 10,
+    "max_depth": 2,
+    "confidence_threshold": 0.7,
+    "enable_rendering": true
+  }
+}

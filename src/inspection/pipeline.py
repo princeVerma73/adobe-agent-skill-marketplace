@@ -37,7 +37,10 @@ from src.inspection.url import (
     InvalidURLError,
     PrivateTargetError,
     extract_hostname,
+    extract_locale_prefix,
     is_private_or_local_target,
+    is_regional_sibling,
+    is_same_locale,
     is_same_site,
     is_valid_url,
     normalize_url,
@@ -166,19 +169,36 @@ class InspectionPipeline:
 
         # Supplement queue with discovered sitemap URLs to improve coverage within page budget
         if sitemap_inspection.found and sitemap_inspection.sample_urls:
+            same_locale_sitemaps: List[str] = []
+            sibling_locale_sitemaps: List[str] = []
             for s_url in sitemap_inspection.sample_urls:
-                if len(enqueued_urls) >= self.config.max_pages:
-                    break
                 try:
                     norm_s = normalize_url(s_url)
                     if (
                         norm_s not in enqueued_urls
                         and is_same_site(normalized_root, norm_s)
                     ):
-                        enqueued_urls.add(norm_s)
-                        queue.append((norm_s, 1))
+                        if is_regional_sibling(normalized_root, norm_s):
+                            sibling_locale_sitemaps.append(norm_s)
+                        else:
+                            same_locale_sitemaps.append(norm_s)
                 except Exception:
                     continue
+
+            # Prioritize same-locale sitemaps
+            for norm_s in same_locale_sitemaps:
+                if len(enqueued_urls) >= self.config.max_pages:
+                    break
+                enqueued_urls.add(norm_s)
+                queue.append((norm_s, 1))
+
+            # Only append sibling sitemaps if root is not locale-scoped or budget permits
+            if not extract_locale_prefix(normalized_root):
+                for norm_s in sibling_locale_sitemaps:
+                    if len(enqueued_urls) >= self.config.max_pages:
+                        break
+                    enqueued_urls.add(norm_s)
+                    queue.append((norm_s, 1))
 
         inspected_pages: List[PageInspection] = []
 
@@ -268,7 +288,11 @@ class InspectionPipeline:
                                 and len(visited_urls) + len(queue) < self.config.max_pages * 2
                             ):
                                 enqueued_urls.add(link_url)
-                                queue.append((link_url, depth + 1))
+                                if is_regional_sibling(normalized_root, link_url):
+                                    # Deprioritize regional sibling roots to back of BFS queue
+                                    queue.append((link_url, depth + 2))
+                                else:
+                                    queue.append((link_url, depth + 1))
 
             inspected_pages.append(page)
 

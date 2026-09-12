@@ -58,6 +58,8 @@ def audit_content_and_entity(
             fallback_title=page.title,
             pre_extracted_images=page.images,
             pre_extracted_json_ld=page.structured_data,
+            pre_extracted_metadata=page.metadata,
+            pre_extracted_links=page.links,
         )
         parsed_pages.append(parsed)
 

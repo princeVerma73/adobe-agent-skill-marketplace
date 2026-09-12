@@ -1,0 +1,434 @@
+{
+  "site": "www.wikimedia.org",
+  "root_url": "https://www.wikimedia.org",
+  "audited_at": "2026-09-12T05:23:16.303083+00:00",
+  "status": "success",
+  "overall_score": 55.0,
+  "readiness_grade": "F",
+  "severity_counts": {
+    "critical": 0,
+    "high": 1,
+    "medium": 8,
+    "low": 3,
+    "info": 0
+  },
+  "entity_profile": {
+    "name": "Wikimedia",
+    "type": "Organization",
+    "description": null,
+    "industry": "software",
+    "location": null,
+    "founding_year": null,
+    "products": [],
+    "services": [],
+    "contact_email": null,
+    "contact_phone": null,
+    "social_profiles": [],
+    "confidence_score": 0.5
+  },
+  "findings": [
+    {
+      "id": "CO-001",
+      "category": "consistency",
+      "title": "Cross-page factual contradiction: Headquarters Location",
+      "severity": "high",
+      "confidence": 0.81,
+      "evidence": "Contradictory information detected for 'Headquarters Location' across pages. Value [the united states]: 'the United States' on https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=IN&wmf_medium=wikimediaPortal&wmf_source=wikimediaPortalBtn&wmf_campaign=wikimediaPortalBtn (snippet: \"...policy . Wikimedia Foundation and its service providers are located in the United States and in other countries whose privacy laws may not be equivalent...\"); 'the U' on https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy (snippet: \"...in San Francisco, California, with servers and data centers located in the U.S. If you decide to use Wikimedia Sites, whether from inside...\"); 'the European Economic Area' on https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy (snippet: \"...at privacy@wikimedia.org or contact us directly. If you are located in the European Economic Area and have questions about your personal data or would like to re...\"); 'the United Kingdom,' on https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy (snippet: \"...Terrace Dublin 2 D02 AY28 Ireland If you are an individual located in the United Kingdom, and have questions about your personal data or would like to re...\") | Value [san francisco county california]: 'San Francisco County, California' on https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use (snippet: \"...file and resolve it exclusively in a state or federal court located in San Francisco County, California. You also agree that the laws of the State of California and...\"); 'San Francisco, California, with servers' on https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy (snippet: \"...r Me? The Wikimedia Foundation is a non-profit organization based in San Francisco, California, with servers and data centers located in the U.S. If you decide to use Wikim...\"). Conflicting facts across authoritative pages diminish knowledge graph reliability.",
+      "affected_urls": [
+        "https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=IN&wmf_medium=wikimediaPortal&wmf_source=wikimediaPortalBtn&wmf_campaign=wikimediaPortalBtn",
+        "https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy",
+        "https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use"
+      ],
+      "suggested_action": {
+        "summary": "Reconcile 'Headquarters Location' across affected pages (https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=IN&wmf_medium=wikimediaPortal&wmf_source=wikimediaPortalBtn&wmf_campaign=wikimediaPortalBtn, https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy, https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use) to present a single, canonical truth across the entire domain.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "TECH-MISSING_H1",
+      "category": "technical",
+      "title": "Page lacks an H1 main heading tag.",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.wikimedia.org' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.wikimedia.org', 'total_headings': 0}",
+      "affected_urls": [
+        "https://www.wikimedia.org"
+      ],
+      "suggested_action": {
+        "summary": "Provide a descriptive <h1> element to establish primary topic structure.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "TECH-MISSING_META_DESCRIPTION",
+      "category": "technical",
+      "title": "Page is missing a meta description tag.",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": "Page 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Wikimedia_movement' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Wikimedia_movement', 'description': None} | Page 'https://commons.wikimedia.org/wiki/Main_Page' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://commons.wikimedia.org/wiki/Main_Page', 'description': None} | Page 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page', 'description': None} | Page 'https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use', 'description': None} | Page 'https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy', 'description': None} | Page 'https://meta.wikimedia.org/wiki/Wikimedia_News' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://meta.wikimedia.org/wiki/Wikimedia_News', 'description': None} | Page 'https://meta.wikimedia.org/wiki/Special:LanguageStats' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://meta.wikimedia.org/wiki/Special:LanguageStats', 'description': None}",
+      "affected_urls": [
+        "https://meta.wikimedia.org/wiki/Special:MyLanguage/Wikimedia_movement",
+        "https://commons.wikimedia.org/wiki/Main_Page",
+        "https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page",
+        "https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use",
+        "https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy",
+        "https://meta.wikimedia.org/wiki/Wikimedia_News",
+        "https://meta.wikimedia.org/wiki/Special:LanguageStats"
+      ],
+      "suggested_action": {
+        "summary": "Review and resolve technical issue 'MISSING_META_DESCRIPTION' on 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Wikimedia_movement'.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "TECH-ROBOTS_META_NOINDEX",
+      "category": "technical",
+      "title": "Page specifies 'noindex,nofollow,max-image-preview:standard' directive blocking search indexing.",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": "Page 'https://meta.wikimedia.org/wiki/Special:LanguageStats' reported ROBOTS_META_NOINDEX: Page specifies 'noindex,nofollow,max-image-preview:standard' directive blocking search indexing.. Context: {'url': 'https://meta.wikimedia.org/wiki/Special:LanguageStats', 'robots_meta': 'noindex,nofollow,max-image-preview:standard'}",
+      "affected_urls": [
+        "https://meta.wikimedia.org/wiki/Special:LanguageStats"
+      ],
+      "suggested_action": {
+        "summary": "Remove 'noindex' meta directives from pages intended for public AI discovery.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "EC-003",
+      "category": "entity",
+      "title": "Missing Schema.org Organization structured data",
+      "severity": "medium",
+      "confidence": 0.95,
+      "evidence": "No JSON-LD Schema.org 'Organization' or 'LocalBusiness' definition was found on 'https://www.wikimedia.org' or secondary pages. Structured entity metadata enables search engines and AI systems to ground the entity without heuristic guessing.",
+      "affected_urls": [
+        "https://www.wikimedia.org"
+      ],
+      "suggested_action": {
+        "summary": "Implement JSON-LD Schema.org 'Organization' or 'Corporation' on the homepage with fields: @context, @type, name, url, logo, description, and sameAs links.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-009",
+      "category": "engagement",
+      "title": "Orphaned internal page with no incoming navigation links",
+      "severity": "medium",
+      "confidence": 0.94,
+      "evidence": "Page 'https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=IN&wmf_medium=wikimediaPortal&wmf_source=wikimediaPortalBtn&wmf_campaign=wikimediaPortalBtn' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it.",
+      "affected_urls": [
+        "https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=IN&wmf_medium=wikimediaPortal&wmf_source=wikimediaPortalBtn&wmf_campaign=wikimediaPortalBtn"
+      ],
+      "suggested_action": {
+        "summary": "Add internal links pointing to 'https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=IN&wmf_medium=wikimediaPortal&wmf_source=wikimediaPortalBtn&wmf_campaign=wikimediaPortalBtn' from relevant parent categories, the main navigation, or related articles.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-005",
+      "category": "engagement",
+      "title": "Broken heading hierarchy skips intermediate heading levels",
+      "severity": "medium",
+      "confidence": 0.88,
+      "evidence": "Page 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing.",
+      "affected_urls": [
+        "https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page"
+      ],
+      "suggested_action": {
+        "summary": "Restructure headings sequentially (H1 followed by H2, then H3) without skipping levels to maintain an intuitive document outline.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-003",
+      "category": "engagement",
+      "title": "Navigation links use vague, non-descriptive anchor text",
+      "severity": "medium",
+      "confidence": 0.86,
+      "evidence": "Page at 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Wikimedia_movement' contains 6 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://commons.wikimedia.org/wiki/Main_Page' contains 7 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page' contains 30 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', 'More']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=IN&wmf_medium=wikimediaPortal&wmf_source=wikimediaPortalBtn&wmf_campaign=wikimediaPortalBtn' contains 2 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use' contains 5 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', 'click here', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy' contains 10 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', 'click here', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://meta.wikimedia.org/wiki/Wikimedia_News' contains 3 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://meta.wikimedia.org/wiki/Special:LanguageStats' contains 2 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension.",
+      "affected_urls": [
+        "https://meta.wikimedia.org/wiki/Special:MyLanguage/Wikimedia_movement",
+        "https://commons.wikimedia.org/wiki/Main_Page",
+        "https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page",
+        "https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=IN&wmf_medium=wikimediaPortal&wmf_source=wikimediaPortalBtn&wmf_campaign=wikimediaPortalBtn",
+        "https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use",
+        "https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy",
+        "https://meta.wikimedia.org/wiki/Wikimedia_News",
+        "https://meta.wikimedia.org/wiki/Special:LanguageStats"
+      ],
+      "suggested_action": {
+        "summary": "Replace generic anchor texts like 'click here' or 'read more' with descriptive labels indicating the destination content (e.g., 'View Enterprise Pricing Plans').",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "EC-002",
+      "category": "entity",
+      "title": "Insufficient organization disambiguation and business description",
+      "severity": "medium",
+      "confidence": 0.75,
+      "evidence": "The website provides the entity name 'Wikimedia', but fails to provide a clear, unambiguous statement of what the organization does, its industry category, and whom it serves. Detected industry: software. Description snippet: 'None...",
+      "affected_urls": [
+        "https://www.wikimedia.org"
+      ],
+      "suggested_action": {
+        "summary": "Add a concise 1-2 sentence organization definition in plain readable text on the homepage and About page declaring organization type, industry, target audience, and primary offerings.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "TECH-MISSING_CANONICAL",
+      "category": "technical",
+      "title": "Page does not declare a canonical URL tag.",
+      "severity": "low",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.wikimedia.org' reported MISSING_CANONICAL: Page does not declare a canonical URL tag.. Context: {'url': 'https://www.wikimedia.org'}",
+      "affected_urls": [
+        "https://www.wikimedia.org"
+      ],
+      "suggested_action": {
+        "summary": "Review and resolve technical issue 'MISSING_CANONICAL' on 'https://www.wikimedia.org'.",
+        "priority": "low"
+      }
+    },
+    {
+      "id": "TECH-MULTIPLE_H1",
+      "category": "technical",
+      "title": "Page defines multiple (2) H1 headings.",
+      "severity": "low",
+      "confidence": 0.96,
+      "evidence": "Page 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page' reported MULTIPLE_H1: Page defines multiple (2) H1 headings.. Context: {'url': 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page', 'h1_count': 2, 'h1_texts': ['Main Page', 'Meta-Wiki']} | Page 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page' defines 2 separate <h1> elements: ['Main Page', 'Meta-Wiki']. A single primary <h1> is recommended for clear topic disambiguation.",
+      "affected_urls": [
+        "https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page"
+      ],
+      "suggested_action": {
+        "summary": "Demote secondary <h1> elements to <h2> to maintain a single primary page heading.",
+        "priority": "low"
+      }
+    },
+    {
+      "id": "ENG-007",
+      "category": "engagement",
+      "title": "Dense body content lacks subheadings for scannability",
+      "severity": "low",
+      "confidence": 0.8,
+      "evidence": "Page 'https://commons.wikimedia.org/wiki/Main_Page' contains 1404 words of body text but lacks <h2> or <h3> subheadings. Monolithic text blocks reduce readability and structured information extraction. | Page 'https://meta.wikimedia.org/wiki/Special:LanguageStats' contains 13243 words of body text but lacks <h2> or <h3> subheadings. Monolithic text blocks reduce readability and structured information extraction.",
+      "affected_urls": [
+        "https://commons.wikimedia.org/wiki/Main_Page",
+        "https://meta.wikimedia.org/wiki/Special:LanguageStats"
+      ],
+      "suggested_action": {
+        "summary": "Break long content sections into subsections with descriptive <h2> and <h3> subheadings.",
+        "priority": "low"
+      }
+    }
+  ],
+  "recommendations": [
+    {
+      "finding_id": "CO-001",
+      "category": "consistency",
+      "title": "Resolve Cross-Page Factual Contradictions",
+      "priority": "high",
+      "what_is_wrong": "Conflicting data points (such as founding dates, pricing, or locations) appear on different pages of the domain. Observation: Contradictory information detected for 'Headquarters Location' across pages. Value [the united states]: 'the United States' on https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=IN&wmf_medium=wikimediaPortal&wmf_source=wikimediaPortalBtn&wmf_campaign=wikimediaPortalBtn (snippet: \"...policy . Wikimedia Foundation and its service providers are located in the United States and in other countries whose privacy laws may not be equivalent...\"); 'the U' on https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy (snippet: \"...in San Francisco, California, with servers and data centers located in the U.S. If you decide to use Wikimedia Sites, whether from inside...\"); 'the European Economic Area' on https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy (snippet: \"...at privacy@wikimedia.org or contact us directly. If you are located in the European Economic Area and have questions about your personal data or would like to re...\"); 'the United Kingdom,' on https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy (snippet: \"...Terrace Dublin 2 D02 AY28 Ireland If you are an individual located in the United Kingdom, and have questions about your personal data or would like to re...\") | Value [san francisco county california]: 'San Francisco County, California' on https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use (snippet: \"...file and resolve it exclusively in a state or federal court located in San Francisco County, California. You also agree that the laws of the State of California and...\"); 'San Francisco, California, with servers' on https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy (snippet: \"...r Me? The Wikimedia Foundation is a non-profit organization based in San Francisco, California, with servers and data centers located in the U.S. If you decide to use Wikim...\"). Conflicting facts across authoritative pages diminish knowledge graph reliability.",
+      "where_it_occurs": [
+        "https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=IN&wmf_medium=wikimediaPortal&wmf_source=wikimediaPortalBtn&wmf_campaign=wikimediaPortalBtn",
+        "https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy",
+        "https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use"
+      ],
+      "what_should_be_changed": "Reconcile 'Headquarters Location' across affected pages (https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=IN&wmf_medium=wikimediaPortal&wmf_source=wikimediaPortalBtn&wmf_campaign=wikimediaPortalBtn, https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy, https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use) to present a single, canonical truth across the entire domain.",
+      "why_it_matters": "Factual contradictions directly trigger AI hallucinations and cause AI search engines to flag the source as untrustworthy.",
+      "verification_steps": "Re-run the consistency audit to confirm zero cross-page fact conflicts in the knowledge graph."
+    },
+    {
+      "finding_id": "TECH-MISSING_H1",
+      "category": "technical",
+      "title": "Remediate Page lacks an H1 main heading tag.",
+      "priority": "medium",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.wikimedia.org' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.wikimedia.org', 'total_headings': 0}.",
+      "where_it_occurs": [
+        "https://www.wikimedia.org"
+      ],
+      "what_should_be_changed": "Provide a descriptive <h1> element to establish primary topic structure.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'medium' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_H1 is no longer reported."
+    },
+    {
+      "finding_id": "TECH-MISSING_META_DESCRIPTION",
+      "category": "technical",
+      "title": "Remediate Page is missing a meta description tag.",
+      "priority": "medium",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Wikimedia_movement' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Wikimedia_movement', 'description': None} | Page 'https://commons.wikimedia.org/wiki/Main_Page' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://commons.wikimedia.org/wiki/Main_Page', 'description': None} | Page 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page', 'description': None} | Page 'https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use', 'description': None} | Page 'https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy', 'description': None} | Page 'https://meta.wikimedia.org/wiki/Wikimedia_News' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://meta.wikimedia.org/wiki/Wikimedia_News', 'description': None} | Page 'https://meta.wikimedia.org/wiki/Special:LanguageStats' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://meta.wikimedia.org/wiki/Special:LanguageStats', 'description': None}.",
+      "where_it_occurs": [
+        "https://meta.wikimedia.org/wiki/Special:MyLanguage/Wikimedia_movement",
+        "https://commons.wikimedia.org/wiki/Main_Page",
+        "https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page",
+        "https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use",
+        "https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy",
+        "https://meta.wikimedia.org/wiki/Wikimedia_News",
+        "https://meta.wikimedia.org/wiki/Special:LanguageStats"
+      ],
+      "what_should_be_changed": "Review and resolve technical issue 'MISSING_META_DESCRIPTION' on 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Wikimedia_movement'.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'medium' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_META_DESCRIPTION is no longer reported."
+    },
+    {
+      "finding_id": "TECH-ROBOTS_META_NOINDEX",
+      "category": "technical",
+      "title": "Remediate Page specifies 'noindex,nofollow,max-image-preview:standard' directive blocking search indexing.",
+      "priority": "medium",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://meta.wikimedia.org/wiki/Special:LanguageStats' reported ROBOTS_META_NOINDEX: Page specifies 'noindex,nofollow,max-image-preview:standard' directive blocking search indexing.. Context: {'url': 'https://meta.wikimedia.org/wiki/Special:LanguageStats', 'robots_meta': 'noindex,nofollow,max-image-preview:standard'}.",
+      "where_it_occurs": [
+        "https://meta.wikimedia.org/wiki/Special:LanguageStats"
+      ],
+      "what_should_be_changed": "Remove 'noindex' meta directives from pages intended for public AI discovery.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'medium' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-ROBOTS_META_NOINDEX is no longer reported."
+    },
+    {
+      "finding_id": "EC-003",
+      "category": "entity",
+      "title": "Add Schema.org Organization Structured Data Markup",
+      "priority": "medium",
+      "what_is_wrong": "The site does not publish Schema.org Organization or LocalBusiness JSON-LD markup. Observation: No JSON-LD Schema.org 'Organization' or 'LocalBusiness' definition was found on 'https://www.wikimedia.org' or secondary pages. Structured entity metadata enables search engines and AI systems to ground the entity without heuristic guessing.",
+      "where_it_occurs": [
+        "https://www.wikimedia.org"
+      ],
+      "what_should_be_changed": "Implement JSON-LD Schema.org 'Organization' or 'Corporation' on the homepage with fields: @context, @type, name, url, logo, description, and sameAs links.",
+      "why_it_matters": "Structured data is the primary machine-readable format used by search crawlers to construct verified knowledge panels.",
+      "verification_steps": "Validate the homepage with Google's Rich Results Test or re-run the entity audit."
+    },
+    {
+      "finding_id": "ENG-009",
+      "category": "engagement",
+      "title": "Integrate Orphaned Page into Site Navigation",
+      "priority": "medium",
+      "what_is_wrong": "An internal page has zero incoming links from any other inspected page on the website. Observation: Page 'https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=IN&wmf_medium=wikimediaPortal&wmf_source=wikimediaPortalBtn&wmf_campaign=wikimediaPortalBtn' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it.",
+      "where_it_occurs": [
+        "https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=IN&wmf_medium=wikimediaPortal&wmf_source=wikimediaPortalBtn&wmf_campaign=wikimediaPortalBtn"
+      ],
+      "what_should_be_changed": "Add internal links pointing to 'https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=IN&wmf_medium=wikimediaPortal&wmf_source=wikimediaPortalBtn&wmf_campaign=wikimediaPortalBtn' from relevant parent categories, the main navigation, or related articles.",
+      "why_it_matters": "Orphaned pages receive zero PageRank equity and risk being dropped from search indices due to lack of internal link discovery.",
+      "verification_steps": "Re-run the internal linking audit and verify that the page receives at least 1-2 incoming internal links."
+    },
+    {
+      "finding_id": "ENG-005",
+      "category": "engagement",
+      "title": "Repair Broken Heading Hierarchy",
+      "priority": "medium",
+      "what_is_wrong": "Headings skip intermediate structural levels (e.g., jumping from <h1> directly to <h3> or <h4> without an intervening <h2>). Observation: Page 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page' contains illogical heading level skips: [H1->H3]. Skipping heading levels impairs accessibility tree construction and content parsing.",
+      "where_it_occurs": [
+        "https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page"
+      ],
+      "what_should_be_changed": "Restructure headings sequentially (H1 followed by H2, then H3) without skipping levels to maintain an intuitive document outline.",
+      "why_it_matters": "Screen readers and automated document summarizers rely on logical heading tree hierarchies to map document structure.",
+      "verification_steps": "Re-run the engagement audit and verify that no heading level skips are detected in the document outline."
+    },
+    {
+      "finding_id": "ENG-003",
+      "category": "engagement",
+      "title": "Replace Vague Anchor Text with Descriptive Links",
+      "priority": "medium",
+      "what_is_wrong": "Navigation hyperlinks use non-descriptive anchor texts such as 'click here', 'read more', or empty text. Observation: Page at 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Wikimedia_movement' contains 6 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://commons.wikimedia.org/wiki/Main_Page' contains 7 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page' contains 30 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', 'More']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=IN&wmf_medium=wikimediaPortal&wmf_source=wikimediaPortalBtn&wmf_campaign=wikimediaPortalBtn' contains 2 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use' contains 5 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', 'click here', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy' contains 10 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', 'click here', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://meta.wikimedia.org/wiki/Wikimedia_News' contains 3 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://meta.wikimedia.org/wiki/Special:LanguageStats' contains 2 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension.",
+      "where_it_occurs": [
+        "https://meta.wikimedia.org/wiki/Special:MyLanguage/Wikimedia_movement",
+        "https://commons.wikimedia.org/wiki/Main_Page",
+        "https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page",
+        "https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=IN&wmf_medium=wikimediaPortal&wmf_source=wikimediaPortalBtn&wmf_campaign=wikimediaPortalBtn",
+        "https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use",
+        "https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy",
+        "https://meta.wikimedia.org/wiki/Wikimedia_News",
+        "https://meta.wikimedia.org/wiki/Special:LanguageStats"
+      ],
+      "what_should_be_changed": "Replace generic anchor texts like 'click here' or 'read more' with descriptive labels indicating the destination content (e.g., 'View Enterprise Pricing Plans').",
+      "why_it_matters": "Descriptive anchor text provides semantic context to search crawlers and screen readers regarding the destination page content.",
+      "verification_steps": "Re-run the navigation check and verify that all hyperlinks contain descriptive destination-specific anchor text."
+    },
+    {
+      "finding_id": "EC-002",
+      "category": "entity",
+      "title": "Provide Explicit Organization Description and Industry Classification",
+      "priority": "medium",
+      "what_is_wrong": "The website lacks clear business description text or industry disambiguation keywords. Observation: The website provides the entity name 'Wikimedia', but fails to provide a clear, unambiguous statement of what the organization does, its industry category, and whom it serves. Detected industry: software. Description snippet: 'None...",
+      "where_it_occurs": [
+        "https://www.wikimedia.org"
+      ],
+      "what_should_be_changed": "Add a concise 1-2 sentence organization definition in plain readable text on the homepage and About page declaring organization type, industry, target audience, and primary offerings.",
+      "why_it_matters": "Disambiguation is necessary for inclusion in AI knowledge graphs like Wikidata, Google Knowledge Graph, and Perplexity.",
+      "verification_steps": "Re-run the entity audit and confirm industry and description are detected with high confidence."
+    },
+    {
+      "finding_id": "TECH-MISSING_CANONICAL",
+      "category": "technical",
+      "title": "Remediate Page does not declare a canonical URL tag.",
+      "priority": "low",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.wikimedia.org' reported MISSING_CANONICAL: Page does not declare a canonical URL tag.. Context: {'url': 'https://www.wikimedia.org'}.",
+      "where_it_occurs": [
+        "https://www.wikimedia.org"
+      ],
+      "what_should_be_changed": "Review and resolve technical issue 'MISSING_CANONICAL' on 'https://www.wikimedia.org'.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'low' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_CANONICAL is no longer reported."
+    },
+    {
+      "finding_id": "TECH-MULTIPLE_H1",
+      "category": "technical",
+      "title": "Remediate Page defines multiple (2) H1 headings.",
+      "priority": "low",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page' reported MULTIPLE_H1: Page defines multiple (2) H1 headings.. Context: {'url': 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page', 'h1_count': 2, 'h1_texts': ['Main Page', 'Meta-Wiki']} | Page 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page' defines 2 separate <h1> elements: ['Main Page', 'Meta-Wiki']. A single primary <h1> is recommended for clear topic disambiguation..",
+      "where_it_occurs": [
+        "https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page"
+      ],
+      "what_should_be_changed": "Demote secondary <h1> elements to <h2> to maintain a single primary page heading.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'low' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MULTIPLE_H1 is no longer reported."
+    },
+    {
+      "finding_id": "ENG-007",
+      "category": "engagement",
+      "title": "Introduce Subheadings into Dense Content Sections",
+      "priority": "low",
+      "what_is_wrong": "The page contains long text blocks without <h2> or <h3> subheadings, creating an un-scannable reading experience. Observation: Page 'https://commons.wikimedia.org/wiki/Main_Page' contains 1404 words of body text but lacks <h2> or <h3> subheadings. Monolithic text blocks reduce readability and structured information extraction. | Page 'https://meta.wikimedia.org/wiki/Special:LanguageStats' contains 13243 words of body text but lacks <h2> or <h3> subheadings. Monolithic text blocks reduce readability and structured information extraction.",
+      "where_it_occurs": [
+        "https://commons.wikimedia.org/wiki/Main_Page",
+        "https://meta.wikimedia.org/wiki/Special:LanguageStats"
+      ],
+      "what_should_be_changed": "Break long content sections into subsections with descriptive <h2> and <h3> subheadings.",
+      "why_it_matters": "Subheadings enable fast human skimming and help AI document chunkers partition text into discrete semantic blocks.",
+      "verification_steps": "Re-run the hierarchy audit and ensure long content pages have adequate subheading density."
+    }
+  ],
+  "skill_statuses": {
+    "crawl-render-audit": "success",
+    "entity-content-freshness-trust": "success",
+    "engagement-recommendations": "success"
+  },
+  "summary": {
+    "total_findings": 12,
+    "critical": 0,
+    "high": 1,
+    "medium": 8,
+    "total_recommendations": 12,
+    "pages_analyzed": 9,
+    "crawled_urls": [
+      "https://commons.wikimedia.org/wiki/Main_Page",
+      "https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=IN&wmf_medium=wikimediaPortal&wmf_source=wikimediaPortalBtn&wmf_campaign=wikimediaPortalBtn",
+      "https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy",
+      "https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use",
+      "https://meta.wikimedia.org/wiki/Special:LanguageStats",
+      "https://meta.wikimedia.org/wiki/Special:MyLanguage/Main_Page",
+      "https://meta.wikimedia.org/wiki/Special:MyLanguage/Wikimedia_movement",
+      "https://meta.wikimedia.org/wiki/Wikimedia_News",
+      "https://www.wikimedia.org"
+    ],
+    "brand_ai_readiness_score": 55.0,
+    "readiness_grade": "F",
+    "score_heuristic_disclaimer": "Internal marketplace composite heuristic (100 - weighted severity deductions; not an official Adobe metric)"
+  },
+  "metadata": {
+    "max_pages": 10,
+    "max_depth": 2,
+    "confidence_threshold": 0.7,
+    "enable_rendering": true
+  }
+}

@@ -1,0 +1,253 @@
+{
+  "site": "www.theverge.com",
+  "root_url": "https://www.theverge.com",
+  "audited_at": "2026-09-12T05:20:37.142142+00:00",
+  "status": "success",
+  "overall_score": 67.0,
+  "readiness_grade": "D",
+  "severity_counts": {
+    "critical": 0,
+    "high": 2,
+    "medium": 3,
+    "low": 1,
+    "info": 0
+  },
+  "entity_profile": {
+    "name": "The Verge",
+    "type": "Organization",
+    "description": null,
+    "industry": "energy",
+    "location": null,
+    "founding_year": null,
+    "products": [],
+    "services": [],
+    "contact_email": null,
+    "contact_phone": null,
+    "social_profiles": [],
+    "confidence_score": 0.65
+  },
+  "findings": [
+    {
+      "id": "EC-002",
+      "category": "entity",
+      "title": "Insufficient organization disambiguation and business description",
+      "severity": "high",
+      "confidence": 0.89,
+      "evidence": "The website provides the entity name 'The Verge', but fails to provide a clear, unambiguous statement of what the organization does, its industry category, and whom it serves. Detected industry: energy. Description snippet: 'None...",
+      "affected_urls": [
+        "https://www.theverge.com"
+      ],
+      "suggested_action": {
+        "summary": "Add a concise 1-2 sentence organization definition in plain readable text on the homepage and About page declaring organization type, industry, target audience, and primary offerings.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "CC-003",
+      "category": "content_clarity",
+      "title": "Missing essential organizational attributes: geographic location / headquarters, direct contact details (email or telephone)",
+      "severity": "high",
+      "confidence": 0.86,
+      "evidence": "A comprehensive scan across 10 crawled pages revealed no verifiable information for: geographic location / headquarters, direct contact details (email or telephone). Absence of these fundamental attributes degrades entity trust and prevents AI systems from corroborating corporate legitimacy.",
+      "affected_urls": [
+        "https://www.theverge.com"
+      ],
+      "suggested_action": {
+        "summary": "Publish unambiguous details for geographic location / headquarters, direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "TECH-MISSING_H1",
+      "category": "technical",
+      "title": "Page lacks an H1 main heading tag.",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.theverge.com' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.theverge.com', 'total_headings': 8}",
+      "affected_urls": [
+        "https://www.theverge.com"
+      ],
+      "suggested_action": {
+        "summary": "Provide a descriptive <h1> element to establish primary topic structure.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-005",
+      "category": "engagement",
+      "title": "Broken heading hierarchy skips intermediate heading levels",
+      "severity": "medium",
+      "confidence": 0.88,
+      "evidence": "Page 'https://www.theverge.com' contains illogical heading level skips: [H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/ai-artificial-intelligence/994207/chatgpt-new-mexico-lawyer-fined-murder-appeal' contains illogical heading level skips: [H1->H3, H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/tech/994087/matt-mullenweg-automattic-ceo-return' contains illogical heading level skips: [H1->H3, H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/podcast/994016/iphone-duo-vergecast-apple-watch-mac-llms' contains illogical heading level skips: [H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/policy/994072/white-house-truth-social-popular-powerful' contains illogical heading level skips: [H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/ai-artificial-intelligence/994064/anthropic-spent-this-week-in-hot-water-over-cybersecurity' contains illogical heading level skips: [H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/news/993791/microsoft-frank-shaw-leaving-head-of-comms' contains illogical heading level skips: [H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/tech/994055/meta-project-phoenix-headset-leak' contains illogical heading level skips: [H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/gadgets/993637/apple-airpods-5-anc-wireless-charging-preorder-buy' contains illogical heading level skips: [H1->H3, H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/tech/993898/nicholaslighttv-remove-your-media-youtube-crunchyroll-viz-media' contains illogical heading level skips: [H1->H3, H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing.",
+      "affected_urls": [
+        "https://www.theverge.com",
+        "https://www.theverge.com/ai-artificial-intelligence/994207/chatgpt-new-mexico-lawyer-fined-murder-appeal",
+        "https://www.theverge.com/tech/994087/matt-mullenweg-automattic-ceo-return",
+        "https://www.theverge.com/podcast/994016/iphone-duo-vergecast-apple-watch-mac-llms",
+        "https://www.theverge.com/policy/994072/white-house-truth-social-popular-powerful",
+        "https://www.theverge.com/ai-artificial-intelligence/994064/anthropic-spent-this-week-in-hot-water-over-cybersecurity",
+        "https://www.theverge.com/news/993791/microsoft-frank-shaw-leaving-head-of-comms",
+        "https://www.theverge.com/tech/994055/meta-project-phoenix-headset-leak",
+        "https://www.theverge.com/gadgets/993637/apple-airpods-5-anc-wireless-charging-preorder-buy",
+        "https://www.theverge.com/tech/993898/nicholaslighttv-remove-your-media-youtube-crunchyroll-viz-media"
+      ],
+      "suggested_action": {
+        "summary": "Restructure headings sequentially (H1 followed by H2, then H3) without skipping levels to maintain an intuitive document outline.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-003",
+      "category": "engagement",
+      "title": "Navigation links use vague, non-descriptive anchor text",
+      "severity": "medium",
+      "confidence": 0.86,
+      "evidence": "Page at 'https://www.theverge.com' contains 33 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension.",
+      "affected_urls": [
+        "https://www.theverge.com"
+      ],
+      "suggested_action": {
+        "summary": "Replace generic anchor texts like 'click here' or 'read more' with descriptive labels indicating the destination content (e.g., 'View Enterprise Pricing Plans').",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "TECH-MULTIPLE_H1",
+      "category": "technical",
+      "title": "Page defines multiple (2) H1 headings.",
+      "severity": "low",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.theverge.com/ai-artificial-intelligence/994064/anthropic-spent-this-week-in-hot-water-over-cybersecurity' reported MULTIPLE_H1: Page defines multiple (2) H1 headings.. Context: {'url': 'https://www.theverge.com/ai-artificial-intelligence/994064/anthropic-spent-this-week-in-hot-water-over-cybersecurity', 'h1_count': 2, 'h1_texts': ['Anthropic spent this week in hot water over cybersecurity', 'Anthropic spent this week in hot water over cybersecurity']} | Page 'https://www.theverge.com/ai-artificial-intelligence/994064/anthropic-spent-this-week-in-hot-water-over-cybersecurity' defines 2 separate <h1> elements: ['Anthropic spent this week in hot water over cybersecurity', 'Anthropic spent this week in hot water over cybersecurity']. A single primary <h1> is recommended for clear topic disambiguation.",
+      "affected_urls": [
+        "https://www.theverge.com/ai-artificial-intelligence/994064/anthropic-spent-this-week-in-hot-water-over-cybersecurity"
+      ],
+      "suggested_action": {
+        "summary": "Demote secondary <h1> elements to <h2> to maintain a single primary page heading.",
+        "priority": "low"
+      }
+    }
+  ],
+  "recommendations": [
+    {
+      "finding_id": "EC-002",
+      "category": "entity",
+      "title": "Provide Explicit Organization Description and Industry Classification",
+      "priority": "high",
+      "what_is_wrong": "The website lacks clear business description text or industry disambiguation keywords. Observation: The website provides the entity name 'The Verge', but fails to provide a clear, unambiguous statement of what the organization does, its industry category, and whom it serves. Detected industry: energy. Description snippet: 'None...",
+      "where_it_occurs": [
+        "https://www.theverge.com"
+      ],
+      "what_should_be_changed": "Add a concise 1-2 sentence organization definition in plain readable text on the homepage and About page declaring organization type, industry, target audience, and primary offerings.",
+      "why_it_matters": "Disambiguation is necessary for inclusion in AI knowledge graphs like Wikidata, Google Knowledge Graph, and Perplexity.",
+      "verification_steps": "Re-run the entity audit and confirm industry and description are detected with high confidence."
+    },
+    {
+      "finding_id": "CC-003",
+      "category": "content_clarity",
+      "title": "Remediate Missing essential organizational attributes: geographic location / headquarters, direct contact details (email or telephone)",
+      "priority": "high",
+      "what_is_wrong": "The following issue was detected during the audit: A comprehensive scan across 10 crawled pages revealed no verifiable information for: geographic location / headquarters, direct contact details (email or telephone). Absence of these fundamental attributes degrades entity trust and prevents AI systems from corroborating corporate legitimacy..",
+      "where_it_occurs": [
+        "https://www.theverge.com"
+      ],
+      "what_should_be_changed": "Publish unambiguous details for geographic location / headquarters, direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
+      "why_it_matters": "Issues categorized under 'content_clarity' with severity 'high' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the content_clarity audit against affected URLs to confirm that CC-003 is no longer reported."
+    },
+    {
+      "finding_id": "TECH-MISSING_H1",
+      "category": "technical",
+      "title": "Remediate Page lacks an H1 main heading tag.",
+      "priority": "medium",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.theverge.com' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.theverge.com', 'total_headings': 8}.",
+      "where_it_occurs": [
+        "https://www.theverge.com"
+      ],
+      "what_should_be_changed": "Provide a descriptive <h1> element to establish primary topic structure.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'medium' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_H1 is no longer reported."
+    },
+    {
+      "finding_id": "ENG-005",
+      "category": "engagement",
+      "title": "Repair Broken Heading Hierarchy",
+      "priority": "medium",
+      "what_is_wrong": "Headings skip intermediate structural levels (e.g., jumping from <h1> directly to <h3> or <h4> without an intervening <h2>). Observation: Page 'https://www.theverge.com' contains illogical heading level skips: [H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/ai-artificial-intelligence/994207/chatgpt-new-mexico-lawyer-fined-murder-appeal' contains illogical heading level skips: [H1->H3, H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/tech/994087/matt-mullenweg-automattic-ceo-return' contains illogical heading level skips: [H1->H3, H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/podcast/994016/iphone-duo-vergecast-apple-watch-mac-llms' contains illogical heading level skips: [H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/policy/994072/white-house-truth-social-popular-powerful' contains illogical heading level skips: [H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/ai-artificial-intelligence/994064/anthropic-spent-this-week-in-hot-water-over-cybersecurity' contains illogical heading level skips: [H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/news/993791/microsoft-frank-shaw-leaving-head-of-comms' contains illogical heading level skips: [H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/tech/994055/meta-project-phoenix-headset-leak' contains illogical heading level skips: [H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/gadgets/993637/apple-airpods-5-anc-wireless-charging-preorder-buy' contains illogical heading level skips: [H1->H3, H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing. | Page 'https://www.theverge.com/tech/993898/nicholaslighttv-remove-your-media-youtube-crunchyroll-viz-media' contains illogical heading level skips: [H1->H3, H2->H4]. Skipping heading levels impairs accessibility tree construction and content parsing.",
+      "where_it_occurs": [
+        "https://www.theverge.com",
+        "https://www.theverge.com/ai-artificial-intelligence/994207/chatgpt-new-mexico-lawyer-fined-murder-appeal",
+        "https://www.theverge.com/tech/994087/matt-mullenweg-automattic-ceo-return",
+        "https://www.theverge.com/podcast/994016/iphone-duo-vergecast-apple-watch-mac-llms",
+        "https://www.theverge.com/policy/994072/white-house-truth-social-popular-powerful",
+        "https://www.theverge.com/ai-artificial-intelligence/994064/anthropic-spent-this-week-in-hot-water-over-cybersecurity",
+        "https://www.theverge.com/news/993791/microsoft-frank-shaw-leaving-head-of-comms",
+        "https://www.theverge.com/tech/994055/meta-project-phoenix-headset-leak",
+        "https://www.theverge.com/gadgets/993637/apple-airpods-5-anc-wireless-charging-preorder-buy",
+        "https://www.theverge.com/tech/993898/nicholaslighttv-remove-your-media-youtube-crunchyroll-viz-media"
+      ],
+      "what_should_be_changed": "Restructure headings sequentially (H1 followed by H2, then H3) without skipping levels to maintain an intuitive document outline.",
+      "why_it_matters": "Screen readers and automated document summarizers rely on logical heading tree hierarchies to map document structure.",
+      "verification_steps": "Re-run the engagement audit and verify that no heading level skips are detected in the document outline."
+    },
+    {
+      "finding_id": "ENG-003",
+      "category": "engagement",
+      "title": "Replace Vague Anchor Text with Descriptive Links",
+      "priority": "medium",
+      "what_is_wrong": "Navigation hyperlinks use non-descriptive anchor texts such as 'click here', 'read more', or empty text. Observation: Page at 'https://www.theverge.com' contains 33 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension.",
+      "where_it_occurs": [
+        "https://www.theverge.com"
+      ],
+      "what_should_be_changed": "Replace generic anchor texts like 'click here' or 'read more' with descriptive labels indicating the destination content (e.g., 'View Enterprise Pricing Plans').",
+      "why_it_matters": "Descriptive anchor text provides semantic context to search crawlers and screen readers regarding the destination page content.",
+      "verification_steps": "Re-run the navigation check and verify that all hyperlinks contain descriptive destination-specific anchor text."
+    },
+    {
+      "finding_id": "TECH-MULTIPLE_H1",
+      "category": "technical",
+      "title": "Remediate Page defines multiple (2) H1 headings.",
+      "priority": "low",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.theverge.com/ai-artificial-intelligence/994064/anthropic-spent-this-week-in-hot-water-over-cybersecurity' reported MULTIPLE_H1: Page defines multiple (2) H1 headings.. Context: {'url': 'https://www.theverge.com/ai-artificial-intelligence/994064/anthropic-spent-this-week-in-hot-water-over-cybersecurity', 'h1_count': 2, 'h1_texts': ['Anthropic spent this week in hot water over cybersecurity', 'Anthropic spent this week in hot water over cybersecurity']} | Page 'https://www.theverge.com/ai-artificial-intelligence/994064/anthropic-spent-this-week-in-hot-water-over-cybersecurity' defines 2 separate <h1> elements: ['Anthropic spent this week in hot water over cybersecurity', 'Anthropic spent this week in hot water over cybersecurity']. A single primary <h1> is recommended for clear topic disambiguation..",
+      "where_it_occurs": [
+        "https://www.theverge.com/ai-artificial-intelligence/994064/anthropic-spent-this-week-in-hot-water-over-cybersecurity"
+      ],
+      "what_should_be_changed": "Demote secondary <h1> elements to <h2> to maintain a single primary page heading.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'low' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MULTIPLE_H1 is no longer reported."
+    }
+  ],
+  "skill_statuses": {
+    "crawl-render-audit": "success",
+    "entity-content-freshness-trust": "success",
+    "engagement-recommendations": "success"
+  },
+  "summary": {
+    "total_findings": 6,
+    "critical": 0,
+    "high": 2,
+    "medium": 3,
+    "total_recommendations": 6,
+    "pages_analyzed": 10,
+    "crawled_urls": [
+      "https://www.theverge.com",
+      "https://www.theverge.com/ai-artificial-intelligence/994064/anthropic-spent-this-week-in-hot-water-over-cybersecurity",
+      "https://www.theverge.com/ai-artificial-intelligence/994207/chatgpt-new-mexico-lawyer-fined-murder-appeal",
+      "https://www.theverge.com/gadgets/993637/apple-airpods-5-anc-wireless-charging-preorder-buy",
+      "https://www.theverge.com/news/993791/microsoft-frank-shaw-leaving-head-of-comms",
+      "https://www.theverge.com/podcast/994016/iphone-duo-vergecast-apple-watch-mac-llms",
+      "https://www.theverge.com/policy/994072/white-house-truth-social-popular-powerful",
+      "https://www.theverge.com/tech/993898/nicholaslighttv-remove-your-media-youtube-crunchyroll-viz-media",
+      "https://www.theverge.com/tech/994055/meta-project-phoenix-headset-leak",
+      "https://www.theverge.com/tech/994087/matt-mullenweg-automattic-ceo-return"
+    ],
+    "brand_ai_readiness_score": 67.0,
+    "readiness_grade": "D",
+    "score_heuristic_disclaimer": "Internal marketplace composite heuristic (100 - weighted severity deductions; not an official Adobe metric)"
+  },
+  "metadata": {
+    "max_pages": 10,
+    "max_depth": 2,
+    "confidence_threshold": 0.7,
+    "enable_rendering": true
+  }
+}

@@ -1,0 +1,548 @@
+{
+  "site": "www.adobe.com",
+  "root_url": "https://www.adobe.com/in",
+  "audited_at": "2026-09-12T05:25:33.955594+00:00",
+  "status": "success",
+  "overall_score": 7.0,
+  "readiness_grade": "F",
+  "severity_counts": {
+    "critical": 0,
+    "high": 6,
+    "medium": 8,
+    "low": 1,
+    "info": 0
+  },
+  "entity_profile": {
+    "name": "Adobe India",
+    "type": "Organization",
+    "description": null,
+    "industry": null,
+    "location": null,
+    "founding_year": null,
+    "products": [],
+    "services": [],
+    "contact_email": null,
+    "contact_phone": null,
+    "social_profiles": [],
+    "confidence_score": 0.65
+  },
+  "findings": [
+    {
+      "id": "TECH-EMPTY_BODY_TEXT",
+      "category": "technical",
+      "title": "Page has empty visible body text.",
+      "severity": "high",
+      "confidence": 0.96,
+      "evidence": "Page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' reported EMPTY_BODY_TEXT: Page has empty visible body text.. Context: {'url': 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp', 'char_count': 0, 'word_count': 0} | Page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' reported EMPTY_BODY_TEXT: Page has empty visible body text.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg', 'char_count': 0, 'word_count': 0} | Page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' reported EMPTY_BODY_TEXT: Page has empty visible body text.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg', 'char_count': 0, 'word_count': 0} | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' reported EMPTY_BODY_TEXT: Page has empty visible body text.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price', 'char_count': 0, 'word_count': 0}",
+      "affected_urls": [
+        "https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp",
+        "https://www.adobe.com/federal/assets/svgs/creative-cloud.svg",
+        "https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price"
+      ],
+      "suggested_action": {
+        "summary": "Review and resolve technical issue 'EMPTY_BODY_TEXT' on 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp'.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "TECH-MISSING_TITLE",
+      "category": "technical",
+      "title": "Page is missing a title tag or has empty title content.",
+      "severity": "high",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' reported MISSING_TITLE: Page is missing a title tag or has empty title content.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg', 'title': None} | Page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' reported MISSING_TITLE: Page is missing a title tag or has empty title content.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg', 'title': None} | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' reported MISSING_TITLE: Page is missing a title tag or has empty title content.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price', 'title': ''}",
+      "affected_urls": [
+        "https://www.adobe.com/federal/assets/svgs/creative-cloud.svg",
+        "https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price"
+      ],
+      "suggested_action": {
+        "summary": "Add an informative <title> tag between 15 and 60 characters containing the primary page subject.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "ENG-014",
+      "category": "engagement",
+      "title": "Dead-end page terminates user journey without outgoing links",
+      "severity": "high",
+      "confidence": 0.95,
+      "evidence": "Page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' contains 0 outgoing internal links to any other page on the site. Visitors and AI crawlers reaching this URL cannot navigate forward or return to safety. | Page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' contains 0 outgoing internal links to any other page on the site. Visitors and AI crawlers reaching this URL cannot navigate forward or return to safety. | Page 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863' contains 0 outgoing internal links to any other page on the site. Visitors and AI crawlers reaching this URL cannot navigate forward or return to safety. | Page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' contains 0 outgoing internal links to any other page on the site. Visitors and AI crawlers reaching this URL cannot navigate forward or return to safety. | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' contains 0 outgoing internal links to any other page on the site. Visitors and AI crawlers reaching this URL cannot navigate forward or return to safety.",
+      "affected_urls": [
+        "https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp",
+        "https://www.adobe.com/federal/assets/svgs/creative-cloud.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863",
+        "https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price"
+      ],
+      "suggested_action": {
+        "summary": "Add standard header/footer navigation or contextual next-step links on 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' to ensure visitors and automated agents can continue exploring.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "EC-002",
+      "category": "entity",
+      "title": "Insufficient organization disambiguation and business description",
+      "severity": "high",
+      "confidence": 0.89,
+      "evidence": "The website provides the entity name 'Adobe India', but fails to provide a clear, unambiguous statement of what the organization does, its industry category, and whom it serves. Detected industry: None. Description snippet: 'None...",
+      "affected_urls": [
+        "https://www.adobe.com/in/"
+      ],
+      "suggested_action": {
+        "summary": "Add a concise 1-2 sentence organization definition in plain readable text on the homepage and About page declaring organization type, industry, target audience, and primary offerings.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "ENG-013",
+      "category": "engagement",
+      "title": "Conversion page lacks actionable next step or signup path",
+      "severity": "high",
+      "confidence": 0.89,
+      "evidence": "Commercial conversion page 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863' outlines offerings or pricing tiers but provides no actionable next step link (checked 0 links; no signup, checkout, demo, or sales inquiry links found). Leads and automated buyers cannot convert. | Commercial conversion page 'https://www.adobe.com/products/firefly.html' outlines offerings or pricing tiers but provides no actionable next step link (checked 37 links; no signup, checkout, demo, or sales inquiry links found). Leads and automated buyers cannot convert.",
+      "affected_urls": [
+        "https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863",
+        "https://www.adobe.com/products/firefly.html"
+      ],
+      "suggested_action": {
+        "summary": "Add prominent action links (e.g. 'Get Started', 'Choose Plan', 'Contact Sales') on 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863' directly linking to checkout, registration, or sales inquiry forms.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "CC-003",
+      "category": "content_clarity",
+      "title": "Missing essential organizational attributes: direct contact details (email or telephone)",
+      "severity": "high",
+      "confidence": 0.86,
+      "evidence": "A comprehensive scan across 10 crawled pages revealed no verifiable information for: direct contact details (email or telephone). Absence of these fundamental attributes degrades entity trust and prevents AI systems from corroborating corporate legitimacy.",
+      "affected_urls": [
+        "https://www.adobe.com/in/"
+      ],
+      "suggested_action": {
+        "summary": "Publish unambiguous details for direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "TECH-ROBOTS_META_NOINDEX",
+      "category": "technical",
+      "title": "Page specifies 'noindex, nofollow' directive blocking search indexing.",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price' reported ROBOTS_META_NOINDEX: Page specifies 'noindex, nofollow' directive blocking search indexing.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price', 'robots_meta': 'noindex, nofollow'} | Page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' reported ROBOTS_META_NOINDEX: Page specifies 'noindex, nofollow' directive blocking search indexing.. Context: {'url': 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp', 'robots_meta': 'noindex, nofollow'} | Page 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863' reported ROBOTS_META_NOINDEX: Page specifies 'noindex, nofollow' directive blocking search indexing.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863', 'robots_meta': 'noindex, nofollow'} | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' reported ROBOTS_META_NOINDEX: Page specifies 'noindex, nofollow' directive blocking search indexing.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price', 'robots_meta': 'noindex, nofollow'}",
+      "affected_urls": [
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price",
+        "https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp",
+        "https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863",
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price"
+      ],
+      "suggested_action": {
+        "summary": "Remove 'noindex' meta directives from pages intended for public AI discovery.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "TECH-MISSING_H1",
+      "category": "technical",
+      "title": "Page lacks an H1 main heading tag.",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price', 'total_headings': 0} | Page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp', 'total_headings': 0} | Page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg', 'total_headings': 0} | Page 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863', 'total_headings': 0} | Page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg', 'total_headings': 0} | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price', 'total_headings': 0} | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation. | Page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation. | Page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation. | Page 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation. | Page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation. | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation.",
+      "affected_urls": [
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price",
+        "https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp",
+        "https://www.adobe.com/federal/assets/svgs/creative-cloud.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863",
+        "https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price"
+      ],
+      "suggested_action": {
+        "summary": "Provide a descriptive <h1> element to establish primary topic structure.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "TECH-RENDERING_FAILED",
+      "category": "technical",
+      "title": "Browser rendering failed: Playwright is not installed or available in this environment.. Fell back to static HTML.",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": "Page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' reported RENDERING_FAILED: Browser rendering failed: Playwright is not installed or available in this environment.. Fell back to static HTML.. Context: {'reason': 'Insufficient visible body text (0 chars < 80 threshold) with scripts present', 'error': 'Playwright is not installed or available in this environment.'} | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' reported RENDERING_FAILED: Browser rendering failed: Playwright is not installed or available in this environment.. Fell back to static HTML.. Context: {'reason': 'Insufficient visible body text (0 chars < 80 threshold) with scripts present', 'error': 'Playwright is not installed or available in this environment.'}",
+      "affected_urls": [
+        "https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp",
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price"
+      ],
+      "suggested_action": {
+        "summary": "Review and resolve technical issue 'RENDERING_FAILED' on 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp'.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "TECH-SHORT_TITLE",
+      "category": "technical",
+      "title": "Page title is very short (3 characters: 'ost').",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": "Page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' reported SHORT_TITLE: Page title is very short (3 characters: 'ost').. Context: {'url': 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp', 'title': 'ost', 'length': 3}",
+      "affected_urls": [
+        "https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp"
+      ],
+      "suggested_action": {
+        "summary": "Expand title tag to include brand name and specific page context.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "TECH-MISSING_META_DESCRIPTION",
+      "category": "technical",
+      "title": "Page is missing a meta description tag.",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": "Page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp', 'description': None} | Page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg', 'description': None} | Page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg', 'description': None} | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price', 'description': None}",
+      "affected_urls": [
+        "https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp",
+        "https://www.adobe.com/federal/assets/svgs/creative-cloud.svg",
+        "https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price"
+      ],
+      "suggested_action": {
+        "summary": "Review and resolve technical issue 'MISSING_META_DESCRIPTION' on 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp'.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-015",
+      "category": "engagement",
+      "title": "Deep landing page lacks navigation link back to homepage",
+      "severity": "medium",
+      "confidence": 0.9,
+      "evidence": "Direct landing page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price' has no link back to the root homepage 'https://www.adobe.com/in'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal. | Direct landing page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' has no link back to the root homepage 'https://www.adobe.com/in'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal. | Direct landing page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' has no link back to the root homepage 'https://www.adobe.com/in'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal. | Direct landing page 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863' has no link back to the root homepage 'https://www.adobe.com/in'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal. | Direct landing page 'https://www.adobe.com/products/firefly.html' has no link back to the root homepage 'https://www.adobe.com/in'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal. | Direct landing page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' has no link back to the root homepage 'https://www.adobe.com/in'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal. | Direct landing page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' has no link back to the root homepage 'https://www.adobe.com/in'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal.",
+      "affected_urls": [
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price",
+        "https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp",
+        "https://www.adobe.com/federal/assets/svgs/creative-cloud.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863",
+        "https://www.adobe.com/products/firefly.html",
+        "https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price"
+      ],
+      "suggested_action": {
+        "summary": "Include a logo/home link or breadcrumb navigation on 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price' that connects back to the homepage ('https://www.adobe.com/in').",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-003",
+      "category": "engagement",
+      "title": "Navigation links use vague, non-descriptive anchor text",
+      "severity": "medium",
+      "confidence": 0.86,
+      "evidence": "Page at 'https://www.adobe.com/in/' contains 9 vague or empty link anchor texts: ['link', 'link', 'link', 'link']. Non-descriptive anchors hinder screen readers and search agent comprehension.",
+      "affected_urls": [
+        "https://www.adobe.com/in/"
+      ],
+      "suggested_action": {
+        "summary": "Replace generic anchor texts like 'click here' or 'read more' with descriptive labels indicating the destination content (e.g., 'View Enterprise Pricing Plans').",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-011",
+      "category": "engagement",
+      "title": "Content page lacks onward continuation paths or related topic links",
+      "severity": "medium",
+      "confidence": 0.84,
+      "evidence": "Informational content page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' contains 2859 words but zero onward internal links to related content, documentation, or next steps (only 0 total links found). Visitors reaching the end of the content face an engagement drop-off. | Informational content page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' contains 246 words but zero onward internal links to related content, documentation, or next steps (only 0 total links found). Visitors reaching the end of the content face an engagement drop-off.",
+      "affected_urls": [
+        "https://www.adobe.com/federal/assets/svgs/creative-cloud.svg",
+        "https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg"
+      ],
+      "suggested_action": {
+        "summary": "Add contextual links, a 'Related Articles' section, or recommended next steps at the conclusion of substantive content.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "TECH-MISSING_CANONICAL",
+      "category": "technical",
+      "title": "Page does not declare a canonical URL tag.",
+      "severity": "low",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' reported MISSING_CANONICAL: Page does not declare a canonical URL tag.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg'} | Page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' reported MISSING_CANONICAL: Page does not declare a canonical URL tag.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg'}",
+      "affected_urls": [
+        "https://www.adobe.com/federal/assets/svgs/creative-cloud.svg",
+        "https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg"
+      ],
+      "suggested_action": {
+        "summary": "Review and resolve technical issue 'MISSING_CANONICAL' on 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg'.",
+        "priority": "low"
+      }
+    }
+  ],
+  "recommendations": [
+    {
+      "finding_id": "TECH-EMPTY_BODY_TEXT",
+      "category": "technical",
+      "title": "Remediate Page has empty visible body text.",
+      "priority": "high",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' reported EMPTY_BODY_TEXT: Page has empty visible body text.. Context: {'url': 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp', 'char_count': 0, 'word_count': 0} | Page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' reported EMPTY_BODY_TEXT: Page has empty visible body text.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg', 'char_count': 0, 'word_count': 0} | Page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' reported EMPTY_BODY_TEXT: Page has empty visible body text.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg', 'char_count': 0, 'word_count': 0} | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' reported EMPTY_BODY_TEXT: Page has empty visible body text.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price', 'char_count': 0, 'word_count': 0}.",
+      "where_it_occurs": [
+        "https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp",
+        "https://www.adobe.com/federal/assets/svgs/creative-cloud.svg",
+        "https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price"
+      ],
+      "what_should_be_changed": "Review and resolve technical issue 'EMPTY_BODY_TEXT' on 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp'.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'high' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-EMPTY_BODY_TEXT is no longer reported."
+    },
+    {
+      "finding_id": "TECH-MISSING_TITLE",
+      "category": "technical",
+      "title": "Remediate Page is missing a title tag or has empty title content.",
+      "priority": "high",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' reported MISSING_TITLE: Page is missing a title tag or has empty title content.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg', 'title': None} | Page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' reported MISSING_TITLE: Page is missing a title tag or has empty title content.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg', 'title': None} | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' reported MISSING_TITLE: Page is missing a title tag or has empty title content.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price', 'title': ''}.",
+      "where_it_occurs": [
+        "https://www.adobe.com/federal/assets/svgs/creative-cloud.svg",
+        "https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price"
+      ],
+      "what_should_be_changed": "Add an informative <title> tag between 15 and 60 characters containing the primary page subject.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'high' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_TITLE is no longer reported."
+    },
+    {
+      "finding_id": "ENG-014",
+      "category": "engagement",
+      "title": "Eliminate Dead-End Page by Adding Navigation",
+      "priority": "high",
+      "what_is_wrong": "The page has zero outgoing internal links, permanently halting user and crawler journeys. Observation: Page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' contains 0 outgoing internal links to any other page on the site. Visitors and AI crawlers reaching this URL cannot navigate forward or return to safety. | Page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' contains 0 outgoing internal links to any other page on the site. Visitors and AI crawlers reaching this URL cannot navigate forward or return to safety. | Page 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863' contains 0 outgoing internal links to any other page on the site. Visitors and AI crawlers reaching this URL cannot navigate forward or return to safety. | Page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' contains 0 outgoing internal links to any other page on the site. Visitors and AI crawlers reaching this URL cannot navigate forward or return to safety. | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' contains 0 outgoing internal links to any other page on the site. Visitors and AI crawlers reaching this URL cannot navigate forward or return to safety.",
+      "where_it_occurs": [
+        "https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp",
+        "https://www.adobe.com/federal/assets/svgs/creative-cloud.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863",
+        "https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price"
+      ],
+      "what_should_be_changed": "Add standard header/footer navigation or contextual next-step links on 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' to ensure visitors and automated agents can continue exploring.",
+      "why_it_matters": "Dead ends waste crawl budget and trap users, forcing them to use the browser back button or abandon the site.",
+      "verification_steps": "Re-run the dead-end check and confirm that the page provides outgoing internal navigation."
+    },
+    {
+      "finding_id": "EC-002",
+      "category": "entity",
+      "title": "Provide Explicit Organization Description and Industry Classification",
+      "priority": "high",
+      "what_is_wrong": "The website lacks clear business description text or industry disambiguation keywords. Observation: The website provides the entity name 'Adobe India', but fails to provide a clear, unambiguous statement of what the organization does, its industry category, and whom it serves. Detected industry: None. Description snippet: 'None...",
+      "where_it_occurs": [
+        "https://www.adobe.com/in/"
+      ],
+      "what_should_be_changed": "Add a concise 1-2 sentence organization definition in plain readable text on the homepage and About page declaring organization type, industry, target audience, and primary offerings.",
+      "why_it_matters": "Disambiguation is necessary for inclusion in AI knowledge graphs like Wikidata, Google Knowledge Graph, and Perplexity.",
+      "verification_steps": "Re-run the entity audit and confirm industry and description are detected with high confidence."
+    },
+    {
+      "finding_id": "ENG-013",
+      "category": "engagement",
+      "title": "Provide Actionable Next Steps on Commercial and Pricing Pages",
+      "priority": "high",
+      "what_is_wrong": "A pricing or solutions page details offerings but lacks actionable signup, checkout, or inquiry links. Observation: Commercial conversion page 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863' outlines offerings or pricing tiers but provides no actionable next step link (checked 0 links; no signup, checkout, demo, or sales inquiry links found). Leads and automated buyers cannot convert. | Commercial conversion page 'https://www.adobe.com/products/firefly.html' outlines offerings or pricing tiers but provides no actionable next step link (checked 37 links; no signup, checkout, demo, or sales inquiry links found). Leads and automated buyers cannot convert.",
+      "where_it_occurs": [
+        "https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863",
+        "https://www.adobe.com/products/firefly.html"
+      ],
+      "what_should_be_changed": "Add prominent action links (e.g. 'Get Started', 'Choose Plan', 'Contact Sales') on 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863' directly linking to checkout, registration, or sales inquiry forms.",
+      "why_it_matters": "Conversion funnels are broken if prospects cannot transition from evaluation to transaction.",
+      "verification_steps": "Re-run the conversion audit and confirm that actionable signup/purchase links are present."
+    },
+    {
+      "finding_id": "CC-003",
+      "category": "content_clarity",
+      "title": "Remediate Missing essential organizational attributes: direct contact details (email or telephone)",
+      "priority": "high",
+      "what_is_wrong": "The following issue was detected during the audit: A comprehensive scan across 10 crawled pages revealed no verifiable information for: direct contact details (email or telephone). Absence of these fundamental attributes degrades entity trust and prevents AI systems from corroborating corporate legitimacy..",
+      "where_it_occurs": [
+        "https://www.adobe.com/in/"
+      ],
+      "what_should_be_changed": "Publish unambiguous details for direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
+      "why_it_matters": "Issues categorized under 'content_clarity' with severity 'high' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the content_clarity audit against affected URLs to confirm that CC-003 is no longer reported."
+    },
+    {
+      "finding_id": "TECH-ROBOTS_META_NOINDEX",
+      "category": "technical",
+      "title": "Remediate Page specifies 'noindex, nofollow' directive blocking search indexing.",
+      "priority": "medium",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price' reported ROBOTS_META_NOINDEX: Page specifies 'noindex, nofollow' directive blocking search indexing.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price', 'robots_meta': 'noindex, nofollow'} | Page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' reported ROBOTS_META_NOINDEX: Page specifies 'noindex, nofollow' directive blocking search indexing.. Context: {'url': 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp', 'robots_meta': 'noindex, nofollow'} | Page 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863' reported ROBOTS_META_NOINDEX: Page specifies 'noindex, nofollow' directive blocking search indexing.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863', 'robots_meta': 'noindex, nofollow'} | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' reported ROBOTS_META_NOINDEX: Page specifies 'noindex, nofollow' directive blocking search indexing.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price', 'robots_meta': 'noindex, nofollow'}.",
+      "where_it_occurs": [
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price",
+        "https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp",
+        "https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863",
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price"
+      ],
+      "what_should_be_changed": "Remove 'noindex' meta directives from pages intended for public AI discovery.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'medium' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-ROBOTS_META_NOINDEX is no longer reported."
+    },
+    {
+      "finding_id": "TECH-MISSING_H1",
+      "category": "technical",
+      "title": "Remediate Page lacks an H1 main heading tag.",
+      "priority": "medium",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price', 'total_headings': 0} | Page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp', 'total_headings': 0} | Page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg', 'total_headings': 0} | Page 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863', 'total_headings': 0} | Page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg', 'total_headings': 0} | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price', 'total_headings': 0} | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation. | Page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation. | Page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation. | Page 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation. | Page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation. | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation..",
+      "where_it_occurs": [
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price",
+        "https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp",
+        "https://www.adobe.com/federal/assets/svgs/creative-cloud.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863",
+        "https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price"
+      ],
+      "what_should_be_changed": "Provide a descriptive <h1> element to establish primary topic structure.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'medium' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_H1 is no longer reported."
+    },
+    {
+      "finding_id": "TECH-RENDERING_FAILED",
+      "category": "technical",
+      "title": "Remediate Browser rendering failed: Playwright is not installed or available in this environment.. Fell back to static HTML.",
+      "priority": "medium",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' reported RENDERING_FAILED: Browser rendering failed: Playwright is not installed or available in this environment.. Fell back to static HTML.. Context: {'reason': 'Insufficient visible body text (0 chars < 80 threshold) with scripts present', 'error': 'Playwright is not installed or available in this environment.'} | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' reported RENDERING_FAILED: Browser rendering failed: Playwright is not installed or available in this environment.. Fell back to static HTML.. Context: {'reason': 'Insufficient visible body text (0 chars < 80 threshold) with scripts present', 'error': 'Playwright is not installed or available in this environment.'}.",
+      "where_it_occurs": [
+        "https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp",
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price"
+      ],
+      "what_should_be_changed": "Review and resolve technical issue 'RENDERING_FAILED' on 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp'.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'medium' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-RENDERING_FAILED is no longer reported."
+    },
+    {
+      "finding_id": "TECH-SHORT_TITLE",
+      "category": "technical",
+      "title": "Remediate Page title is very short (3 characters: 'ost').",
+      "priority": "medium",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' reported SHORT_TITLE: Page title is very short (3 characters: 'ost').. Context: {'url': 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp', 'title': 'ost', 'length': 3}.",
+      "where_it_occurs": [
+        "https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp"
+      ],
+      "what_should_be_changed": "Expand title tag to include brand name and specific page context.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'medium' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-SHORT_TITLE is no longer reported."
+    },
+    {
+      "finding_id": "TECH-MISSING_META_DESCRIPTION",
+      "category": "technical",
+      "title": "Remediate Page is missing a meta description tag.",
+      "priority": "medium",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp', 'description': None} | Page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg', 'description': None} | Page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg', 'description': None} | Page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price', 'description': None}.",
+      "where_it_occurs": [
+        "https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp",
+        "https://www.adobe.com/federal/assets/svgs/creative-cloud.svg",
+        "https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price"
+      ],
+      "what_should_be_changed": "Review and resolve technical issue 'MISSING_META_DESCRIPTION' on 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp'.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'medium' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_META_DESCRIPTION is no longer reported."
+    },
+    {
+      "finding_id": "ENG-015",
+      "category": "engagement",
+      "title": "Add Homepage Breadcrumbs to Deep Landing Pages",
+      "priority": "medium",
+      "what_is_wrong": "A deep subpage does not provide a navigation link back to the root homepage. Observation: Direct landing page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price' has no link back to the root homepage 'https://www.adobe.com/in'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal. | Direct landing page 'https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp' has no link back to the root homepage 'https://www.adobe.com/in'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal. | Direct landing page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' has no link back to the root homepage 'https://www.adobe.com/in'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal. | Direct landing page 'https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863' has no link back to the root homepage 'https://www.adobe.com/in'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal. | Direct landing page 'https://www.adobe.com/products/firefly.html' has no link back to the root homepage 'https://www.adobe.com/in'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal. | Direct landing page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' has no link back to the root homepage 'https://www.adobe.com/in'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal. | Direct landing page 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price' has no link back to the root homepage 'https://www.adobe.com/in'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal.",
+      "where_it_occurs": [
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price",
+        "https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp",
+        "https://www.adobe.com/federal/assets/svgs/creative-cloud.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863",
+        "https://www.adobe.com/products/firefly.html",
+        "https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg",
+        "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price"
+      ],
+      "what_should_be_changed": "Include a logo/home link or breadcrumb navigation on 'https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price' that connects back to the homepage ('https://www.adobe.com/in').",
+      "why_it_matters": "Users arriving directly from search engines need instant orientation and a path back to the parent brand portal.",
+      "verification_steps": "Re-run the context retention audit and confirm that deep pages link back to the homepage."
+    },
+    {
+      "finding_id": "ENG-003",
+      "category": "engagement",
+      "title": "Replace Vague Anchor Text with Descriptive Links",
+      "priority": "medium",
+      "what_is_wrong": "Navigation hyperlinks use non-descriptive anchor texts such as 'click here', 'read more', or empty text. Observation: Page at 'https://www.adobe.com/in/' contains 9 vague or empty link anchor texts: ['link', 'link', 'link', 'link']. Non-descriptive anchors hinder screen readers and search agent comprehension.",
+      "where_it_occurs": [
+        "https://www.adobe.com/in/"
+      ],
+      "what_should_be_changed": "Replace generic anchor texts like 'click here' or 'read more' with descriptive labels indicating the destination content (e.g., 'View Enterprise Pricing Plans').",
+      "why_it_matters": "Descriptive anchor text provides semantic context to search crawlers and screen readers regarding the destination page content.",
+      "verification_steps": "Re-run the navigation check and verify that all hyperlinks contain descriptive destination-specific anchor text."
+    },
+    {
+      "finding_id": "ENG-011",
+      "category": "engagement",
+      "title": "Add Continuation Links to Content Pages",
+      "priority": "medium",
+      "what_is_wrong": "A substantive informational page concludes without onward links to related topics, documentation, or next steps. Observation: Informational content page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' contains 2859 words but zero onward internal links to related content, documentation, or next steps (only 0 total links found). Visitors reaching the end of the content face an engagement drop-off. | Informational content page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' contains 246 words but zero onward internal links to related content, documentation, or next steps (only 0 total links found). Visitors reaching the end of the content face an engagement drop-off.",
+      "where_it_occurs": [
+        "https://www.adobe.com/federal/assets/svgs/creative-cloud.svg",
+        "https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg"
+      ],
+      "what_should_be_changed": "Add contextual links, a 'Related Articles' section, or recommended next steps at the conclusion of substantive content.",
+      "why_it_matters": "Continuation links prevent user drop-off and guide AI exploration agents through multi-step research journeys.",
+      "verification_steps": "Re-run the engagement audit and ensure the content page provides onward internal navigation paths."
+    },
+    {
+      "finding_id": "TECH-MISSING_CANONICAL",
+      "category": "technical",
+      "title": "Remediate Page does not declare a canonical URL tag.",
+      "priority": "low",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg' reported MISSING_CANONICAL: Page does not declare a canonical URL tag.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg'} | Page 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg' reported MISSING_CANONICAL: Page does not declare a canonical URL tag.. Context: {'url': 'https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg'}.",
+      "where_it_occurs": [
+        "https://www.adobe.com/federal/assets/svgs/creative-cloud.svg",
+        "https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg"
+      ],
+      "what_should_be_changed": "Review and resolve technical issue 'MISSING_CANONICAL' on 'https://www.adobe.com/federal/assets/svgs/creative-cloud.svg'.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'low' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_CANONICAL is no longer reported."
+    }
+  ],
+  "skill_statuses": {
+    "crawl-render-audit": "success",
+    "entity-content-freshness-trust": "success",
+    "engagement-recommendations": "success"
+  },
+  "summary": {
+    "total_findings": 15,
+    "critical": 0,
+    "high": 6,
+    "medium": 8,
+    "total_recommendations": 15,
+    "pages_analyzed": 11,
+    "crawled_urls": [
+      "https://milo.adobe.com/tools/ost?osi=JzW8dgW8U1SrgbHDmTE-ABsOKPgtl5jugiW8bA5PtKg&type=checkoutUrl&text=free-trial&workflowStep=segmentation&modal=twp",
+      "https://www.adobe.com",
+      "https://www.adobe.com/creativecloud.html",
+      "https://www.adobe.com/federal/assets/svgs/creative-cloud.svg",
+      "https://www.adobe.com/federal/assets/svgs/firefly-appicon-256.svg",
+      "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/acrobat/intro-price",
+      "https://www.adobe.com/homepage/fragments/loggedout/redesign/default/en-lingo/marquee-sub-copy/cc-pro/intro-price",
+      "https://www.adobe.com/homepage/fragments/loggedout/row-custom-pods/regular-pods/ff-date-ext-192863",
+      "https://www.adobe.com/in",
+      "https://www.adobe.com/in/",
+      "https://www.adobe.com/products/firefly.html"
+    ],
+    "brand_ai_readiness_score": 7.0,
+    "readiness_grade": "F",
+    "score_heuristic_disclaimer": "Internal marketplace composite heuristic (100 - weighted severity deductions; not an official Adobe metric)"
+  },
+  "metadata": {
+    "max_pages": 10,
+    "max_depth": 2,
+    "confidence_threshold": 0.7,
+    "enable_rendering": true
+  }
+}

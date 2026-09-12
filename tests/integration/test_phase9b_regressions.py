@@ -1,6 +1,6 @@
 """Deterministic regression tests for Phase 9B calibration fixes."""
 
-import pytest
+#import pytest
 from src.entity_trust.contracts.schemas import SiteSnapshot, PageSnapshot, SeverityLevel
 from src.entity_trust.runner import audit_content_and_entity
 from src.engagement.rules.context_retention import check_context_retention

@@ -1,0 +1,355 @@
+{
+  "site": "www.mozilla.org",
+  "root_url": "https://www.mozilla.org",
+  "audited_at": "2026-09-12T05:25:11.249854+00:00",
+  "status": "success",
+  "overall_score": 57.0,
+  "readiness_grade": "F",
+  "severity_counts": {
+    "critical": 0,
+    "high": 1,
+    "medium": 8,
+    "low": 1,
+    "info": 0
+  },
+  "entity_profile": {
+    "name": "Mozilla Global",
+    "type": "Organization",
+    "description": null,
+    "industry": null,
+    "location": null,
+    "founding_year": null,
+    "products": [],
+    "services": [],
+    "contact_email": null,
+    "contact_phone": null,
+    "social_profiles": [],
+    "confidence_score": 0.5
+  },
+  "findings": [
+    {
+      "id": "CC-003",
+      "category": "content_clarity",
+      "title": "Missing essential organizational attributes: geographic location / headquarters, direct contact details (email or telephone)",
+      "severity": "high",
+      "confidence": 0.86,
+      "evidence": "A comprehensive scan across 10 crawled pages revealed no verifiable information for: geographic location / headquarters, direct contact details (email or telephone). Absence of these fundamental attributes degrades entity trust and prevents AI systems from corroborating corporate legitimacy.",
+      "affected_urls": [
+        "https://www.mozilla.org"
+      ],
+      "suggested_action": {
+        "summary": "Publish unambiguous details for geographic location / headquarters, direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "TECH-MISSING_META_DESCRIPTION",
+      "category": "technical",
+      "title": "Page is missing a meta description tag.",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.mozilla.org/en-US/products/monitor/' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://www.mozilla.org/en-US/products/monitor/', 'description': ''} | Page 'https://www.mozilla.org/en-US/contribute/' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://www.mozilla.org/en-US/contribute/', 'description': ''}",
+      "affected_urls": [
+        "https://www.mozilla.org/en-US/products/monitor/",
+        "https://www.mozilla.org/en-US/contribute/"
+      ],
+      "suggested_action": {
+        "summary": "Review and resolve technical issue 'MISSING_META_DESCRIPTION' on 'https://www.mozilla.org/en-US/products/monitor/'.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "TECH-MISSING_H1",
+      "category": "technical",
+      "title": "Page lacks an H1 main heading tag.",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.mozilla.org/en-US/products/monitor/' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.mozilla.org/en-US/products/monitor/', 'total_headings': 29} | Page 'https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products', 'total_headings': 0} | Page 'https://www.mozilla.org/en-US/products/monitor/' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation. | Page 'https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation.",
+      "affected_urls": [
+        "https://www.mozilla.org/en-US/products/monitor/",
+        "https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products"
+      ],
+      "suggested_action": {
+        "summary": "Provide a descriptive <h1> element to establish primary topic structure.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "TECH-RENDERING_FAILED",
+      "category": "technical",
+      "title": "Browser rendering failed: Playwright is not installed or available in this environment.. Fell back to static HTML.",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": "Page 'https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products' reported RENDERING_FAILED: Browser rendering failed: Playwright is not installed or available in this environment.. Fell back to static HTML.. Context: {'reason': 'Empty Single-Page Application (SPA) root container detected', 'error': 'Playwright is not installed or available in this environment.'}",
+      "affected_urls": [
+        "https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products"
+      ],
+      "suggested_action": {
+        "summary": "Review and resolve technical issue 'RENDERING_FAILED' on 'https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products'.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "EC-003",
+      "category": "entity",
+      "title": "Missing Schema.org Organization structured data",
+      "severity": "medium",
+      "confidence": 0.95,
+      "evidence": "No JSON-LD Schema.org 'Organization' or 'LocalBusiness' definition was found on 'https://www.mozilla.org' or secondary pages. Structured entity metadata enables search engines and AI systems to ground the entity without heuristic guessing.",
+      "affected_urls": [
+        "https://www.mozilla.org"
+      ],
+      "suggested_action": {
+        "summary": "Implement JSON-LD Schema.org 'Organization' or 'Corporation' on the homepage with fields: @context, @type, name, url, logo, description, and sameAs links.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-009",
+      "category": "engagement",
+      "title": "Orphaned internal page with no incoming navigation links",
+      "severity": "medium",
+      "confidence": 0.94,
+      "evidence": "Page 'https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it.",
+      "affected_urls": [
+        "https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products"
+      ],
+      "suggested_action": {
+        "summary": "Add internal links pointing to 'https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products' from relevant parent categories, the main navigation, or related articles.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-003",
+      "category": "engagement",
+      "title": "Navigation links use vague, non-descriptive anchor text",
+      "severity": "medium",
+      "confidence": 0.86,
+      "evidence": "Page at 'https://www.mozilla.org/en-US/products/' contains 6 vague or empty link anchor texts: ['[Empty Anchor]', 'Learn more', 'Learn more', 'Learn more']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products' contains 11 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension.",
+      "affected_urls": [
+        "https://www.mozilla.org/en-US/products/",
+        "https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products"
+      ],
+      "suggested_action": {
+        "summary": "Replace generic anchor texts like 'click here' or 'read more' with descriptive labels indicating the destination content (e.g., 'View Enterprise Pricing Plans').",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "CO-001",
+      "category": "consistency",
+      "title": "Cross-page factual contradiction: Reported Business Metric",
+      "severity": "medium",
+      "confidence": 0.82,
+      "evidence": "Contradictory information detected for 'Reported Business Metric' across pages. Value [30 countries]: '30 countries' on https://www.mozilla.org/en-US/products/ (snippet: \"...zilla VPN Surf, stream and get work done on servers in over 30 countries for a secure internet connection with a new perspective. Ge...\") | Value [30+ countries]: '30+ countries' on https://www.mozilla.org/en-US/products/vpn/ (snippet: \"...iOS, Windows, macOS or Linux devices Access 500 servers in 30+ countries To download the app, scan the QR Code with your mobile devi...\"); '30+ countries' on https://www.mozilla.org/en-US/products/vpn/ (snippet: \"...N Features Connect up to 5 devices More than 500 servers in 30+ countries Fast network speeds even while gaming No logging, tracking...\"). Conflicting facts across authoritative pages diminish knowledge graph reliability.",
+      "affected_urls": [
+        "https://www.mozilla.org/en-US/products/",
+        "https://www.mozilla.org/en-US/products/vpn/"
+      ],
+      "suggested_action": {
+        "summary": "Reconcile 'Reported Business Metric' across affected pages (https://www.mozilla.org/en-US/products/, https://www.mozilla.org/en-US/products/vpn/) to present a single, canonical truth across the entire domain.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "EC-002",
+      "category": "entity",
+      "title": "Insufficient organization disambiguation and business description",
+      "severity": "medium",
+      "confidence": 0.75,
+      "evidence": "The website provides the entity name 'Mozilla Global', but fails to provide a clear, unambiguous statement of what the organization does, its industry category, and whom it serves. Detected industry: None. Description snippet: 'None...",
+      "affected_urls": [
+        "https://www.mozilla.org"
+      ],
+      "suggested_action": {
+        "summary": "Add a concise 1-2 sentence organization definition in plain readable text on the homepage and About page declaring organization type, industry, target audience, and primary offerings.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "TECH-MISSING_CANONICAL",
+      "category": "technical",
+      "title": "Page does not declare a canonical URL tag.",
+      "severity": "low",
+      "confidence": 0.96,
+      "evidence": "Page 'https://www.mozilla.org' reported MISSING_CANONICAL: Page does not declare a canonical URL tag.. Context: {'url': 'https://www.mozilla.org'}",
+      "affected_urls": [
+        "https://www.mozilla.org"
+      ],
+      "suggested_action": {
+        "summary": "Review and resolve technical issue 'MISSING_CANONICAL' on 'https://www.mozilla.org'.",
+        "priority": "low"
+      }
+    }
+  ],
+  "recommendations": [
+    {
+      "finding_id": "CC-003",
+      "category": "content_clarity",
+      "title": "Remediate Missing essential organizational attributes: geographic location / headquarters, direct contact details (email or telephone)",
+      "priority": "high",
+      "what_is_wrong": "The following issue was detected during the audit: A comprehensive scan across 10 crawled pages revealed no verifiable information for: geographic location / headquarters, direct contact details (email or telephone). Absence of these fundamental attributes degrades entity trust and prevents AI systems from corroborating corporate legitimacy..",
+      "where_it_occurs": [
+        "https://www.mozilla.org"
+      ],
+      "what_should_be_changed": "Publish unambiguous details for geographic location / headquarters, direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
+      "why_it_matters": "Issues categorized under 'content_clarity' with severity 'high' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the content_clarity audit against affected URLs to confirm that CC-003 is no longer reported."
+    },
+    {
+      "finding_id": "TECH-MISSING_META_DESCRIPTION",
+      "category": "technical",
+      "title": "Remediate Page is missing a meta description tag.",
+      "priority": "medium",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.mozilla.org/en-US/products/monitor/' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://www.mozilla.org/en-US/products/monitor/', 'description': ''} | Page 'https://www.mozilla.org/en-US/contribute/' reported MISSING_META_DESCRIPTION: Page is missing a meta description tag.. Context: {'url': 'https://www.mozilla.org/en-US/contribute/', 'description': ''}.",
+      "where_it_occurs": [
+        "https://www.mozilla.org/en-US/products/monitor/",
+        "https://www.mozilla.org/en-US/contribute/"
+      ],
+      "what_should_be_changed": "Review and resolve technical issue 'MISSING_META_DESCRIPTION' on 'https://www.mozilla.org/en-US/products/monitor/'.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'medium' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_META_DESCRIPTION is no longer reported."
+    },
+    {
+      "finding_id": "TECH-MISSING_H1",
+      "category": "technical",
+      "title": "Remediate Page lacks an H1 main heading tag.",
+      "priority": "medium",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.mozilla.org/en-US/products/monitor/' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://www.mozilla.org/en-US/products/monitor/', 'total_headings': 29} | Page 'https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products', 'total_headings': 0} | Page 'https://www.mozilla.org/en-US/products/monitor/' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation. | Page 'https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation..",
+      "where_it_occurs": [
+        "https://www.mozilla.org/en-US/products/monitor/",
+        "https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products"
+      ],
+      "what_should_be_changed": "Provide a descriptive <h1> element to establish primary topic structure.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'medium' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_H1 is no longer reported."
+    },
+    {
+      "finding_id": "TECH-RENDERING_FAILED",
+      "category": "technical",
+      "title": "Remediate Browser rendering failed: Playwright is not installed or available in this environment.. Fell back to static HTML.",
+      "priority": "medium",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products' reported RENDERING_FAILED: Browser rendering failed: Playwright is not installed or available in this environment.. Fell back to static HTML.. Context: {'reason': 'Empty Single-Page Application (SPA) root container detected', 'error': 'Playwright is not installed or available in this environment.'}.",
+      "where_it_occurs": [
+        "https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products"
+      ],
+      "what_should_be_changed": "Review and resolve technical issue 'RENDERING_FAILED' on 'https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products'.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'medium' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-RENDERING_FAILED is no longer reported."
+    },
+    {
+      "finding_id": "EC-003",
+      "category": "entity",
+      "title": "Add Schema.org Organization Structured Data Markup",
+      "priority": "medium",
+      "what_is_wrong": "The site does not publish Schema.org Organization or LocalBusiness JSON-LD markup. Observation: No JSON-LD Schema.org 'Organization' or 'LocalBusiness' definition was found on 'https://www.mozilla.org' or secondary pages. Structured entity metadata enables search engines and AI systems to ground the entity without heuristic guessing.",
+      "where_it_occurs": [
+        "https://www.mozilla.org"
+      ],
+      "what_should_be_changed": "Implement JSON-LD Schema.org 'Organization' or 'Corporation' on the homepage with fields: @context, @type, name, url, logo, description, and sameAs links.",
+      "why_it_matters": "Structured data is the primary machine-readable format used by search crawlers to construct verified knowledge panels.",
+      "verification_steps": "Validate the homepage with Google's Rich Results Test or re-run the entity audit."
+    },
+    {
+      "finding_id": "ENG-009",
+      "category": "engagement",
+      "title": "Integrate Orphaned Page into Site Navigation",
+      "priority": "medium",
+      "what_is_wrong": "An internal page has zero incoming links from any other inspected page on the website. Observation: Page 'https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it.",
+      "where_it_occurs": [
+        "https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products"
+      ],
+      "what_should_be_changed": "Add internal links pointing to 'https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products' from relevant parent categories, the main navigation, or related articles.",
+      "why_it_matters": "Orphaned pages receive zero PageRank equity and risk being dropped from search indices due to lack of internal link discovery.",
+      "verification_steps": "Re-run the internal linking audit and verify that the page receives at least 1-2 incoming internal links."
+    },
+    {
+      "finding_id": "ENG-003",
+      "category": "engagement",
+      "title": "Replace Vague Anchor Text with Descriptive Links",
+      "priority": "medium",
+      "what_is_wrong": "Navigation hyperlinks use non-descriptive anchor texts such as 'click here', 'read more', or empty text. Observation: Page at 'https://www.mozilla.org/en-US/products/' contains 6 vague or empty link anchor texts: ['[Empty Anchor]', 'Learn more', 'Learn more', 'Learn more']. Non-descriptive anchors hinder screen readers and search agent comprehension. | Page at 'https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products' contains 11 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension.",
+      "where_it_occurs": [
+        "https://www.mozilla.org/en-US/products/",
+        "https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products"
+      ],
+      "what_should_be_changed": "Replace generic anchor texts like 'click here' or 'read more' with descriptive labels indicating the destination content (e.g., 'View Enterprise Pricing Plans').",
+      "why_it_matters": "Descriptive anchor text provides semantic context to search crawlers and screen readers regarding the destination page content.",
+      "verification_steps": "Re-run the navigation check and verify that all hyperlinks contain descriptive destination-specific anchor text."
+    },
+    {
+      "finding_id": "CO-001",
+      "category": "consistency",
+      "title": "Resolve Cross-Page Factual Contradictions",
+      "priority": "medium",
+      "what_is_wrong": "Conflicting data points (such as founding dates, pricing, or locations) appear on different pages of the domain. Observation: Contradictory information detected for 'Reported Business Metric' across pages. Value [30 countries]: '30 countries' on https://www.mozilla.org/en-US/products/ (snippet: \"...zilla VPN Surf, stream and get work done on servers in over 30 countries for a secure internet connection with a new perspective. Ge...\") | Value [30+ countries]: '30+ countries' on https://www.mozilla.org/en-US/products/vpn/ (snippet: \"...iOS, Windows, macOS or Linux devices Access 500 servers in 30+ countries To download the app, scan the QR Code with your mobile devi...\"); '30+ countries' on https://www.mozilla.org/en-US/products/vpn/ (snippet: \"...N Features Connect up to 5 devices More than 500 servers in 30+ countries Fast network speeds even while gaming No logging, tracking...\"). Conflicting facts across authoritative pages diminish knowledge graph reliability.",
+      "where_it_occurs": [
+        "https://www.mozilla.org/en-US/products/",
+        "https://www.mozilla.org/en-US/products/vpn/"
+      ],
+      "what_should_be_changed": "Reconcile 'Reported Business Metric' across affected pages (https://www.mozilla.org/en-US/products/, https://www.mozilla.org/en-US/products/vpn/) to present a single, canonical truth across the entire domain.",
+      "why_it_matters": "Factual contradictions directly trigger AI hallucinations and cause AI search engines to flag the source as untrustworthy.",
+      "verification_steps": "Re-run the consistency audit to confirm zero cross-page fact conflicts in the knowledge graph."
+    },
+    {
+      "finding_id": "EC-002",
+      "category": "entity",
+      "title": "Provide Explicit Organization Description and Industry Classification",
+      "priority": "medium",
+      "what_is_wrong": "The website lacks clear business description text or industry disambiguation keywords. Observation: The website provides the entity name 'Mozilla Global', but fails to provide a clear, unambiguous statement of what the organization does, its industry category, and whom it serves. Detected industry: None. Description snippet: 'None...",
+      "where_it_occurs": [
+        "https://www.mozilla.org"
+      ],
+      "what_should_be_changed": "Add a concise 1-2 sentence organization definition in plain readable text on the homepage and About page declaring organization type, industry, target audience, and primary offerings.",
+      "why_it_matters": "Disambiguation is necessary for inclusion in AI knowledge graphs like Wikidata, Google Knowledge Graph, and Perplexity.",
+      "verification_steps": "Re-run the entity audit and confirm industry and description are detected with high confidence."
+    },
+    {
+      "finding_id": "TECH-MISSING_CANONICAL",
+      "category": "technical",
+      "title": "Remediate Page does not declare a canonical URL tag.",
+      "priority": "low",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://www.mozilla.org' reported MISSING_CANONICAL: Page does not declare a canonical URL tag.. Context: {'url': 'https://www.mozilla.org'}.",
+      "where_it_occurs": [
+        "https://www.mozilla.org"
+      ],
+      "what_should_be_changed": "Review and resolve technical issue 'MISSING_CANONICAL' on 'https://www.mozilla.org'.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'low' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_CANONICAL is no longer reported."
+    }
+  ],
+  "skill_statuses": {
+    "crawl-render-audit": "success",
+    "entity-content-freshness-trust": "success",
+    "engagement-recommendations": "success"
+  },
+  "summary": {
+    "total_findings": 10,
+    "critical": 0,
+    "high": 1,
+    "medium": 8,
+    "total_recommendations": 10,
+    "pages_analyzed": 10,
+    "crawled_urls": [
+      "https://developer.mozilla.org/en-US/plus?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products",
+      "https://www.mozilla.org",
+      "https://www.mozilla.org/en-US/",
+      "https://www.mozilla.org/en-US/about/",
+      "https://www.mozilla.org/en-US/about/manifesto/",
+      "https://www.mozilla.org/en-US/contribute/",
+      "https://www.mozilla.org/en-US/privacy/websites/cookie-settings/",
+      "https://www.mozilla.org/en-US/products/",
+      "https://www.mozilla.org/en-US/products/monitor/",
+      "https://www.mozilla.org/en-US/products/vpn/"
+    ],
+    "brand_ai_readiness_score": 57.0,
+    "readiness_grade": "F",
+    "score_heuristic_disclaimer": "Internal marketplace composite heuristic (100 - weighted severity deductions; not an official Adobe metric)"
+  },
+  "metadata": {
+    "max_pages": 10,
+    "max_depth": 2,
+    "confidence_threshold": 0.7,
+    "enable_rendering": true
+  }
+}

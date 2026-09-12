@@ -10,6 +10,7 @@ from typing import Any, Dict, List, Set
 
 from src.entity_trust.contracts.schemas import FindingAction, SeverityLevel
 from src.engagement.models import EngagementFinding
+from src.inspection.url import is_locale_root, is_regional_sibling
 
 
 def check_internal_linking(
@@ -54,6 +55,11 @@ def check_internal_linking(
     for page_url, sources in incoming_links.items():
         if page_url == hp_canonical:
             continue  # Homepage is the root entrypoint
+
+        # Regional sibling roots (e.g. /au/, /at/ during an /in/ audit) reached via sitemaps/selectors
+        # should not be penalized as orphaned internal pages of the audited locale.
+        if is_regional_sibling(homepage_url, page_url) and is_locale_root(page_url):
+            continue
 
         # Orphan page: 0 incoming links from audited pages
         if len(sources) == 0:

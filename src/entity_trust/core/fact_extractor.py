@@ -56,6 +56,15 @@ class FactExtractor:
         re.compile(r"/(?:news|article|articles|story|stories|tech/\d+|blog|blogs|opinion|reviews)/", re.I),
     ]
 
+    LEGAL_URL_PATTERNS = [
+        re.compile(r"/(?:legal|terms|privacy|ssa|policy|policies|compliance|agreements?|tos|gdpr|law|disclaimer)/?", re.I),
+    ]
+
+    MONTH_PREFIX_PATTERN = re.compile(
+        r"\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+\d+$",
+        re.I,
+    )
+
     THIRD_PARTY_BRAND_PATTERN = re.compile(
         r"\b(?:Anthropic|Apple|T-Mobile|Google|Microsoft|OpenAI|Amazon|Netflix|Meta|Tesla|Spotify)\b['’]?s?\s+",
         re.I,
@@ -66,10 +75,41 @@ class FactExtractor:
         return any(pat.search(url) for pat in cls.EDITORIAL_URL_PATTERNS)
 
     @classmethod
+    def _is_legal_page(cls, url: str) -> bool:
+        return any(pat.search(url) for pat in cls.LEGAL_URL_PATTERNS)
+
+    @classmethod
+    def _is_about_or_company_page(cls, url: str) -> bool:
+        return bool(re.search(r"/(?:about|company|corporate|who-we-are|our-story|overview)/?", url, re.I))
+
+    @classmethod
+    def _extract_brand_name(cls, url: str, meta_site_name: str = "") -> str:
+        if meta_site_name:
+            return meta_site_name.strip()
+        host = url
+        if "://" in host:
+            host = host.split("://", 1)[1]
+        host = host.split("/", 1)[0].split("?")[0].split(":")[0]
+        parts = host.split(".")
+        meaningful = [
+            p for p in parts
+            if p.lower() not in (
+                "www", "docs", "doc", "api", "app", "dev", "staging", "cdn",
+                "com", "org", "net", "io", "so", "edu", "gov", "co", "uk", "de", "ai"
+            )
+        ]
+        if meaningful:
+            return meaningful[0].lower()
+        return ""
+
+    @classmethod
     def extract_from_page(cls, parsed: ParsedPageContent) -> List[ExtractedFact]:
         facts: List[ExtractedFact] = []
         text = parsed.clean_text
         is_editorial = cls._is_editorial_page(parsed.url)
+        is_legal = cls._is_legal_page(parsed.url)
+        is_about = cls._is_about_or_company_page(parsed.url)
+        brand = cls._extract_brand_name(parsed.url, parsed.meta_site_name)
 
         # 1. Structured Data extraction (JSON-LD)
         for obj in parsed.json_ld_objects:
@@ -82,6 +122,16 @@ class FactExtractor:
                 norm = FactNormalizer.normalize_founding_year(raw)
                 if norm:
                     snippet = cls._get_snippet(text, match.start(), match.end())
+                    # Skip if snippet references known third-party brands
+                    if cls.THIRD_PARTY_BRAND_PATTERN.search(snippet):
+                        continue
+                    # On editorial pages (news, blog, reviews), require explicit brand anchoring or about-page context
+                    if is_editorial and not is_about:
+                        if not (brand and brand in snippet.lower()):
+                            continue
+                        # In editorial text, bare "since YYYY" often refers to personal tenure/events; require founding keywords
+                        if not re.search(r"\b(?:founded|established|started|est\.?)\b", snippet, re.I):
+                            continue
                     facts.append(
                         ExtractedFact(
                             fact_type="founding_year",
@@ -94,23 +144,40 @@ class FactExtractor:
                     )
 
         # 3. Headquarters from text
-        for pat in cls.HEADQUARTERS_PATTERNS:
-            for match in pat.finditer(text):
-                raw = match.group(1).strip()
-                if len(raw) > 2 and len(raw) < 50:
-                    norm = FactNormalizer.normalize_location(raw)
-                    if norm:
-                        snippet = cls._get_snippet(text, match.start(), match.end())
-                        facts.append(
-                            ExtractedFact(
-                                fact_type="headquarters",
-                                raw_value=raw,
-                                normalized=norm,
-                                source_url=parsed.url,
-                                context_snippet=snippet,
-                                confidence=0.85,
+        # Exclude matches occurring within legal/policy/terms pages unless explicitly an About page
+        if not (is_legal and not is_about):
+            for pat in cls.HEADQUARTERS_PATTERNS:
+                for match in pat.finditer(text):
+                    raw = match.group(1).strip()
+                    if len(raw) > 2 and len(raw) < 50:
+                        norm = FactNormalizer.normalize_location(raw)
+                        if norm:
+                            snippet = cls._get_snippet(text, match.start(), match.end())
+                            # Skip if snippet references known third-party brands
+                            if cls.THIRD_PARTY_BRAND_PATTERN.search(snippet):
+                                continue
+                            # Skip legal jurisdiction / governing law / customer location clauses
+                            if re.search(r"\b(?:user|customer|party|parties|dispute|arbitration|court|courts|resident|citizen|jurisdiction|denominated currency)\s+(?:is\s+)?located\s+in\b", snippet, re.I):
+                                continue
+                            if is_editorial and not is_about:
+                                if not (brand and brand in snippet.lower()):
+                                    continue
+                            # If not on an About/Company page or homepage, require entity anchoring or explicit corporate keywords
+                            is_homepage = parsed.url.rstrip("/").count("/") <= 3
+                            if not is_about and not is_homepage:
+                                has_entity_anchor = (brand and brand in snippet.lower()) or bool(re.search(r"\b(?:headquarter|headquartered|headquarters|corporate office|main office|our office)\b", snippet, re.I))
+                                if not has_entity_anchor:
+                                    continue
+                            facts.append(
+                                ExtractedFact(
+                                    fact_type="headquarters",
+                                    raw_value=raw,
+                                    normalized=norm,
+                                    source_url=parsed.url,
+                                    context_snippet=snippet,
+                                    confidence=0.85,
+                                )
                             )
-                        )
 
         # 4. Pricing from text (Skip non-product generic article text quoting third parties)
         if not is_editorial:
@@ -171,12 +238,23 @@ class FactExtractor:
         for pat in cls.METRIC_PATTERNS:
             for match in pat.finditer(text):
                 raw_metric = match.group(1).strip()
+                # Check if match is preceded by a month name (e.g., "September 12 Customers")
+                preceding_text = text[max(0, match.start() - 30):match.start()].strip()
+                if cls.MONTH_PREFIX_PATTERN.search(preceding_text):
+                    continue
+                # Check if number is a lone footnote or item number at sentence end e.g. "equally. 7 Users can"
+                if re.search(r"[\.\?\!]\s*$", preceding_text) and re.match(r"^\d{1,2}\s+[A-Z]", raw_metric):
+                    continue
                 norm = NormalizedFact(
                     fact_type="metric",
                     canonical_value=raw_metric.lower(),
                     raw_value=raw_metric,
                 )
                 snippet = cls._get_snippet(text, match.start(), match.end())
+                # On editorial/news pages, metric must represent organizational scale, not article narrative
+                if is_editorial and not is_about:
+                    if not (brand and brand in snippet.lower()) and not re.search(r"\b(?:over|more than|serving|trusted by|scale|worldwide|globally|\bmillion\b|\bbillion\b|\bk\+?\b)\b", snippet, re.I):
+                        continue
                 facts.append(
                     ExtractedFact(
                         fact_type="metric",

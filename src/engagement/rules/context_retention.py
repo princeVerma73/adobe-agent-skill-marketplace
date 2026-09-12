@@ -10,9 +10,7 @@ from typing import Any, Dict, List
 
 from src.entity_trust.contracts.schemas import FindingAction, SeverityLevel
 from src.engagement.models import EngagementFinding
-
-
-LOCALE_ROOT_PATTERN = re.compile(r"^/[a-z]{2}(?:-[a-zA-Z]{2,4})?/?$", re.IGNORECASE)
+from src.inspection.url import is_locale_root
 
 
 def check_context_retention(
@@ -29,12 +27,17 @@ def check_context_retention(
         if url.rstrip("/") == hp_canonical:
             continue  # Homepage is the root
 
+        # Regional root portals (e.g. /au/, /at/, /ae_ar/, /africa/) are localized homepages,
+        # not deep content landing pages requiring a parent link back to the audited locale.
+        if is_locale_root(url):
+            continue
+
         crawl_depth = page.get("crawl_depth", 0)
         parsed_path = urllib.parse.urlparse(url).path.strip("/")
         path_segments = [s for s in parsed_path.split("/") if s]
 
-        # Consider deep if crawl_depth >= 1 or has path segments
-        if not path_segments and crawl_depth == 0:
+        # Consider deep only if it has path segments (root domain has empty path)
+        if not path_segments:
             continue
 
         title = (page.get("title") or "").strip()
@@ -63,12 +66,12 @@ def check_context_retention(
                 has_home_link = True
                 break
 
-            # Check for localized homepage paths (e.g., /en-US/, /en/, /de/, /fr/)
+            # Check for localized homepage paths (e.g., /en-US/, /en/, /de/, /fr/, /ae_ar/)
             parsed_link = urllib.parse.urlparse(raw_target)
             link_host = parsed_link.netloc.lower()
             root_host = parsed_hp.netloc.lower()
             if not link_host or link_host == root_host:
-                if LOCALE_ROOT_PATTERN.match(parsed_link.path):
+                if is_locale_root(parsed_link.path):
                     has_home_link = True
                     break
 

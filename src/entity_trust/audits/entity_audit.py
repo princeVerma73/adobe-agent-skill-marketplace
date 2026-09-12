@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import re
 from typing import Any, Dict, List, Optional, Tuple
+from src.inspection.url import is_regional_sibling, is_same_locale
 from ..contracts.schemas import (
     CategoryType,
     EntityProfile,
@@ -28,11 +29,23 @@ GENERIC_H1S = {
 }
 
 INDUSTRY_KEYWORDS = [
-    "software", "saas", "fintech", "healthcare", "consulting", "e-commerce", "retail",
-    "manufacturing", "logistics", "education", "edtech", "biotech", "aerospace",
-    "legal", "real estate", "hospitality", "telecommunications", "cybersecurity",
-    "cloud computing", "media", "energy", "automotive", "finance", "banking",
+    "software", "saas", "developer tools", "cloud computing", "fintech", "payments",
+    "finance", "banking", "healthcare", "consulting", "e-commerce", "retail",
+    "manufacturing", "logistics", "education", "edtech", "e-learning", "competitive programming",
+    "programming", "coding", "biotech", "aerospace", "legal", "real estate",
+    "hospitality", "telecommunications", "cybersecurity", "media", "energy", "automotive",
+    "artificial intelligence", "machine learning",
 ]
+
+OFFERING_IGNORE_WORDS = {
+    "home", "index", "login", "log in", "signin", "sign in", "signup", "sign up",
+    "register", "logout", "log out", "cart", "checkout", "search", "menu", "close",
+    "back", "next", "previous", "view all", "learn more", "read more", "get started",
+    "cookie", "cookies", "privacy policy", "terms of service", "terms", "legal",
+    "all rights reserved", "toggle navigation", "navigation", "skip to content",
+    "about", "about us", "contact", "contact us", "faq", "help", "blog", "news",
+    "careers", "press",
+}
 
 
 def _extract_domain_brand(site_or_url: str) -> str:
@@ -68,6 +81,8 @@ def _extract_domain_brand(site_or_url: str) -> str:
             return "NASA"
         if cand.lower() == "mit":
             return "MIT"
+        if cand.lower() == "codechef":
+            return "CodeChef"
         return cand.capitalize()
     return host
 
@@ -128,23 +143,76 @@ def audit_entity(
     homepage_url = snapshot.homepage.url
     domain_brand = _extract_domain_brand(snapshot.site or homepage_url)
 
-    # 1. Discover Organization Name & Names Across Surfaces
+    # 1. Discover Organization Name & Schema.org attributes
     discovered_names: Dict[str, str] = {}  # source -> name
     name_source = "fallback"
 
-    # From JSON-LD Schema
     schema_org_found = False
     schema_org_name = ""
-    for page in parsed_pages:
+    schema_org_type = "Organization"
+    schema_org_desc = ""
+    schema_org_email = ""
+    schema_org_phone = ""
+    schema_org_founding_year: Optional[int] = None
+    schema_org_address = ""
+    schema_org_same_as: List[str] = []
+    schema_org_offerings: List[str] = []
+
+    sorted_pages = sorted(
+        parsed_pages,
+        key=lambda p: (
+            0 if p.url.rstrip("/") == homepage_url.rstrip("/") else (
+                1 if is_same_locale(homepage_url, p.url) else 2
+            )
+        ),
+    )
+    for page in sorted_pages:
         for item in page.json_ld_objects:
             t = str(item.get("@type", ""))
-            if any(k in t.lower() for k in ("organization", "corporation", "localbusiness", "company")):
+            if any(k in t.lower() for k in ("organization", "corporation", "localbusiness", "company", "educationalorganization")):
                 schema_org_found = True
+                schema_org_type = t
                 name = item.get("name")
-                if name:
-                    schema_org_name = str(name).strip()
-                    discovered_names["schema_org"] = schema_org_name
-                    name_source = "schema_org"
+                if name and not schema_org_name:
+                    # Do not let regional sibling roots override audited locale entity name
+                    if not is_regional_sibling(homepage_url, page.url):
+                        schema_org_name = str(name).strip()
+                        discovered_names["schema_org"] = schema_org_name
+                        name_source = "schema_org"
+
+                if not schema_org_desc and item.get("description"):
+                    schema_org_desc = str(item["description"]).strip()
+
+                if not schema_org_email and item.get("email"):
+                    schema_org_email = str(item["email"]).strip()
+
+                if not schema_org_phone and item.get("telephone"):
+                    schema_org_phone = str(item["telephone"]).strip()
+
+                if schema_org_founding_year is None and item.get("foundingDate"):
+                    year_match = re.search(r"\b((?:19|20)\d{2})\b", str(item["foundingDate"]))
+                    if year_match:
+                        schema_org_founding_year = int(year_match.group(1))
+
+                if not schema_org_address and item.get("address"):
+                    addr = item["address"]
+                    if isinstance(addr, dict):
+                        parts = [str(v) for v in (addr.get("addressLocality"), addr.get("addressRegion"), addr.get("addressCountry")) if v]
+                        schema_org_address = ", ".join(parts)
+                    elif isinstance(addr, str):
+                        schema_org_address = addr.strip()
+
+                same_as = item.get("sameAs", [])
+                if isinstance(same_as, list):
+                    schema_org_same_as.extend([str(s) for s in same_as if isinstance(s, str)])
+                elif isinstance(same_as, str):
+                    schema_org_same_as.append(same_as)
+
+            # Check offerings in JSON-LD
+            if any(k in t.lower() for k in ("product", "course", "service", "softwareapplication")):
+                p_name = item.get("name")
+                if p_name and str(p_name) not in schema_org_offerings:
+                    schema_org_offerings.append(str(p_name))
 
     # From OpenGraph / Meta Site Name
     if homepage_parsed.meta_site_name:
@@ -219,7 +287,6 @@ def audit_entity(
         )
 
     # 3. Check 2 & 4: Organization Description & Disambiguation
-    # Combine homepage meta description, homepage body text, and about page text
     about_text = ""
     for page in parsed_pages:
         if "about" in page.url.lower():
@@ -230,7 +297,14 @@ def audit_entity(
     detected_industry = None
     for ind in INDUSTRY_KEYWORDS:
         if re.search(rf"\b{re.escape(ind)}\b", combined_text, re.I):
-            detected_industry = ind
+            if ind in ("competitive programming", "coding", "programming", "e-learning", "edtech"):
+                detected_industry = "education"
+            elif ind in ("developer tools", "cloud computing", "saas", "software"):
+                detected_industry = "software"
+            elif ind in ("payments", "finance", "banking", "fintech"):
+                detected_industry = "fintech"
+            else:
+                detected_industry = ind
             break
 
     # Look for definitive entity definition phrases
@@ -239,7 +313,19 @@ def audit_entity(
         re.I,
     )
     def_match = definition_pattern.search(combined_text)
-    primary_description = def_match.group(0).strip() if def_match else homepage_parsed.meta_description
+
+    # Robust multi-source description fallback
+    primary_description = (
+        schema_org_desc
+        or (def_match.group(0).strip() if def_match else "")
+        or homepage_parsed.meta_description
+    )
+
+    if not primary_description and homepage_parsed.paragraphs:
+        for p in homepage_parsed.paragraphs:
+            if len(p) >= 40 and not any(k in p.lower() for k in ("cookie", "javascript", "browser", "rights reserved", "terms of use")):
+                primary_description = p
+                break
 
     # Evaluate entity disambiguation clarity
     has_concrete_description = bool(def_match or len(homepage_parsed.meta_description) > 30)
@@ -300,7 +386,86 @@ def audit_entity(
             )
         )
 
-    # 5. Build Consolidated Entity Profile
+    # 5. Extract Contact Email & Phone
+    candidate_emails = []
+    if schema_org_email:
+        candidate_emails.append(schema_org_email)
+    candidate_emails.extend(homepage_parsed.emails)
+    for p in parsed_pages:
+        for em in p.emails:
+            if em not in candidate_emails:
+                candidate_emails.append(em)
+
+    primary_email = None
+    if candidate_emails:
+        # Prioritize domain/brand matching or support/contact/help/info prefixes
+        domain_part = domain_brand.lower().replace(" ", "")
+        for em in candidate_emails:
+            if domain_part in em or any(em.startswith(pfx) for pfx in ("contact@", "support@", "help@", "info@", "hello@")):
+                primary_email = em
+                break
+        if not primary_email:
+            primary_email = candidate_emails[0]
+
+    primary_phone = schema_org_phone or (homepage_parsed.phone_numbers[0] if homepage_parsed.phone_numbers else None)
+
+    # 6. Extract Products & Services from Navigation, Headings & Schema
+    detected_products: List[str] = []
+    detected_services: List[str] = []
+
+    raw_offerings = list(schema_org_offerings)
+    raw_offerings.extend(homepage_parsed.nav_items)
+    for h2 in homepage_parsed.h2s:
+        if 2 <= len(h2) <= 35 and len(h2.split()) <= 4:
+            raw_offerings.append(h2)
+
+    SERVICE_INDICATORS = {
+        "service", "services", "solution", "solutions", "consulting", "support",
+        "enterprise", "plan", "plans", "pricing", "certification", "certifications",
+        "training", "hiring", "jobs", "preparation", "prep", "assessment",
+    }
+
+    seen_offerings = set()
+    for item in raw_offerings:
+        cleaned_item = item.strip()
+        item_lower = cleaned_item.lower()
+        if (
+            len(cleaned_item) < 2
+            or len(cleaned_item) > 40
+            or item_lower in OFFERING_IGNORE_WORDS
+            or item_lower in GENERIC_TITLES
+            or item_lower in GENERIC_H1S
+            or item_lower in seen_offerings
+        ):
+            continue
+        seen_offerings.add(item_lower)
+
+        if any(si in item_lower for si in SERVICE_INDICATORS):
+            if len(detected_services) < 8:
+                detected_services.append(cleaned_item)
+        else:
+            if len(detected_products) < 8:
+                detected_products.append(cleaned_item)
+
+    # 7. Extract Founding Year & Location
+    detected_founding_year = schema_org_founding_year
+    if detected_founding_year is None:
+        for stmt in homepage_parsed.copyright_statements:
+            ym = re.search(r"\b((?:19|20)\d{2})\b", stmt)
+            if ym:
+                detected_founding_year = int(ym.group(1))
+                break
+
+    detected_location = schema_org_address or None
+
+    # 8. Extract Social Profiles
+    detected_social_profiles: List[str] = list(schema_org_same_as)
+    for p in parsed_pages:
+        for sl in p.social_links:
+            if sl not in detected_social_profiles:
+                detected_social_profiles.append(sl)
+
+    # 9. Build Consolidated Entity Profile
     if schema_org_found and has_concrete_description:
         conf_score = 0.92
     elif schema_org_found or footer_brand:
@@ -312,9 +477,16 @@ def audit_entity(
 
     profile = EntityProfile(
         name=primary_name,
-        type="Organization",
+        type=schema_org_type or "Organization",
         description=primary_description or None,
         industry=detected_industry,
+        location=detected_location,
+        founding_year=detected_founding_year,
+        products=detected_products,
+        services=detected_services,
+        contact_email=primary_email,
+        contact_phone=primary_phone,
+        social_profiles=detected_social_profiles,
         confidence_score=conf_score,
     )
 

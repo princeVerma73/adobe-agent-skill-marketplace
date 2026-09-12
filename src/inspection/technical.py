@@ -38,14 +38,15 @@ def check_http_status(page: PageInspection) -> List[TechnicalIssue]:
     issues: List[TechnicalIssue] = []
 
     if page.status_code is None:
-        issues.append(
-            TechnicalIssue(
-                code="HTTP_UNREACHABLE",
-                message="Page did not return a valid HTTP status code or connection failed.",
-                severity="error",
-                details={"url": page.url, "original_url": page.original_url},
+        if page.allowed_by_robots:
+            issues.append(
+                TechnicalIssue(
+                    code="HTTP_UNREACHABLE",
+                    message="Page did not return a valid HTTP status code or connection failed.",
+                    severity="error",
+                    details={"url": page.url, "original_url": page.original_url},
+                )
             )
-        )
     elif page.status_code >= 500:
         issues.append(
             TechnicalIssue(

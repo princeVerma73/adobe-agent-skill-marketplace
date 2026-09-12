@@ -1,0 +1,286 @@
+{
+  "site": "www.notion.so",
+  "root_url": "https://www.notion.so",
+  "audited_at": "2026-09-12T05:22:11.794758+00:00",
+  "status": "success",
+  "overall_score": 50.0,
+  "readiness_grade": "F",
+  "severity_counts": {
+    "critical": 0,
+    "high": 3,
+    "medium": 5,
+    "low": 0,
+    "info": 0
+  },
+  "entity_profile": {
+    "name": "Notion Labs, Inc",
+    "type": "Organization",
+    "description": null,
+    "industry": null,
+    "location": null,
+    "founding_year": null,
+    "products": [],
+    "services": [],
+    "contact_email": null,
+    "contact_phone": null,
+    "social_profiles": [],
+    "confidence_score": 0.65
+  },
+  "findings": [
+    {
+      "id": "ENG-004",
+      "category": "engagement",
+      "title": "Homepage lacks primary navigation paths to core sections",
+      "severity": "high",
+      "confidence": 0.9,
+      "evidence": "Homepage at 'https://www.notion.so' does not link to any of the 2 other discovered internal pages. Visitors arriving on the homepage cannot discover subpages.",
+      "affected_urls": [
+        "https://www.notion.so"
+      ],
+      "suggested_action": {
+        "summary": "Implement a primary navigation header or menu linking to major site sections (e.g., About, Products, Pricing, Contact).",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "EC-002",
+      "category": "entity",
+      "title": "Insufficient organization disambiguation and business description",
+      "severity": "high",
+      "confidence": 0.89,
+      "evidence": "The website provides the entity name 'Notion Labs, Inc', but fails to provide a clear, unambiguous statement of what the organization does, its industry category, and whom it serves. Detected industry: None. Description snippet: 'None...",
+      "affected_urls": [
+        "https://www.notion.com/"
+      ],
+      "suggested_action": {
+        "summary": "Add a concise 1-2 sentence organization definition in plain readable text on the homepage and About page declaring organization type, industry, target audience, and primary offerings.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "CC-003",
+      "category": "content_clarity",
+      "title": "Missing essential organizational attributes: geographic location / headquarters, direct contact details (email or telephone)",
+      "severity": "high",
+      "confidence": 0.86,
+      "evidence": "A comprehensive scan across 2 crawled pages revealed no verifiable information for: geographic location / headquarters, direct contact details (email or telephone). Absence of these fundamental attributes degrades entity trust and prevents AI systems from corroborating corporate legitimacy.",
+      "affected_urls": [
+        "https://www.notion.com/"
+      ],
+      "suggested_action": {
+        "summary": "Publish unambiguous details for geographic location / headquarters, direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "TECH-MISSING_H1",
+      "category": "technical",
+      "title": "Page lacks an H1 main heading tag.",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": "Page 'https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac', 'total_headings': 6} | Page 'https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation.",
+      "affected_urls": [
+        "https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac"
+      ],
+      "suggested_action": {
+        "summary": "Provide a descriptive <h1> element to establish primary topic structure.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "EC-003",
+      "category": "entity",
+      "title": "Missing Schema.org Organization structured data",
+      "severity": "medium",
+      "confidence": 0.95,
+      "evidence": "No JSON-LD Schema.org 'Organization' or 'LocalBusiness' definition was found on 'https://www.notion.com/' or secondary pages. Structured entity metadata enables search engines and AI systems to ground the entity without heuristic guessing.",
+      "affected_urls": [
+        "https://www.notion.com/"
+      ],
+      "suggested_action": {
+        "summary": "Implement JSON-LD Schema.org 'Organization' or 'Corporation' on the homepage with fields: @context, @type, name, url, logo, description, and sameAs links.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-009",
+      "category": "engagement",
+      "title": "Orphaned internal page with no incoming navigation links",
+      "severity": "medium",
+      "confidence": 0.94,
+      "evidence": "Page 'https://www.notion.com' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it.",
+      "affected_urls": [
+        "https://www.notion.com",
+        "https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac"
+      ],
+      "suggested_action": {
+        "summary": "Add internal links pointing to 'https://www.notion.com' from relevant parent categories, the main navigation, or related articles.",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-015",
+      "category": "engagement",
+      "title": "Deep landing page lacks navigation link back to homepage",
+      "severity": "medium",
+      "confidence": 0.9,
+      "evidence": "Direct landing page 'https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac' has no link back to the root homepage 'https://www.notion.so'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal.",
+      "affected_urls": [
+        "https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac"
+      ],
+      "suggested_action": {
+        "summary": "Include a logo/home link or breadcrumb navigation on 'https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac' that connects back to the homepage ('https://www.notion.so').",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "ENG-003",
+      "category": "engagement",
+      "title": "Navigation links use vague, non-descriptive anchor text",
+      "severity": "medium",
+      "confidence": 0.86,
+      "evidence": "Page at 'https://www.notion.com/' contains 16 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension.",
+      "affected_urls": [
+        "https://www.notion.com/"
+      ],
+      "suggested_action": {
+        "summary": "Replace generic anchor texts like 'click here' or 'read more' with descriptive labels indicating the destination content (e.g., 'View Enterprise Pricing Plans').",
+        "priority": "medium"
+      }
+    }
+  ],
+  "recommendations": [
+    {
+      "finding_id": "ENG-004",
+      "category": "engagement",
+      "title": "Implement Primary Navigation Linking to Core Sections",
+      "priority": "high",
+      "what_is_wrong": "The homepage lacks a primary navigation bar or menu linking to core subpages discovered on the domain. Observation: Homepage at 'https://www.notion.so' does not link to any of the 2 other discovered internal pages. Visitors arriving on the homepage cannot discover subpages.",
+      "where_it_occurs": [
+        "https://www.notion.so"
+      ],
+      "what_should_be_changed": "Implement a primary navigation header or menu linking to major site sections (e.g., About, Products, Pricing, Contact).",
+      "why_it_matters": "Visitors and search crawlers landing on the root domain need predictable discovery pathways to navigate the site architecture.",
+      "verification_steps": "Re-run the engagement audit to ensure the homepage contains links to core subpages and ENG-004 is cleared."
+    },
+    {
+      "finding_id": "EC-002",
+      "category": "entity",
+      "title": "Provide Explicit Organization Description and Industry Classification",
+      "priority": "high",
+      "what_is_wrong": "The website lacks clear business description text or industry disambiguation keywords. Observation: The website provides the entity name 'Notion Labs, Inc', but fails to provide a clear, unambiguous statement of what the organization does, its industry category, and whom it serves. Detected industry: None. Description snippet: 'None...",
+      "where_it_occurs": [
+        "https://www.notion.com/"
+      ],
+      "what_should_be_changed": "Add a concise 1-2 sentence organization definition in plain readable text on the homepage and About page declaring organization type, industry, target audience, and primary offerings.",
+      "why_it_matters": "Disambiguation is necessary for inclusion in AI knowledge graphs like Wikidata, Google Knowledge Graph, and Perplexity.",
+      "verification_steps": "Re-run the entity audit and confirm industry and description are detected with high confidence."
+    },
+    {
+      "finding_id": "CC-003",
+      "category": "content_clarity",
+      "title": "Remediate Missing essential organizational attributes: geographic location / headquarters, direct contact details (email or telephone)",
+      "priority": "high",
+      "what_is_wrong": "The following issue was detected during the audit: A comprehensive scan across 2 crawled pages revealed no verifiable information for: geographic location / headquarters, direct contact details (email or telephone). Absence of these fundamental attributes degrades entity trust and prevents AI systems from corroborating corporate legitimacy..",
+      "where_it_occurs": [
+        "https://www.notion.com/"
+      ],
+      "what_should_be_changed": "Publish unambiguous details for geographic location / headquarters, direct contact details (email or telephone) in a standard Contact or About page and in Schema.org structured metadata.",
+      "why_it_matters": "Issues categorized under 'content_clarity' with severity 'high' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the content_clarity audit against affected URLs to confirm that CC-003 is no longer reported."
+    },
+    {
+      "finding_id": "TECH-MISSING_H1",
+      "category": "technical",
+      "title": "Remediate Page lacks an H1 main heading tag.",
+      "priority": "medium",
+      "what_is_wrong": "The following issue was detected during the audit: Page 'https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac' reported MISSING_H1: Page lacks an H1 main heading tag.. Context: {'url': 'https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac', 'total_headings': 6} | Page 'https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac' does not have an <h1> heading defining the page topic. Users landing directly on this page receive no prominent topical orientation..",
+      "where_it_occurs": [
+        "https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac"
+      ],
+      "what_should_be_changed": "Provide a descriptive <h1> element to establish primary topic structure.",
+      "why_it_matters": "Issues categorized under 'technical' with severity 'medium' negatively affect user experience, discoverability, or brand grounding in autonomous AI workflows.",
+      "verification_steps": "Re-run the technical audit against affected URLs to confirm that TECH-MISSING_H1 is no longer reported."
+    },
+    {
+      "finding_id": "EC-003",
+      "category": "entity",
+      "title": "Add Schema.org Organization Structured Data Markup",
+      "priority": "medium",
+      "what_is_wrong": "The site does not publish Schema.org Organization or LocalBusiness JSON-LD markup. Observation: No JSON-LD Schema.org 'Organization' or 'LocalBusiness' definition was found on 'https://www.notion.com/' or secondary pages. Structured entity metadata enables search engines and AI systems to ground the entity without heuristic guessing.",
+      "where_it_occurs": [
+        "https://www.notion.com/"
+      ],
+      "what_should_be_changed": "Implement JSON-LD Schema.org 'Organization' or 'Corporation' on the homepage with fields: @context, @type, name, url, logo, description, and sameAs links.",
+      "why_it_matters": "Structured data is the primary machine-readable format used by search crawlers to construct verified knowledge panels.",
+      "verification_steps": "Validate the homepage with Google's Rich Results Test or re-run the entity audit."
+    },
+    {
+      "finding_id": "ENG-009",
+      "category": "engagement",
+      "title": "Integrate Orphaned Page into Site Navigation",
+      "priority": "medium",
+      "what_is_wrong": "An internal page has zero incoming links from any other inspected page on the website. Observation: Page 'https://www.notion.com' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it. | Page 'https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac' was crawled or indexed but has 0 incoming links from any other inspected page on the domain. Automated crawlers and human visitors cannot naturally discover it.",
+      "where_it_occurs": [
+        "https://www.notion.com",
+        "https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac"
+      ],
+      "what_should_be_changed": "Add internal links pointing to 'https://www.notion.com' from relevant parent categories, the main navigation, or related articles.",
+      "why_it_matters": "Orphaned pages receive zero PageRank equity and risk being dropped from search indices due to lack of internal link discovery.",
+      "verification_steps": "Re-run the internal linking audit and verify that the page receives at least 1-2 incoming internal links."
+    },
+    {
+      "finding_id": "ENG-015",
+      "category": "engagement",
+      "title": "Add Homepage Breadcrumbs to Deep Landing Pages",
+      "priority": "medium",
+      "what_is_wrong": "A deep subpage does not provide a navigation link back to the root homepage. Observation: Direct landing page 'https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac' has no link back to the root homepage 'https://www.notion.so'. Visitors arriving from external search engines or AI direct references cannot navigate back to the main brand portal.",
+      "where_it_occurs": [
+        "https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac"
+      ],
+      "what_should_be_changed": "Include a logo/home link or breadcrumb navigation on 'https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac' that connects back to the homepage ('https://www.notion.so').",
+      "why_it_matters": "Users arriving directly from search engines need instant orientation and a path back to the parent brand portal.",
+      "verification_steps": "Re-run the context retention audit and confirm that deep pages link back to the homepage."
+    },
+    {
+      "finding_id": "ENG-003",
+      "category": "engagement",
+      "title": "Replace Vague Anchor Text with Descriptive Links",
+      "priority": "medium",
+      "what_is_wrong": "Navigation hyperlinks use non-descriptive anchor texts such as 'click here', 'read more', or empty text. Observation: Page at 'https://www.notion.com/' contains 16 vague or empty link anchor texts: ['[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]', '[Empty Anchor]']. Non-descriptive anchors hinder screen readers and search agent comprehension.",
+      "where_it_occurs": [
+        "https://www.notion.com/"
+      ],
+      "what_should_be_changed": "Replace generic anchor texts like 'click here' or 'read more' with descriptive labels indicating the destination content (e.g., 'View Enterprise Pricing Plans').",
+      "why_it_matters": "Descriptive anchor text provides semantic context to search crawlers and screen readers regarding the destination page content.",
+      "verification_steps": "Re-run the navigation check and verify that all hyperlinks contain descriptive destination-specific anchor text."
+    }
+  ],
+  "skill_statuses": {
+    "crawl-render-audit": "success",
+    "entity-content-freshness-trust": "success",
+    "engagement-recommendations": "success"
+  },
+  "summary": {
+    "total_findings": 8,
+    "critical": 0,
+    "high": 3,
+    "medium": 5,
+    "total_recommendations": 8,
+    "pages_analyzed": 3,
+    "crawled_urls": [
+      "https://notion.notion.site/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac",
+      "https://www.notion.com/",
+      "https://www.notion.so"
+    ],
+    "brand_ai_readiness_score": 50.0,
+    "readiness_grade": "F",
+    "score_heuristic_disclaimer": "Internal marketplace composite heuristic (100 - weighted severity deductions; not an official Adobe metric)"
+  },
+  "metadata": {
+    "max_pages": 10,
+    "max_depth": 2,
+    "confidence_threshold": 0.7,
+    "enable_rendering": true
+  }
+}

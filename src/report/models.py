@@ -37,28 +37,40 @@ class ReportFinding(BaseModel):
     suggested_action: FindingAction = Field(..., description="Remediation summary and priority")
 
 
+class AuditSummary(BaseModel):
+    """Standard summary counts conforming to Adobe evaluation specifications."""
+    model_config = ConfigDict(extra="ignore")
+
+    total_findings: int = 0
+    critical: int = 0
+    high: int = 0
+    medium: int = 0
+
+
 class FinalAuditReport(BaseModel):
-    """Unified Adobe Brand AI-Readiness Audit Report."""
+    """Unified Adobe Brand AI-Readiness Audit Report conforming to Adobe specifications."""
     model_config = ConfigDict(extra="ignore")
 
     site: str = Field(..., description="Target site domain")
-    root_url: str = Field(..., description="Canonical root URL")
     audited_at: str = Field(
         default_factory=lambda: datetime.now(timezone.utc).isoformat()
     )
+    summary: AuditSummary = Field(
+        default_factory=AuditSummary, description="Official Adobe summary counts"
+    )
+    findings: List[ReportFinding] = Field(default_factory=list, description="All prioritized, deduplicated findings")
+    root_url: str = Field(..., description="Canonical root URL")
     status: str = Field(default="success", description="Audit status: success, partial_failure, error")
     overall_score: float = Field(default=100.0, ge=0.0, le=100.0, description="Brand AI-readiness score 0-100")
     readiness_grade: str = Field(default="A", description="Readiness grade: A, B, C, D, F")
     severity_counts: SeverityCounts = Field(default_factory=SeverityCounts)
     entity_profile: Optional[EntityProfile] = Field(default=None, description="Consolidated brand identity profile")
-    findings: List[ReportFinding] = Field(default_factory=list, description="All prioritized, deduplicated findings")
     recommendations: List[ActionableRecommendation] = Field(
         default_factory=list, description="Prioritized remediation roadmap"
     )
     skill_statuses: Dict[str, str] = Field(
         default_factory=dict, description="Execution status for each participating skill"
     )
-    summary: Dict[str, Any] = Field(default_factory=dict, description="Quantitative audit metrics and counts")
     metadata: Dict[str, Any] = Field(default_factory=dict, description="Crawl parameters and execution metadata")
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,6 +83,11 @@ class FinalAuditReport(BaseModel):
 
     def to_markdown(self) -> str:
         """Renders report as an executive Markdown document with tables and remediation roadmap."""
+        pages_count = (
+            self.metadata.get("pages_analyzed")
+            or len(self.metadata.get("crawled_urls", []))
+            or 1
+        )
         md_lines = [
             f"# Brand AI-Readiness Audit Report: {self.site}",
             "",
@@ -83,7 +100,7 @@ class FinalAuditReport(BaseModel):
             "",
             "## 1. Executive Summary",
             "",
-            f"An autonomous multi-skill audit was performed across **{self.summary.get('pages_analyzed', len(self.summary.get('crawled_urls', [])) or 1)}** page(s) on `{self.site}`. "
+            f"An autonomous multi-skill audit was performed across **{pages_count}** page(s) on `{self.site}`. "
             f"A total of **{len(self.findings)}** evidence-backed findings were identified and prioritized.",
             "",
             "### Severity Breakdown",
