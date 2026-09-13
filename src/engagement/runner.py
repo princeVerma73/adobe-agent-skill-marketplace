@@ -35,6 +35,8 @@ from src.engagement.rules import (
     check_related_content_continuation,
 )
 
+from src.inspection.url import is_canonical_equivalent, is_same_site, normalize_url
+
 SEVERITY_ORDER = {
     SeverityLevel.CRITICAL: 5,
     SeverityLevel.HIGH: 4,
@@ -48,6 +50,8 @@ def _extract_page_dict(p: Any, site_domain: str) -> Dict[str, Any]:
     """Normalizes various page representations (PageInspection, PageSnapshot, dict) into a uniform dict."""
     if isinstance(p, dict):
         url = p.get("url", "")
+        original_url = p.get("original_url", "")
+        redirect_chain = p.get("redirect_chain", [])
         title = p.get("title") or ""
         body_text = (
             p.get("body_text")
@@ -100,6 +104,8 @@ def _extract_page_dict(p: Any, site_domain: str) -> Dict[str, Any]:
     else:
         # Pydantic model (PageInspection or PageSnapshot)
         url = getattr(p, "url", "")
+        original_url = getattr(p, "original_url", "")
+        redirect_chain = getattr(p, "redirect_chain", [])
         title = getattr(p, "title", "") or ""
         body_text = (
             getattr(p, "body_text", None)
@@ -164,6 +170,8 @@ def _extract_page_dict(p: Any, site_domain: str) -> Dict[str, Any]:
 
     return {
         "url": url,
+        "original_url": original_url,
+        "redirect_chain": redirect_chain,
         "title": title,
         "body_text": body_text,
         "html": html,
@@ -217,6 +225,8 @@ def audit_engagement(
     if not pages_data and root_url:
         pages_data.append({
             "url": root_url,
+            "original_url": root_url,
+            "redirect_chain": [root_url],
             "title": "",
             "body_text": "",
             "html": "",
@@ -229,13 +239,35 @@ def audit_engagement(
 
     # Identify homepage page data
     homepage_data = None
+    # 1. First priority: page with crawl_depth == 0
     for p in pages_data:
-        u = p.get("url", "").rstrip("/")
-        if u == root_url.rstrip("/"):
+        if p.get("crawl_depth", 0) == 0:
             homepage_data = p
             break
+
+    # 2. Second priority: page matching root_url or canonical equivalent
+    if not homepage_data:
+        for p in pages_data:
+            u = p.get("url", "")
+            orig_u = p.get("original_url", "")
+            if (
+                is_canonical_equivalent(u, root_url)
+                or (orig_u and is_canonical_equivalent(orig_u, root_url))
+            ):
+                homepage_data = p
+                break
+
     if not homepage_data and pages_data:
         homepage_data = pages_data[0]
+
+    canonical_homepage_url = homepage_data.get("url", root_url) if homepage_data else root_url
+    homepage_aliases: Set[str] = {root_url, canonical_homepage_url}
+    if homepage_data:
+        if homepage_data.get("original_url"):
+            homepage_aliases.add(homepage_data["original_url"])
+        for r in homepage_data.get("redirect_chain", []):
+            if r:
+                homepage_aliases.add(r)
 
     all_findings: List[EngagementFinding] = []
 
@@ -248,7 +280,7 @@ def audit_engagement(
         ]
         all_findings.extend(
             check_homepage_orientation(
-                homepage_url=homepage_data.get("url", root_url),
+                homepage_url=canonical_homepage_url,
                 title=homepage_data.get("title"),
                 h1s=hp_h1s,
                 body_text=homepage_data.get("body_text"),
@@ -258,8 +290,13 @@ def audit_engagement(
 
     # 4. Rule 2: Navigation Analysis
     all_findings.extend(
-        check_navigation(homepage_url=root_url, pages_data=pages_data)
+        check_navigation(
+            homepage_url=canonical_homepage_url,
+            pages_data=pages_data,
+            homepage_aliases=homepage_aliases,
+        )
     )
+
 
     # 5. Rule 3: Information Hierarchy
     all_findings.extend(

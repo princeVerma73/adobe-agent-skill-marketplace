@@ -11,6 +11,7 @@ from typing import Any, Dict, List, Set
 
 from src.entity_trust.contracts.schemas import FindingAction, SeverityLevel
 from src.engagement.models import EngagementFinding
+from src.inspection.url import is_canonical_equivalent, is_same_site
 
 
 CTA_PATTERNS = [
@@ -48,12 +49,20 @@ def check_cta_clarity(
     homepage_page = None
     for p in pages_data:
         u = p.get("url", "")
-        if u == homepage_url or u.rstrip("/") == homepage_url.rstrip("/"):
+        orig_u = p.get("original_url", "")
+        if (
+            u == homepage_url
+            or u.rstrip("/") == homepage_url.rstrip("/")
+            or is_canonical_equivalent(u, homepage_url)
+            or (orig_u and is_canonical_equivalent(orig_u, homepage_url))
+        ):
             homepage_page = p
             break
 
     if not homepage_page:
         return findings
+
+
 
     if homepage_page:
         hp_url = homepage_page.get("url", "")

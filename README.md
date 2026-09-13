@@ -418,6 +418,9 @@ In accordance with transparent engineering principles, the marketplace operates 
 - **WAF / Bot Protection**: Websites protected by aggressive Web Application Firewalls (Cloudflare Turnstile, Akamai Bot Manager) returning HTTP 403/503 may yield partial inspection data.
 - **Internal Cross-Page Corroboration**: Factual consistency and entity grounding are evaluated strictly across the site's own crawled DOM and metadata without querying unverified external third-party APIs.
 - **Content-Dependent Extraction**: Analysis is limited to accessible textual content, semantic HTML tags, and structured JSON-LD present in the static source or rendered DOM.
+- **Live Crawl Variance**: Because audits crawl live websites, scores and findings for the same domain can vary modestly between runs due to dynamic content shifts, crawl-order prioritization, or transient network conditions—reflecting genuine site state at execution time rather than nondeterminism in the marketplace's core heuristics.
+- **High-Entropy Numeric Identifiers**: Long numeric identifiers (such as wiki revision IDs, OTRS ticket numbers, or internal tracking strings) may occasionally trigger unanchored contact heuristics on complex CMS platforms.
+
 
 ---
 

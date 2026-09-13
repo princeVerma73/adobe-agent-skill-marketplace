@@ -68,12 +68,21 @@ class ReportBuilder:
             "entity-content-freshness-trust": "pending",
             "engagement-recommendations": "pending",
         }
-        self.known_urls: Set[str] = {root_url}
+        try:
+            norm_root = normalize_url(root_url)
+        except Exception:
+            norm_root = root_url
+        self.known_urls: Set[str] = {norm_root} if norm_root else set()
 
     def add_known_urls(self, urls: List[str]) -> "ReportBuilder":
         """Registers audited URLs for evidence validation."""
-        self.known_urls.update(urls)
+        for u in urls:
+            try:
+                self.known_urls.add(normalize_url(u))
+            except Exception:
+                self.known_urls.add(u)
         return self
+
 
     def add_technical_issues(
         self,

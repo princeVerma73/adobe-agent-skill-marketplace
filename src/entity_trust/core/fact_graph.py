@@ -62,7 +62,7 @@ class FactGraph:
         # Check if fact matches an existing cluster in this fact_type
         matched = False
         for cluster in clusters:
-            if not cluster.normalized_value.is_conflict(fact.normalized):
+            if self._facts_match_cluster(cluster.normalized_value, fact.normalized):
                 # Merges into cluster (they agree)
                 cluster.evidence_list.append(evidence)
                 matched = True
@@ -76,6 +76,20 @@ class FactGraph:
                 evidence_list=[evidence],
             )
             clusters.append(new_cluster)
+
+    @staticmethod
+    def _facts_match_cluster(cluster_val: NormalizedFact, fact_val: NormalizedFact) -> bool:
+        """Determines if a newly extracted fact belongs to an existing value cluster."""
+        if cluster_val.fact_type == "price":
+            if cluster_val.currency != fact_val.currency:
+                return False
+            if cluster_val.numeric_value is not None and fact_val.numeric_value is not None:
+                if abs(cluster_val.numeric_value - fact_val.numeric_value) > 0.01:
+                    return False
+            if cluster_val.fee_category != fact_val.fee_category:
+                return False
+            return True
+        return not cluster_val.is_conflict(fact_val)
 
     @staticmethod
     def _is_multi_tier_or_plan_option(ca: FactCluster, cb: FactCluster) -> bool:
@@ -103,6 +117,43 @@ class FactGraph:
         tier_a = [t for t in tiers if t in snippets_a]
         tier_b = [t for t in tiers if t in snippets_b]
         if tier_a and tier_b and set(tier_a) != set(tier_b):
+            return True
+
+        return False
+
+    @staticmethod
+    def _is_distinct_fee_category(ca: FactCluster, cb: FactCluster) -> bool:
+        """Determines if two price clusters represent distinct types of fees or services."""
+        # 1. Compare normalized fee categories
+        cat_a = ca.normalized_value.fee_category
+        cat_b = cb.normalized_value.fee_category
+        if cat_a and cat_b and cat_a != cat_b:
+            return True
+
+        # 2. Inspect evidence context snippets for distinct fee descriptors
+        snippets_a = " ".join(e.context_snippet.lower() for e in ca.evidence_list)
+        snippets_b = " ".join(e.context_snippet.lower() for e in cb.evidence_list)
+
+        fee_descriptors = {
+            "dispute": ("dispute", "chargeback", "inquiry", "resolution", "compelling evidence"),
+            "token": ("token", "tokens", "tokenization", "card saving", "vault", "card token"),
+            "step": ("step", "steps", "workflow", "workflows"),
+            "mdr": ("mdr", "interchange", "per transaction", "transaction fee", "cap"),
+            "setup": ("setup", "onboarding", "installation"),
+            "refund": ("refund", "reversal"),
+            "payout": ("payout", "withdrawal", "transfer fee"),
+            "bank_transfer": ("wire", "ach", "direct debit", "sepa"),
+        }
+
+        found_cats_a = {cat for cat, words in fee_descriptors.items() if any(w in snippets_a for w in words)}
+        found_cats_b = {cat for cat, words in fee_descriptors.items() if any(w in snippets_b for w in words)}
+
+        if found_cats_a and found_cats_b and found_cats_a.isdisjoint(found_cats_b):
+            return True
+
+        # If one has a specific fee category (e.g. dispute/token/mdr) and the other has none or plan
+        if (found_cats_a and not found_cats_b and any(w in snippets_b for w in ("plan", "subscription", "starts at", "pricing:"))) or \
+           (found_cats_b and not found_cats_a and any(w in snippets_a for w in ("plan", "subscription", "starts at", "pricing:"))):
             return True
 
         return False
@@ -156,8 +207,11 @@ class FactGraph:
                             continue
 
                         # For pricing facts: check if they represent multi-tier or billing period options
-                        if fact_type == "price" and self._is_multi_tier_or_plan_option(ca, cb):
-                            continue
+                        if fact_type == "price":
+                            if self._is_multi_tier_or_plan_option(ca, cb):
+                                continue
+                            if self._is_distinct_fee_category(ca, cb):
+                                continue
 
                         # For metric facts: check if they represent distinct products or metric units
                         if fact_type == "metric" and self._is_distinct_product_or_subject_metric(ca, cb):

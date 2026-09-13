@@ -38,6 +38,7 @@ from src.inspection.url import (
     PrivateTargetError,
     extract_hostname,
     extract_locale_prefix,
+    is_canonical_equivalent,
     is_private_or_local_target,
     is_regional_sibling,
     is_same_locale,
@@ -163,6 +164,7 @@ class InspectionPipeline:
             sitemap_inspection = SitemapInspection(checked=False, found=False)
 
         # 4. Bounded BFS Crawl + Extraction + Selective Rendering
+        canonical_root = normalized_root
         queue: Deque[Tuple[str, int]] = deque([(normalized_root, 0)])
         visited_urls: Set[str] = set()
         enqueued_urls: Set[str] = {normalized_root}
@@ -176,6 +178,7 @@ class InspectionPipeline:
                     norm_s = normalize_url(s_url)
                     if (
                         norm_s not in enqueued_urls
+                        and not is_canonical_equivalent(norm_s, normalized_root)
                         and is_same_site(normalized_root, norm_s)
                     ):
                         if is_regional_sibling(normalized_root, norm_s):
@@ -240,6 +243,34 @@ class InspectionPipeline:
             page = fetch_resp.to_page_inspection(crawl_depth=depth)
             page.allowed_by_robots = True
 
+            # Register all redirect hops and final destination as visited/enqueued
+            resp_redirects = getattr(fetch_resp, "redirect_chain", []) or []
+            resp_url = getattr(fetch_resp, "url", current_url) or current_url
+            for hop in resp_redirects:
+                try:
+                    norm_hop = normalize_url(hop)
+                    visited_urls.add(norm_hop)
+                    enqueued_urls.add(norm_hop)
+                except Exception:
+                    visited_urls.add(hop)
+                    enqueued_urls.add(hop)
+            if resp_url:
+                try:
+                    norm_dest = normalize_url(resp_url)
+                    visited_urls.add(norm_dest)
+                    enqueued_urls.add(norm_dest)
+                except Exception:
+                    visited_urls.add(resp_url)
+                    enqueued_urls.add(resp_url)
+
+            # If root URL redirected, update canonical_root
+            if depth == 0 and resp_url:
+                try:
+                    canonical_root = normalize_url(resp_url)
+                except Exception:
+                    canonical_root = resp_url
+
+
             if not fetch_resp.success or (fetch_resp.status_code is not None and fetch_resp.status_code >= 400):
                 error_count += 1
 
@@ -276,23 +307,28 @@ class InspectionPipeline:
                     # Discover and enqueue outgoing links
                     if depth < self.config.max_depth:
                         for link in page.links:
-                            link_url = link.url
-                            is_internal = is_same_site(normalized_root, link_url)
+                            try:
+                                norm_link = normalize_url(link.url)
+                            except Exception:
+                                norm_link = link.url
+
+                            is_internal = is_same_site(canonical_root, norm_link)
 
                             if self.config.same_site_only and not is_internal:
                                 continue
 
                             if (
-                                link_url not in visited_urls
-                                and link_url not in enqueued_urls
+                                norm_link not in visited_urls
+                                and norm_link not in enqueued_urls
+                                and not is_canonical_equivalent(norm_link, canonical_root)
                                 and len(visited_urls) + len(queue) < self.config.max_pages * 2
                             ):
-                                enqueued_urls.add(link_url)
-                                if is_regional_sibling(normalized_root, link_url):
+                                enqueued_urls.add(norm_link)
+                                if is_regional_sibling(canonical_root, norm_link):
                                     # Deprioritize regional sibling roots to back of BFS queue
-                                    queue.append((link_url, depth + 2))
+                                    queue.append((norm_link, depth + 2))
                                 else:
-                                    queue.append((link_url, depth + 1))
+                                    queue.append((norm_link, depth + 1))
 
             inspected_pages.append(page)
 
@@ -301,7 +337,7 @@ class InspectionPipeline:
         # 5. Build SiteInspection
         site_inspection = SiteInspection(
             site=hostname,
-            root_url=normalized_root,
+            root_url=canonical_root,
             audited_at=datetime.now(timezone.utc),
             total_duration_ms=total_elapsed_ms,
             robots=robots_inspection,
@@ -318,6 +354,7 @@ class InspectionPipeline:
         audit_technical_discoverability(site_inspection)
 
         return site_inspection
+
 
 
 def inspect_site(

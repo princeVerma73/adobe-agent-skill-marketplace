@@ -37,8 +37,10 @@ from src.inspection.url import (
     ALLOWED_SCHEMES,
     InvalidURLError,
     PrivateTargetError,
+    canonicalize_url,
     extract_hostname,
     extract_locale_prefix,
+    is_canonical_equivalent,
     is_locale_root,
     is_private_or_local_target,
     is_regional_sibling,
@@ -78,8 +80,10 @@ __all__ = [
     "ALLOWED_SCHEMES",
     "InvalidURLError",
     "PrivateTargetError",
+    "canonicalize_url",
     "extract_hostname",
     "extract_locale_prefix",
+    "is_canonical_equivalent",
     "is_locale_root",
     "is_private_or_local_target",
     "is_regional_sibling",
@@ -89,3 +93,4 @@ __all__ = [
     "is_valid_url",
     "normalize_url",
 ]
+

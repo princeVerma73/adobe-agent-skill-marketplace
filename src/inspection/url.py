@@ -446,3 +446,56 @@ def is_regional_sibling(root_url: str, candidate_url: str) -> bool:
         return True
         
     return False
+
+
+def canonicalize_url(url: str, default_scheme: str = "https") -> str:
+    """Canonicalize a URL for deduplication and link graph attribution.
+    
+    Normalizes scheme, strips default ports (80/443), normalizes trailing slashes
+    (treating root '/' and bare domain identically), removes fragments, and returns
+    a clean canonical representation.
+    """
+    if not url or not isinstance(url, str):
+        return ""
+    try:
+        norm = normalize_url(url, default_scheme=default_scheme)
+        return norm
+    except Exception:
+        return url.strip().rstrip("/")
+
+
+def is_canonical_equivalent(url1: str, url2: str) -> bool:
+    """Check whether two URLs are canonically equivalent aliases.
+    
+    Returns True if both URLs normalize to the exact same URL, or if they represent
+    the same domain/path across scheme (http vs https) or 'www.' hostname prefix variations.
+    """
+    if not url1 or not url2:
+        return False
+
+    if url1 == url2:
+        return True
+
+    try:
+        norm1 = normalize_url(url1)
+        norm2 = normalize_url(url2)
+        if norm1 == norm2:
+            return True
+    except Exception:
+        norm1 = url1.strip().rstrip("/")
+        norm2 = url2.strip().rstrip("/")
+        if norm1 == norm2:
+            return True
+
+    def _strip_scheme_and_www(u: str) -> str:
+        s = u.lower().strip().rstrip("/")
+        if "://" in s:
+            s = s.split("://", 1)[1]
+        host_and_path = s.split("?", 1)[0]
+        if host_and_path.startswith("www."):
+            host_and_path = host_and_path[4:]
+        query = f"?{s.split('?', 1)[1]}" if "?" in s else ""
+        return f"{host_and_path}{query}"
+
+    return _strip_scheme_and_www(norm1) == _strip_scheme_and_www(norm2)
+

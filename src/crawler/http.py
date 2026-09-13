@@ -83,10 +83,17 @@ class FetchResponse:
                 )
             )
 
+        norm_url = self.url
+        try:
+            norm_url = normalize_url(self.url)
+        except Exception:
+            pass
+
         return PageInspection(
-            url=self.url,
+            url=norm_url,
             original_url=self.original_url,
             status_code=self.status_code,
+
             content_type=self.content_type,
             response_time_ms=self.response_time_ms,
             redirect_chain=self.redirect_chain,
@@ -343,6 +350,7 @@ class SafeHTTPClient:
                     redirect_chain.append(resolved_target)
                     current_url = resolved_target
                     continue
+
 
                 # Non-redirect response: stream body up to size limit
                 try:

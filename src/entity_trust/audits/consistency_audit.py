@@ -21,6 +21,7 @@ from ..core.html_parser import ParsedPageContent
 
 
 FACT_HUMAN_NAMES = {
+    "organization_name": "Organization Name",
     "founding_year": "Founding Year",
     "headquarters": "Headquarters Location",
     "price": "Product / Plan Pricing",
@@ -28,6 +29,7 @@ FACT_HUMAN_NAMES = {
     "email": "Contact Email",
     "metric": "Reported Business Metric",
 }
+
 
 
 def audit_consistency(

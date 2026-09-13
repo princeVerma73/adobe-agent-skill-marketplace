@@ -42,7 +42,7 @@ class FactExtractor:
     PRICING_PATTERNS = [
         re.compile(r"(?:plans?\s+start(?:ing)?\s+at|starts?\s+at|starting\s+from|pricing:\s*)([\$€£₹]\s*\d+(?:,\d+)*(?:\.\d+)?|\d+\s*(?:USD|EUR|INR|GBP))", re.I),
         re.compile(r"(\$\d+(?:,\d+)*(?:\.\d+)?)\s*(?:\/mo|\/month|per month)", re.I),
-        re.compile(r"(₹\s*\d+(?:,\d+)*|INR\s*\d+(?:,\d+)*)\s*(?:\/mo|\/month|per month)?", re.I),
+        re.compile(r"(₹\s*\d+(?:,\d+)*(?:\.\d+)?|INR\s*\d+(?:,\d+)*(?:\.\d+)?)\s*(?:\/mo|\/month|per month)?", re.I),
     ]
 
     EMAIL_PATTERN = re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b")
@@ -69,6 +69,69 @@ class FactExtractor:
         r"\b(?:Anthropic|Apple|T-Mobile|Google|Microsoft|OpenAI|Amazon|Netflix|Meta|Tesla|Spotify)\b['’]?s?\s+",
         re.I,
     )
+
+    CUSTOMER_ACTION_VERBS = (
+        "unifies", "operates", "delivers", "scales", "expands", "powers",
+        "processes", "reaches", "connects", "serves", "grew", "handles",
+        "manages", "supports", "uses", "relies", "built", "achieved",
+        "saw", "launched", "integrates", "runs", "servicing", "reaching",
+        "delivering", "powering", "processing", "expanding", "scaling",
+    )
+
+    NON_ENTITY_WORDS = {
+        "we", "our", "us", "the", "this", "these", "those", "today", "now", "over", "more",
+        "with", "in", "on", "at", "by", "for", "from", "across", "globally", "worldwide",
+        "currently", "about", "join", "trusted", "supporting", "empowering", "connecting",
+        "serving", "every", "all", "millions", "billions", "thousands", "hundreds", "total",
+        "top", "many", "some", "key", "new", "one", "two", "three", "four", "five", "six",
+        "seven", "eight", "nine", "ten", "january", "february", "march", "april", "may",
+        "june", "july", "august", "september", "october", "november", "december", "monday",
+        "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday", "english",
+        "global", "international", "national", "public", "private", "digital", "online",
+        "secure", "fast", "simple", "easy", "direct", "leading", "primary", "main", "general",
+        "standard", "official", "platform", "product", "service", "company", "community",
+        "enterprise", "enterprises", "customer", "customers", "user", "users", "client",
+        "clients", "developer", "developers", "partner", "partners", "organization", "team",
+        "help", "start", "build", "learn", "explore", "discover", "read", "pricing", "contact",
+        "case", "study", "story", "stories", "spotlight", "how", "see", "like", "such",
+    }
+
+    @classmethod
+    def _is_third_party_or_customer_metric(cls, snippet: str, brand: str) -> bool:
+        """Determines if a metric snippet is attributed to a customer case study or third party."""
+        # 1. Check recognized third-party brand pattern
+        if cls.THIRD_PARTY_BRAND_PATTERN.search(snippet):
+            return True
+
+        # 2. Check explicit customer story / case study keywords
+        if re.search(r"\b(?:case\s+study|customer\s+story|customer\s+stories|customer\s+spotlight)\b", snippet, re.I):
+            return True
+
+        # 3. Check for customer entity subject + action verb before metric:
+        # e.g., "Hertz unifies...", "Supabase delivers...", "Deliveroo scales..."
+        verb_pattern = "|".join(cls.CUSTOMER_ACTION_VERBS)
+        verb_match = re.search(rf"\b([A-Z][a-zA-Z0-9_\-]+)\s+(?:{verb_pattern})\b", snippet)
+        if verb_match:
+            entity = verb_match.group(1).lower()
+            if entity not in cls.NON_ENTITY_WORDS and entity not in brand.lower() and brand.lower() not in entity:
+                return True
+
+        # 4. Check for possessive named entity before metric:
+        # e.g., "Hertz's global footprint across 160 countries", "Supabase's 150 countries"
+        possessive_match = re.search(r"\b([A-Z][a-zA-Z0-9_\-]+)['’]s\b", snippet)
+        if possessive_match:
+            entity = possessive_match.group(1).lower()
+            if entity not in cls.NON_ENTITY_WORDS and entity not in brand.lower() and brand.lower() not in entity:
+                return True
+
+        # 5. Check for "See how [Entity]..." or "How [Entity]..."
+        how_match = re.search(r"\b(?:see\s+how|how)\s+([A-Z][a-zA-Z0-9_\-]+)\b", snippet, re.I)
+        if how_match:
+            entity = how_match.group(1).lower()
+            if entity not in cls.NON_ENTITY_WORDS and entity not in brand.lower() and brand.lower() not in entity:
+                return True
+
+        return False
 
     @classmethod
     def _is_editorial_page(cls, url: str) -> bool:
@@ -184,11 +247,18 @@ class FactExtractor:
             for pat in cls.PRICING_PATTERNS:
                 for match in pat.finditer(text):
                     raw = match.group(1).strip()
-                    snippet = cls._get_snippet(text, match.start(), match.end())
+                    snippet = cls._get_snippet(text, match.start(), match.end(), window=80)
                     # Skip if snippet is explicitly referencing third-party brands
                     if cls.THIRD_PARTY_BRAND_PATTERN.search(snippet):
                         continue
-                    norm = FactNormalizer.normalize_price(raw)
+                    imm_prefix = text[max(0, match.start() - 40):match.start()]
+                    imm_suffix = text[match.end():min(len(text), match.end() + 40)]
+                    norm = FactNormalizer.normalize_price(
+                        raw,
+                        context=snippet,
+                        immediate_prefix=imm_prefix,
+                        immediate_suffix=imm_suffix,
+                    )
                     if norm:
                         facts.append(
                             ExtractedFact(
@@ -245,12 +315,15 @@ class FactExtractor:
                 # Check if number is a lone footnote or item number at sentence end e.g. "equally. 7 Users can"
                 if re.search(r"[\.\?\!]\s*$", preceding_text) and re.match(r"^\d{1,2}\s+[A-Z]", raw_metric):
                     continue
+                snippet = cls._get_snippet(text, match.start(), match.end(), window=80)
+                # Skip metrics that are explicitly attributed to third parties or customer testimonials
+                if cls._is_third_party_or_customer_metric(snippet, brand):
+                    continue
                 norm = NormalizedFact(
                     fact_type="metric",
                     canonical_value=raw_metric.lower(),
                     raw_value=raw_metric,
                 )
-                snippet = cls._get_snippet(text, match.start(), match.end())
                 # On editorial/news pages, metric must represent organizational scale, not article narrative
                 if is_editorial and not is_about:
                     if not (brand and brand in snippet.lower()) and not re.search(r"\b(?:over|more than|serving|trusted by|scale|worldwide|globally|\bmillion\b|\bbillion\b|\bk\+?\b)\b", snippet, re.I):
@@ -274,8 +347,31 @@ class FactExtractor:
         if not isinstance(obj, dict):
             return facts
 
+        # Organization Name in Schema.org
+        t = str(obj.get("@type", "")).lower()
+        if any(k in t for k in ("organization", "corporation", "localbusiness", "company", "educationalorganization")):
+            org_name = obj.get("name")
+            if org_name and isinstance(org_name, str) and len(org_name.strip()) > 1:
+                clean_name = org_name.strip()
+                norm = NormalizedFact(
+                    fact_type="organization_name",
+                    canonical_value=clean_name.lower(),
+                    raw_value=clean_name,
+                )
+                facts.append(
+                    ExtractedFact(
+                        fact_type="organization_name",
+                        raw_value=clean_name,
+                        normalized=norm,
+                        source_url=source_url,
+                        context_snippet=f"Schema.org Organization name: {clean_name}",
+                        confidence=0.95,
+                    )
+                )
+
         # Founding Date in Schema
         founding_date = obj.get("foundingDate") or obj.get("foundingYear")
+
         if founding_date:
             norm = FactNormalizer.normalize_founding_year(str(founding_date))
             if norm:
