@@ -18,7 +18,7 @@ The **Brand AI-Readiness Audit Marketplace** solves this through a modular, four
 - **`entity-content-freshness-trust`**: Audits brand entity disambiguation, Schema.org `Organization` metadata, facts trapped in images, temporal decay, and cross-page factual consistency.
 - **`engagement-recommendations`**: Audits visitor orientation, heading hierarchies (H1–H6), CTA clarity, internal link topology, contact reachability, conversion pathways, and deep-landing context retention.
 
-All skills operate strictly **read-only and non-destructive**, completing a full multi-page evaluation in under **30 seconds per site** and backed by **293 deterministic tests**.
+All skills operate strictly **read-only and non-destructive**, completing a full multi-page evaluation in under **30 seconds per site** and backed by **302 deterministic tests**.
 
 ---
 
@@ -181,7 +181,7 @@ playwright install chromium
 ```bash
 pytest -q
 ```
-*Expected output: `293 passed in ~1.1s`.*
+*Expected output: `302 passed in ~2.4s`.*
 
 ### 3. Run Audits via CLI
 
@@ -406,7 +406,7 @@ Targeted Structural Fix (Context-Aware Scoping & Disambiguation)
              ↓
 Deterministic Regression Fixture Added (tests/fixtures/)
              ↓
-Full Re-Verification Across All 8 Sites & 293 Test Suite
+Full Re-Verification Across All 8 Sites & 302 Test Suite
 ```
 
 ---
@@ -458,7 +458,7 @@ Adobe-Agent-Marketplace/
 │   ├── engagement/                       # Journey, hierarchy, CTA, link topology engines
 │   ├── recommendations/                  # Prescriptive remediation engine
 │   └── report/                           # Orchestration, deduplication, scoring, final report
-└── tests/                                # 293 comprehensive unit & integration tests
+└── tests/                                # 302 comprehensive unit & integration tests
     ├── fixtures/                         # Deterministic HTML & snapshot regression fixtures
     ├── integration/                      # End-to-end multi-skill integration tests
     ├── crawl_render_audit/               # Technical inspection test suite
