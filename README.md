@@ -24,7 +24,7 @@ All skills operate strictly **read-only and non-destructive**, completing a full
 
 ## Architecture & Composition
 
-The marketplace follows a hierarchical orchestrator-specialist topology. The `audit-orchestrator` serves as the single designated entrypoint, coordinating data flow between specialized inspection skills and aggregating findings into a unified, evidence-grounded report.
+The marketplace follows a hierarchical orchestrator-specialist topology. The `audit-orchestrator` serves as the single designated entrypoint, coordinating data flow between specialized inspection skills and aggregating findings into a unified, evidence-grounded report. The orchestration lifecycle is driven primarily by `src/report/orchestrator.py`, while `src/report/builder.py` handles evidence normalization, deduplication, and final `FinalAuditReport` synthesis.
 
 ```mermaid
 sequenceDiagram
@@ -49,20 +49,20 @@ sequenceDiagram
     end
 
     rect rgb(245, 255, 245)
-        Note over Orch,Engagement: Phase 2: Parallel Specialist Skill Analysis
-        par Semantic & Trust Inspection
-            Orch->>EntityTrust: audit_entity_trust(SiteInspection)
-            EntityTrust->>EntityTrust: Entity Disambiguation & Schema.org Verification
-            EntityTrust->>EntityTrust: Visual Data Scan & Freshness Analysis
-            EntityTrust->>EntityTrust: Cross-Page Factual Consistency Graph
-            EntityTrust-->>Orch: ContentEntityAuditResult (EC, CC, FR, CO findings)
-        and UX & Pathway Inspection
-            Orch->>Engagement: audit_engagement(SiteInspection)
-            Engagement->>Engagement: Landing Orientation & Heading Hierarchy (H1-H6)
-            Engagement->>Engagement: CTA Clarity & Internal Link Graph Topology
-            Engagement->>Engagement: Contact Reachability & Dead-End Detection
-            Engagement-->>Orch: EngagementAuditResult (ENG findings)
-        end
+        Note over Orch,Engagement: Phase 2: Modular Specialist Skill Analysis
+        Note over Orch,EntityTrust: Step 2A: Semantic & Trust Inspection
+        Orch->>EntityTrust: audit_entity_trust(SiteInspection)
+        EntityTrust->>EntityTrust: Entity Disambiguation & Schema.org Verification
+        EntityTrust->>EntityTrust: Visual Data Scan & Freshness Analysis
+        EntityTrust->>EntityTrust: Cross-Page Factual Consistency Graph
+        EntityTrust-->>Orch: ContentEntityAuditResult (EC, CC, FR, CO findings)
+
+        Note over Orch,Engagement: Step 2B: UX & Pathway Inspection
+        Orch->>Engagement: audit_engagement(SiteInspection)
+        Engagement->>Engagement: Landing Orientation & Heading Hierarchy (H1-H6)
+        Engagement->>Engagement: CTA Clarity & Internal Link Graph Topology
+        Engagement->>Engagement: Contact Reachability & Dead-End Detection
+        Engagement-->>Orch: EngagementAuditResult (ENG findings)
     end
 
     rect rgb(255, 250, 240)
@@ -89,7 +89,7 @@ sequenceDiagram
 
 ## Marketplace Manifest Explanation
 
-The marketplace configuration is defined in [`marketplace.json`](file:///c:/INTERNSHIP/Adobe-Agent-Marketplace/marketplace.json) conforming to the Adobe Hackathon Round 3 multi-agent marketplace specification:
+The marketplace configuration is defined in [`marketplace.json`](marketplace.json) conforming to the Adobe Hackathon Round 3 multi-agent marketplace specification:
 
 ```json
 {
@@ -149,7 +149,7 @@ The marketplace is engineered with strict sandbox safety and performance guardra
    - Parses and strictly obeys `robots.txt` `Disallow` rules and respect `Crawl-delay` directives.
    - Restricts crawling to the target registrable domain (`same_site_only=True`).
 4. **Execution Time & Resource Budget**:
-   - Guaranteed **< 5-minute execution limit** across multi-page crawls.
+   - Designed to remain within the 5-minute execution limit under bounded crawl settings.
    - Average single-site audit: **5–15 seconds** (static) or **15–30 seconds** (with Playwright rendering).
    - Entire 8-site adversarial benchmark runs in **201 seconds**.
    - Bounded BFS crawl defaults: `max_pages=10`, `max_depth=2`, per-request timeout `10.0s`.
@@ -226,7 +226,7 @@ markdown_output = report.to_markdown()
 
 ## Standard Output Schema
 
-Below is an excerpt of the standardized JSON audit report emitted by `audit-orchestrator` for `https://linear.app/`, matching the exact Adobe Hackathon schema specification:
+Below is an excerpt of the standardized JSON audit report emitted by `audit-orchestrator` for `https://linear.app/`, including the required Adobe Hackathon minimum report schema:
 
 ```json
 {
